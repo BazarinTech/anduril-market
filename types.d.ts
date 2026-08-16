@@ -191,6 +191,17 @@ type WithdrawFunds = Transact & {
     pin: string
 }
 
+type ResetWithdrawalPin = CommonFetch & {
+    code: string
+    newPin: string
+}
+
+// `phone` is the account's number, masked by the backend (e.g. "2547****789").
+// It is for telling the user which handset to check, nothing more.
+type PinResetRequestResponse = GeneralResponse & {
+    phone?: string
+}
+
 type VerificationRequest = {
     phone: string
     code?: string

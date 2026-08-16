@@ -182,6 +182,41 @@ export async function checkStkStatus({trackingID} : CheckSTKStatus): Promise<Gen
     return await response.json()
 }
 
+/**
+ * Ask for a verification code to reset a forgotten withdrawal PIN.
+ *
+ * Only the token goes over the wire. The destination number is read off the
+ * account server-side and comes back masked, so a stolen session cannot point
+ * the SMS at a different handset.
+ */
+export async function requestPinResetCode({userID} : CommonFetch): Promise<PinResetRequestResponse> {
+    const response = await fetch(`${backendUrl}/reset-withdrawal-pin.php`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({userID, type: 'request'})
+    })
+
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    return await response.json()
+}
+
+/**
+ * Spend the code and set the new PIN. Both happen in one backend call, so a
+ * verified code never outlives the reset it was issued for.
+ */
+export async function resetWithdrawalPin({userID, code, newPin} : ResetWithdrawalPin): Promise<GeneralResponse> {
+    const response = await fetch(`${backendUrl}/reset-withdrawal-pin.php`, {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({userID, code, newPin, type: 'reset'})
+    })
+
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    return await response.json()
+}
+
 export async function cashoutWalletSetup({userID, phone, accountName, pin, type} : CashoutWalletSetup): Promise<GeneralResponse> {
     const response = await fetch(`${backendUrl}/withdraw-account.php`, {
         method: 'post',

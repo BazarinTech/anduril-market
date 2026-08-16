@@ -28,7 +28,7 @@ export function WelcomeModal() {
         {/* Hero Image */}
         <div className="relative w-full h-52">
           <Image
-            src="/anduril-wings.jpg"
+            src="/welcome-banner.jpeg"
             alt="Anduril fresh farm produce"
             fill
             className="object-cover"
@@ -47,7 +47,7 @@ export function WelcomeModal() {
           <div>
             <h2 className="text-xl font-bold text-foreground">Welcome to Anduril</h2>
             <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
-              Pick a farm product, promote it, and collect your{" "}
+              Pick a tech product, promote it, and collect your{" "}
               <span className="text-foreground font-medium">daily returns</span> as they build up.
               Top up and cash out straight to M-Pesa, and earn commission on everyone
               you bring into your team.

@@ -1,8 +1,12 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight02Icon } from "hugeicons-react"
+// Static import so next/image reads the intrinsic 678x452 size at build time --
+// no width/height to keep in sync, and no layout shift while it loads.
+import bannerAnduril from "@/public/banner-anduril.jpeg"
 
 export function HeroSection() {
   return (
@@ -41,8 +45,19 @@ export function HeroSection() {
         </Button>
       </div>
 
+      {/* Banner */}
+      <div className="mt-14 w-full max-w-3xl overflow-hidden rounded-xl border border-border shadow-sm">
+        <Image
+          src={bannerAnduril}
+          alt="Anduril"
+          priority
+          sizes="(max-width: 768px) 100vw, 768px"
+          className="h-auto w-full object-cover"
+        />
+      </div>
+
       {/* Trust Indicator */}
-      <p className="mt-16 text-sm text-muted-foreground">
+      <p className="mt-10 text-sm text-muted-foreground">
         Trusted by <span className="font-semibold text-foreground">5,000+</span> workers nationwide
       </p>
     </section>

@@ -2,7 +2,7 @@ export function VideoHero() {
   return (
     <div className="relative w-full overflow-hidden rounded-xl">
       <img
-        src="/anduril-hero.jpg"
+        src="/banner-anduril.jpeg"
         alt="Anduril"
         className="w-full h-auto object-cover max-h-75"
       />

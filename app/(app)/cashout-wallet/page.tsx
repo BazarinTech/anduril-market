@@ -27,6 +27,7 @@ import Topbar from "@/components/shared/topbar"
 import { useMainStore } from "@/lib/stores/use-main-store"
 import { toast } from "sonner"
 import { cashoutWalletSetup } from "@/lib/backend/actions"
+import { ResetPinDialog } from "@/components/wallet/reset-pin-dialog"
 
 type ViewMode = "display" | "setup" | "edit" | "change-pin"
 
@@ -42,6 +43,7 @@ export default function CashoutWalletPage() {
   const [successMessage, setSuccessMessage] = useState("")
   const [hasExistingWallet, setHasExistingWallet] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>("display")
+  const [showResetPin, setShowResetPin] = useState(false)
   const loginState = useMainStore((state) => state.loginState)
   const mainDetails = useMainStore((state) => state.mainDetails)
   const fetchMainDetails = useMainStore((state) => state.fetchMainDetails)
@@ -345,6 +347,14 @@ export default function CashoutWalletPage() {
               <LockPasswordIcon size={18} />
               Change Withdrawal PIN
             </Button>
+
+            <button
+              type="button"
+              onClick={() => setShowResetPin(true)}
+              className="w-full mt-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Forgot your PIN? Reset it by SMS
+            </button>
           </div>
         )}
 
@@ -529,7 +539,21 @@ export default function CashoutWalletPage() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="oldPin">Current PIN *</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="oldPin">Current PIN *</Label>
+                {/*
+                  The way out for someone who cannot complete this form. It sits
+                  beside the field they are stuck on, which is where they are
+                  looking when they realise they have forgotten it.
+                */}
+                <button
+                  type="button"
+                  onClick={() => setShowResetPin(true)}
+                  className="text-sm text-primary hover:underline"
+                >
+                  Forgot PIN?
+                </button>
+              </div>
               <PasswordInput
                 id="oldPin"
                 name="oldPin"
@@ -590,6 +614,21 @@ export default function CashoutWalletPage() {
           </ul>
         </div>
       </div>
+
+      {/* Forgotten-PIN reset, by SMS to the number on the account */}
+      <ResetPinDialog
+        open={showResetPin}
+        onOpenChange={setShowResetPin}
+        token={token}
+        onSuccess={() => {
+          fetchMainDetails(token)
+          resetForm()
+          setViewMode("display")
+          setSuccessMessage("Your withdrawal PIN has been reset. Use the new PIN from now on.")
+          setShowSuccess(true)
+          setTimeout(() => setShowSuccess(false), 2500)
+        }}
+      />
 
       {/* Success Dialog */}
       <AlertDialog open={showSuccess}>
