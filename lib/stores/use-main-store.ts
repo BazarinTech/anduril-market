@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { getMains } from "../backend/actions";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import { SESSION_COOKIE, isExpired, type SessionClaims } from "../session";
 
 type MainStoreType = {
   token: string;
@@ -11,12 +12,13 @@ type MainStoreType = {
   isMainFetching: boolean;
   mainDetails: Mains | null;
   fetchMainDetails: (userID: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
   loginState: () => void;
   login: (token: string) => void
 };
 
-const TOKEN_KEY = "susyr7q3ycugfWDFF";
+// Was "susyr7q3ycugfWDFF" -- the literal JWT signing secret. See lib/session.ts.
+const TOKEN_KEY = SESSION_COOKIE;
 
 export const useMainStore = create<MainStoreType>((set, get) => ({
   token: "",
@@ -49,22 +51,36 @@ export const useMainStore = create<MainStoreType>((set, get) => ({
 
   loginState: () => {
     const storedToken = Cookies.get(TOKEN_KEY);
+
     if (!storedToken) {
       set({ isLogin: false, token: "" });
-      console.log('invalid token', storedToken)
-    } else {
-      set({ isLogin: true, token: storedToken });
-      console.log('Valid token', storedToken)
-      try {
-        const decoded: { userID?: string } = jwtDecode(storedToken);
-        if (decoded?.userID) {
-          get().fetchMainDetails(storedToken);
-        }
-      } catch (err) {
-        console.error("Invalid token:", err);
+      return;
+    }
+
+    // Don't log the token. It is a bearer credential -- anything holding it can
+    // act as this user until it expires, and console output ends up in
+    // screenshots and support threads.
+    try {
+      const decoded = jwtDecode<SessionClaims>(storedToken);
+
+      // An expired token would be rejected by the API anyway; treating it as
+      // signed-in here just produces an app shell whose every request fails.
+      if (isExpired(decoded)) {
+        set({ isLogin: false, token: "", mainDetails: null });
+        Cookies.remove(TOKEN_KEY);
+        return;
+      }
+
+      if (decoded?.userID) {
+        set({ isLogin: true, token: storedToken });
+        get().fetchMainDetails(storedToken);
+      } else {
         set({ isLogin: false, token: "" });
         Cookies.remove(TOKEN_KEY);
       }
+    } catch {
+      set({ isLogin: false, token: "", mainDetails: null });
+      Cookies.remove(TOKEN_KEY);
     }
   },
   login: (token) => {

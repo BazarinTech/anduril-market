@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 md:col-span-1">
-            <h3 className="text-xl font-bold text-primary">Sanderson Farms</h3>
+            <h3 className="text-xl font-bold text-primary">Anduril</h3>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               Connecting workers with opportunities. Earn on your terms.
             </p>
@@ -106,10 +106,10 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:support@sandersonfarms.com"
+                  href="mailto:support@anduril.market"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  support@sandersonfarms.com
+                  support@anduril.market
                 </a>
               </li>
             </ul>
@@ -118,7 +118,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
-          <p className="text-sm text-muted-foreground">© 2025 Sanderson Farms. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2025 Anduril. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Privacy

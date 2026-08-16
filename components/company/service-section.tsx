@@ -12,7 +12,7 @@ const services = [
   {
     icon: PhoneOff01Icon,
     title: "Order Promotion",
-    description: "Promote farm products for Sanderson Farms through our network of dedicated promoters.",
+    description: "Promote farm products for Anduril through our network of dedicated promoters.",
   },
   {
     icon: Briefcase01Icon,

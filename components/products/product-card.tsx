@@ -96,7 +96,7 @@ export function ProductCard({ID, name, image, max, duration, returns, order_limi
         </div>
 
         {/* Buy Button */}
-        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-colors" disabled={isLoading} onClick={handleBuyProduct}>
+        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition-colors" disabled={isLoading} onClick={handleBuyProduct}>
         {isLoading ? <>Processing... <Loading01Icon className="w-5 h-5" /></> : <>Get Package <ArrowRight01Icon className="w-5 h-5" /></>}
           
         </button>

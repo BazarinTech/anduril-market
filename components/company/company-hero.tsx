@@ -10,7 +10,7 @@ export function CompanyHero() {
           <Building05Icon size={48} className="text-white" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold">Sanderson Farms</h1>
+          <h1 className="text-2xl font-bold">Anduril</h1>
           <p className="text-primary-foreground/80 mt-1">Empowering Workers, Growing Businesses</p>
         </div>
         <div className="flex gap-6 mt-2">

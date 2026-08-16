@@ -64,7 +64,7 @@ export function OrderCard({ name, image, cycle, total, roll, status, daily, orde
         {status === "Active" && (
           <Button
             onClick={() => setIsPromoting(true)}
-            className="mt-4 w-full rounded-full  from-primary to-accent py-6 font-semibold text-primary-foreground hover:opacity-90"
+            className="mt-4 w-full from-primary to-accent py-6 font-semibold text-primary-foreground hover:opacity-90"
             disabled={isPromoting || roll == 0}
           >
             <Speaker01Icon className="mr-2 h-5 w-5" />

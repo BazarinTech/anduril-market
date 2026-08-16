@@ -22,20 +22,27 @@ type Props = {
 
 function LogoutAlert({isOpen, onClose}: Props) {
     const logout = useMainStore.getState().logout
-    const loginState = useMainStore(state => state.loginState)
-    const islogin = useMainStore((state) => state.isLogin)
     const router = useRouter()
 
     const handleLogout = async() => {
         await logout()
-        loginState()
-        
-        if (!islogin) {
-            router.push('/login')
-        }else{
+
+        // Read the result *after* awaiting, straight from the store.
+        //
+        // This used to check a `useMainStore(state => state.isLogin)`
+        // subscription, but that value is captured when the render creating
+        // this closure ran -- i.e. while still signed in. It stayed `true`
+        // after a successful logout, so every attempt fell into the error
+        // branch and never redirected; only a second click (post re-render)
+        // worked. getState() always reads the current value.
+        if (useMainStore.getState().isLogin) {
             toast.error('Seems an error occured and logout operation did not complete!')
+            return
         }
-        
+
+        // replace, not push: the signed-in page must not sit in history behind
+        // /login, where the back button would restore its shell.
+        router.replace('/login')
     }
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>

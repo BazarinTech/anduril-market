@@ -14,7 +14,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold text-primary">
-            Sanderson Farms
+            Anduril
           </Link>
 
           {/* Desktop Navigation */}
@@ -35,7 +35,7 @@ export function Navbar() {
             <Button asChild variant="ghost" size="sm">
               <Link href="/login">Log in</Link>
             </Button>
-            <Button asChild size="sm" className="rounded-full">
+            <Button asChild size="sm">
               <Link href="/register">Sign up</Link>
             </Button>
           </div>

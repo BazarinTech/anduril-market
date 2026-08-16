@@ -13,7 +13,7 @@ export function CTASection() {
           Join thousands of workers already making money their way. Sign up today and get started in minutes.
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
-          <Button asChild size="lg" variant="secondary" className="rounded-full px-8 text-base">
+          <Button asChild size="lg" variant="secondary" className="px-8 text-base">
             <Link href="/register">
               Create free account
               <ArrowRight02Icon className="ml-2 h-5 w-5" />
@@ -23,7 +23,7 @@ export function CTASection() {
             asChild
             size="lg"
             variant="ghost"
-            className="rounded-full px-8 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+            className="px-8 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
           >
             <Link href="/login">Sign in</Link>
           </Button>

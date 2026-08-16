@@ -25,18 +25,18 @@ export function HeroSection() {
       {/* Subheadline */}
       <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl text-pretty leading-relaxed">
         Join thousands of workers earning on their own terms. Connect with farm opportunities, promote products, and
-        build your income with Sanderson Farms.
+        build your income with Anduril.
       </p>
 
       {/* CTA Buttons */}
       <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-        <Button asChild size="lg" className="rounded-full px-8 text-base">
+        <Button asChild size="lg" className="px-8 text-base">
           <Link href="/register">
             Get started free
             <ArrowRight02Icon className="ml-2 h-5 w-5" />
           </Link>
         </Button>
-        <Button asChild variant="outline" size="lg" className="rounded-full px-8 text-base bg-transparent">
+        <Button asChild variant="outline" size="lg" className="px-8 text-base bg-transparent">
           <Link href="/about">How it works</Link>
         </Button>
       </div>

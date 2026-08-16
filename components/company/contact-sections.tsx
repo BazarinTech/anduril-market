@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: Mail01Icon,
     label: "Email",
-    value: "support@sandersonfarms.com",
+    value: "support@anduril.market",
   },
   {
     icon: Location01Icon,
@@ -43,7 +43,7 @@ export function ContactSection() {
         ))}
       </div>
       <p className="text-center text-xs text-muted-foreground mt-6">
-        &copy; 2025 Sanderson Farms. All rights reserved.
+        &copy; 2025 Anduril. All rights reserved.
       </p>
     </div>
   )

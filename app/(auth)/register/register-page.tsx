@@ -84,10 +84,10 @@ export default function RegisterPage() {
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-12 px-6 text-center rounded-b-[2rem]">
         <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-          <img src="/favicon.ico" alt="Sanderson Farms" className="w-12 h-12 object-contain" />
+          <img src="/favicon.ico" alt="Anduril" className="w-12 h-12 object-contain" />
         </div>
         <h1 className="text-2xl font-bold">Create Account</h1>
-        <p className="text-primary-foreground/80 mt-1">Join Sanderson Farms today</p>
+        <p className="text-primary-foreground/80 mt-1">Join Anduril today</p>
       </div>
 
       {/* Form */}

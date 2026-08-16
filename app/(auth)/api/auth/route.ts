@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import jwt from "jsonwebtoken"
+import { SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from "@/lib/session"
 
 export async function POST(req: Request) {
   const body = (await req.json()) as Auth
@@ -81,7 +82,13 @@ export async function POST(req: Request) {
     }
 
     // Backend success: sign token and return same response + token
-    const token = jwt.sign({ userID: results.userID }, jwtSecret)
+    //
+    // `expiresIn` matters. Without an `exp` claim these tokens were valid
+    // forever -- the cookie's maxAge only governed the browser, and the
+    // ExpiredException handler in every PHP endpoint was unreachable code.
+    const token = jwt.sign({ userID: results.userID }, jwtSecret, {
+      expiresIn: SESSION_MAX_AGE_SECONDS,
+    })
 
     // Return backend response fields unchanged, add token
     const res = NextResponse.json(
@@ -89,15 +96,21 @@ export async function POST(req: Request) {
       { status: 200 }
     )
 
-    // Set cookie (httpOnly recommended)
+    // This cookie used to be *named* after the signing secret, publishing the
+    // key to every visitor. See lib/session.ts.
+    //
+    // httpOnly stays false deliberately: lib/stores/use-main-store.ts reads
+    // this cookie from client code and hands the token to the PHP API on every
+    // call. Turning it on means proxying those calls through route handlers
+    // first, which is a separate piece of work rather than a flag flip.
     res.cookies.set({
-      name: "susyr7q3ycugfWDFF",
+      name: SESSION_COOKIE,
       value: token,
       httpOnly: false,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: SESSION_MAX_AGE_SECONDS,
     })
 
     return res

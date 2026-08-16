@@ -28,8 +28,8 @@ export function WelcomeModal() {
         {/* Hero Image */}
         <div className="relative w-full h-52">
           <Image
-            src="/sanderson-wings.jpg"
-            alt="Sanderson Farms fresh chicken"
+            src="/anduril-wings.jpg"
+            alt="Anduril fresh farm produce"
             fill
             className="object-cover"
             priority
@@ -37,7 +37,7 @@ export function WelcomeModal() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/50" />
           <div className="absolute bottom-3 left-4 right-4">
             <span className="text-white text-xs font-medium bg-primary/80 px-2 py-0.5 rounded-full">
-              Wayne-Sanderson Farms
+              Anduril
             </span>
           </div>
         </div>
@@ -45,12 +45,12 @@ export function WelcomeModal() {
         {/* Content */}
         <div className="px-5 pt-4 pb-6 space-y-3">
           <div>
-            <h2 className="text-xl font-bold text-foreground">Welcome to Sanderson Farms</h2>
+            <h2 className="text-xl font-bold text-foreground">Welcome to Anduril</h2>
             <p className="text-muted-foreground text-sm mt-1 leading-relaxed">
-              One of the largest U.S. poultry producers — specializing in processing, marketing,
-              and distributing <span className="text-foreground font-medium">fresh, frozen, and prepared chicken products</span> for
-              retail and foodservice. We control the entire production cycle, including operating
-              hatcheries, feed mills, and partnering with family farmers.
+              Pick a farm product, promote it, and collect your{" "}
+              <span className="text-foreground font-medium">daily returns</span> as they build up.
+              Top up and cash out straight to M-Pesa, and earn commission on everyone
+              you bring into your team.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export function WelcomeModal() {
 
             <Button
               variant="outline"
-              className="w-full h-10 rounded-xl text-sm font-medium"
+              className="w-full h-10 text-sm font-medium"
               onClick={() => setOpen(false)}
             >
               Get Started

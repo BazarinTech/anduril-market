@@ -65,7 +65,7 @@ function Page() {
 
   return (
     <div>
-      <Topbar title="Sanderson Profile" />
+      <Topbar title="Anduril Profile" />
       {/* Header with Profile */}
       <div className="bg-primary text-primary-foreground pt-4 pb-8 px-4">
         <h1 className="text-center font-semibold mb-6">Mine</h1>
@@ -108,7 +108,7 @@ function Page() {
             </div>
             <Button
               variant="outline"
-              className="w-full rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
+              className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
               onClick={() => router.push('/products')}
             >
               <CoinsSwapIcon size={16} className="mr-2" />
@@ -125,7 +125,7 @@ function Page() {
                 <p className="text-xs text-muted-foreground">Active Team</p></>
               )}
             </div>
-            <Button className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => router.push('/team')}>
+            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => router.push('/team')}>
               <Gif01Icon size={16} className="mr-2" />
               Invite more
             </Button>
@@ -139,13 +139,13 @@ function Page() {
         <div className="grid grid-cols-2 gap-3 mb-6">
           <Button
             variant="outline"
-            className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 bg-transparent"
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground py-6 bg-transparent"
             onClick={() => router.push('/recharge')}
           >
             <Wallet01Icon size={20} className="mr-2" />
             Recharge
           </Button>
-          <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 py-6" onClick={() => router.push('/cashout')}>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 py-6" onClick={() => router.push('/cashout')}>
             <Download01Icon size={20} className="mr-2" />
             Withdraw
           </Button>

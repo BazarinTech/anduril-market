@@ -134,7 +134,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-white rounded-xl py-6 font-semibold"
+                className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
@@ -152,7 +152,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
             <p className="text-sm text-muted-foreground mb-6">
               We will review and respond within <span className="font-semibold text-primary">12 hours</span>.
             </p>
-            <Button onClick={handleClose} className="bg-primary hover:bg-primary/90 text-white rounded-xl px-8">
+            <Button onClick={handleClose} className="bg-primary hover:bg-primary/90 text-white px-8">
               Done
             </Button>
           </div>
