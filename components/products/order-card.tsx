@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { productImageUrl } from "@/lib/media/image-url"
 import { Speaker01Icon } from "hugeicons-react"
 import { Button } from "@/components/ui/button"
 import { PromotionDialog } from "./promotion-dialog"
@@ -10,6 +11,7 @@ import { useCurrency } from "@/lib/hooks/use-currency"
 interface OrderCardProps {
   name: string
   image: string
+  image_url?: string
   cycle: number
   total: string
   purchaseDate: string
@@ -19,11 +21,9 @@ interface OrderCardProps {
   orderID: ID
 }
 
-export function OrderCard({ name, image, cycle, total, roll, status, daily, orderID }: OrderCardProps) {
+export function OrderCard({ name, image, image_url, cycle, total, roll, status, daily, orderID }: OrderCardProps) {
   const [isPromoting, setIsPromoting] = useState(false)
-  const src = image
-  ? `https://sanderson.xgramm.com/admin/uploads/${image}`
-  : "/placeholder.svg";
+  const src = productImageUrl(image_url, image);
 
   return (
     <>

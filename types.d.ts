@@ -66,6 +66,8 @@ type InvestmentOrder = {
     remaining: number
     product_description:string,
     image: string,
+    // Resolved server-side. Empty when the product has no image.
+    image_url?: string,
     roll: number
 }
 
@@ -93,6 +95,8 @@ type Product = {
     tier: string
     order_limit: number
     image: string,
+    // Resolved server-side. Empty when the product has no image.
+    image_url?: string,
 }
 
 type Transactions = {

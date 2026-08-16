@@ -8,16 +8,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { makeInvestment } from "@/lib/backend/actions";
 import { useMainStore } from "@/lib/stores/use-main-store";
+import { productImageUrl } from "@/lib/media/image-url";
 
-export function ProductCard({ID, name, image, max, duration, returns, order_limit }: Product) {
+export function ProductCard({ID, name, image, image_url, max, duration, returns, order_limit }: Product) {
   const token = useMainStore((state) => state.token);
   const fetchMainDetails = useMainStore((state) => state.fetchMainDetails);
   const [isLoading, setLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   
-  const src = image
-  ? `https://sanderson.xgramm.com/admin/uploads/${image}`
-  : "/placeholder.svg";
+  // The backend resolves this now -- it is the only side that knows whether
+  // images sit on disk, in a public bucket, or behind a presigned URL.
+  const src = productImageUrl(image_url, image);
 
   const handleBuyProduct = async () => {
     setLoading(true);

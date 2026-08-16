@@ -81,6 +81,7 @@ function Page() {
                     key={order.ID}
                     name={order.product_name}
                     image={order.image}
+                    image_url={order.image_url}
                     cycle={order.duration}
                     total={order.total_returns}
                     purchaseDate={order.investment_date}
@@ -112,6 +113,7 @@ function Page() {
                     key={order.ID}
                     name={order.product_name}
                     image={order.image}
+                    image_url={order.image_url}
                     cycle={order.duration}
                     total={order.total_returns}
                     purchaseDate={order.investment_date}
