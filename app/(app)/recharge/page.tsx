@@ -163,10 +163,18 @@ export default function RechargePage() {
           <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center mb-6">{error}</div>
         )}
 
+        {/*
+          Green rather than the primary colour. Primary here is a near-black
+          neutral, so a successful STK push rendered in the same grey as the
+          summary panel below it -- indistinguishable at a glance from the
+          error state, which is the one moment a deposit screen needs to be
+          unambiguous. Matches the green already used for success on the
+          cashout screen.
+        */}
         {successMessage && (
-          <div className="bg-primary/10 border border-primary/20 rounded-xl p-4 mb-6 flex items-start gap-3">
-            <CheckmarkCircle01Icon size={20} className="text-primary shrink-0 mt-0.5" />
-            <p className="text-sm text-foreground">{successMessage}</p>
+          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+            <CheckmarkCircle01Icon size={20} className="text-green-600 shrink-0 mt-0.5" />
+            <p className="text-sm text-green-800">{successMessage}</p>
           </div>
         )}
 
