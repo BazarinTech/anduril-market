@@ -27,12 +27,6 @@ const nextConfig: NextConfig = {
         hostname: 'backend.anduril-platform.com',
         pathname: '/backend/mains/**',
       },
-      // The previous host. Kept so images that predate the move still render.
-      {
-        protocol: 'https',
-        hostname: 'sanderson.xgramm.com',
-        pathname: '/admin/uploads/**',
-      },
     ],
     // The variants Next is allowed to generate. Cards render these small, so
     // there is no reason to hand a phone a 500px file.

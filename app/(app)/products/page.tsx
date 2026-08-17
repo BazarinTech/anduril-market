@@ -50,6 +50,7 @@ function Page() {
             key={product.name}
             name={product.name}
             image={product.image}
+            image_url={product.image_url}
             max={product.max}
             duration={product.duration}
             returns={product.returns}
