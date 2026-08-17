@@ -33,7 +33,18 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
         <div className="flex gap-4">
           {/* Product Image */}
           <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg" >
-            <Image src={src} alt={name} fill className="object-cover" unoptimized={src.startsWith("https://sanderson.xgramm.com")}/>
+            {/*
+              sizes tells Next which variant to generate. This box is 96px, so
+              without it the browser assumes full viewport width and downloads
+              the largest variant for a thumbnail.
+            */}
+            <Image
+              src={src}
+              alt={name}
+              fill
+              sizes="96px"
+              className="object-cover"
+            />
             {status === "Expired" && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                 <span className="rotate-[-15deg] rounded bg-destructive px-2 py-0.5 text-xs font-bold text-white">

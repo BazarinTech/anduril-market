@@ -53,13 +53,20 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
               <Loading01Icon className="w-8 h-8 text-muted-foreground animate-spin" />
             </div>
           )}
+          {/*
+            `unoptimized` is gone: it was disabling Next's optimiser for the
+            only host these images used to come from, which meant every card
+            downloaded the full-size original. With the storage hosts declared
+            in next.config, Next now resizes once and serves the variant from
+            its own cache.
+          */}
           <Image
             src={src || "/placeholder.svg"}
             alt={name}
-            width={500}
-            height={500}
+            width={320}
+            height={320}
+            sizes="320px"
             className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-            unoptimized={src.startsWith("https://sanderson.xgramm.com")}
             onLoad={() => setImageLoaded(true)}
           />
         </div>
