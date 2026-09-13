@@ -5,7 +5,7 @@ type Props = {
   subtitle: string
 }
 
-/** The ink header shared by the sign-in and sign-up screens. */
+/** The ink header shared by the sign-in and  sign-up screens. */
 export function AuthHeader({ title, subtitle }: Props) {
   return (
     <header className="bg-hero relative overflow-hidden rounded-b-3xl px-6 pt-14 pb-10 text-center">
