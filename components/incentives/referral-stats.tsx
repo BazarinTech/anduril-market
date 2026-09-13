@@ -25,7 +25,8 @@ export function ReferralStats({ currentReferrals, nextMilestone, currentLevel }:
 
         <div className="bg-white/5 ring-1 ring-white/10 rounded-lg p-3 text-center">
           <ArrowUp01Icon size={24} className="mx-auto mb-1 text-brand-bright" />
-          <p className="text-xl font-semibold tabular-nums">{nextMilestone - currentReferrals}</p>
+          {/* Clamped: once every tier is reached the milestone is behind you, not negative. */}
+          <p className="text-xl font-semibold tabular-nums">{Math.max(nextMilestone - currentReferrals, 0)}</p>
           <p className="text-[11px] text-ink-foreground/60">To Next Level</p>
         </div>
 
