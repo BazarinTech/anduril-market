@@ -144,7 +144,7 @@ export function ResetPinDialog({ open, onOpenChange, token, onSuccess }: ResetPi
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm mx-auto rounded-2xl">
+      <DialogContent className="max-w-sm mx-auto">
         <DialogHeader>
           <div className="w-14 h-14 bg-primary/10 rounded-full mx-auto mb-2 flex items-center justify-center">
             {step === "request" ? (
@@ -171,8 +171,8 @@ export function ResetPinDialog({ open, onOpenChange, token, onSuccess }: ResetPi
 
         {step === "request" ? (
           <div className="space-y-4">
-            <div className="bg-orange-50 border border-orange-200 rounded-xl p-3">
-              <p className="text-sm text-orange-700">
+            <div className="bg-warning-soft border border-warning/20 rounded-lg p-3">
+              <p className="text-sm text-warning">
                 Only do this if you have forgotten your PIN. Your withdrawal phone number and
                 account name stay unchanged.
               </p>

@@ -80,13 +80,13 @@ function Page() {
   return (
     <div>
       <Topbar title="Incentives" backBtn />
-<div className="px-4 py-4 space-y-4">
+<div className="mx-auto max-w-md px-4 py-4 pb-10 space-y-4">
         {/* Stats Card */}
         <ReferralStats currentReferrals={currentReferrals} nextMilestone={nextMilestone} currentLevel={mainDetails?.wallet.level ?? ''} />
 
         {/* Info Banner */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-          <p className="text-amber-800 text-sm">
+        <div className="bg-accent border border-primary/15 rounded-xl p-4">
+          <p className="text-accent-foreground text-sm">
             <span className="font-semibold">Become an Agent!</span> Invite friends to join and when they become active
             members, unlock amazing rewards and weekly salary bonuses.
           </p>
@@ -94,7 +94,7 @@ function Page() {
 
         {/* Tier Cards */}
         <div className="space-y-4">
-          <h2 className="text-lg font-bold text-foreground">Reward Tiers</h2>
+          <h2 className="text-base font-semibold text-foreground">Reward Tiers</h2>
 
           {incentiveTiers.map((tier) => (
             <IncentiveTierCard

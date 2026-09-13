@@ -280,12 +280,12 @@ export default function CashoutWalletPage() {
     <div>
       <Topbar title="Withdrawal Wallet" backBtn />
 
-      <div className="flex-1 px-6 py-6">
+      <div className="mx-auto max-w-md flex-1 px-5 py-6">
         {/* Info Card */}
-        <div className="bg-primary/10 rounded-xl p-4 mb-6 flex gap-3">
+        <div className="bg-accent rounded-xl p-4 mb-6 flex gap-3">
           <InformationCircleIcon size={24} className="text-primary shrink-0 mt-0.5" />
           <div>
-            <h3 className="font-semibold text-sm text-primary">Important Notice</h3>
+            <h3 className="font-semibold text-sm text-accent-foreground">Important Notice</h3>
             <p className="text-sm text-muted-foreground mt-1">
               {hasExistingWallet
                 ? "Your withdrawals will be sent to the number below. Keep your PIN secure."
@@ -296,7 +296,7 @@ export default function CashoutWalletPage() {
 
         {/* Current Wallet Display */}
         {hasExistingWallet && viewMode === "display" && (
-          <div className="bg-card border border-border rounded-xl p-5 mb-6">
+          <div className="bg-card ring-1 ring-border/70 shadow-premium rounded-xl p-5 mb-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -324,7 +324,7 @@ export default function CashoutWalletPage() {
             <div className="space-y-3 pt-3 border-t border-border">
               <div className="flex justify-between">
                 <span className="text-muted-foreground text-sm">Phone Number</span>
-                <span className="font-medium">{mpesaPhone}</span>
+                <span className="font-medium tabular-nums">{mpesaPhone}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground text-sm">Account Name</span>
@@ -332,7 +332,7 @@ export default function CashoutWalletPage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground text-sm">Withdrawal PIN</span>
-                <span className="font-medium text-green-600">Set</span>
+                <span className="text-eyebrow rounded-full bg-success-soft px-2 py-0.5 text-success">Set</span>
               </div>
             </div>
 
@@ -435,7 +435,7 @@ export default function CashoutWalletPage() {
               />
             </div>
 
-            <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
+            <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
               {isLoading ? "Saving..." : "Set Up Wallet"}
             </Button>
           </form>
@@ -491,9 +491,9 @@ export default function CashoutWalletPage() {
 
             <div className="h-px bg-border my-4" />
 
-            <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-2">
-              <p className="text-sm text-orange-700 font-medium">Security Verification</p>
-              <p className="text-xs text-orange-600 mt-1">Enter your current withdrawal PIN to confirm these changes</p>
+            <div className="bg-warning-soft border border-warning/20 rounded-lg p-4 mb-2">
+              <p className="text-sm text-warning font-medium">Security Verification</p>
+              <p className="text-xs text-warning/90 mt-1">Enter your current withdrawal PIN to confirm these changes</p>
             </div>
 
             <div className="space-y-2">
@@ -516,7 +516,7 @@ export default function CashoutWalletPage() {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="flex-1 h-12 text-lg font-semibold" disabled={isLoading}>
+              <Button type="submit" className="flex-1 h-12 text-base font-semibold" disabled={isLoading}>
                 {isLoading ? "Updating..." : "Update Wallet"}
               </Button>
             </div>
@@ -597,7 +597,7 @@ export default function CashoutWalletPage() {
               >
                 Cancel
               </Button>
-              <Button type="submit" className="flex-1 h-12 text-lg font-semibold" disabled={isLoading}>
+              <Button type="submit" className="flex-1 h-12 text-base font-semibold" disabled={isLoading}>
                 {isLoading ? "Changing..." : "Change PIN"}
               </Button>
             </div>
@@ -605,9 +605,9 @@ export default function CashoutWalletPage() {
         )}
 
         {/* Security Notice */}
-        <div className="mt-8 p-4 bg-orange-50 border border-orange-200 rounded-xl">
-          <h3 className="font-semibold text-sm text-orange-700 mb-2">Security Tips:</h3>
-          <ul className="text-sm text-orange-600 space-y-1">
+        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-xl">
+          <h3 className="text-eyebrow text-muted-foreground mb-2">Security tips</h3>
+          <ul className="text-sm text-foreground/80 space-y-1">
             <li>• Never share your withdrawal PIN with anyone</li>
             <li>• Use a unique PIN different from other accounts</li>
             <li>• Contact support if you suspect unauthorized access</li>
@@ -632,10 +632,10 @@ export default function CashoutWalletPage() {
 
       {/* Success Dialog */}
       <AlertDialog open={showSuccess}>
-        <AlertDialogContent className="max-w-sm mx-auto rounded-2xl">
+        <AlertDialogContent className="max-w-sm mx-auto">
           <AlertDialogHeader className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <CheckmarkCircle01Icon size={32} className="text-green-600" />
+            <div className="w-16 h-16 bg-success-soft rounded-full mx-auto mb-4 flex items-center justify-center">
+              <CheckmarkCircle01Icon size={32} className="text-success" />
             </div>
             <AlertDialogTitle className="text-center">Success!</AlertDialogTitle>
             <AlertDialogDescription className="text-center">{successMessage}</AlertDialogDescription>

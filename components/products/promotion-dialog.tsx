@@ -88,50 +88,46 @@ export function PromotionDialog({ isOpen, onComplete, productName, orderID }: Pr
   
   return (
     <AlertDialog open={isOpen}>
-      <AlertDialogContent className="max-w-sm rounded-2xl border-0 p-6 shadow-2xl [&>button]:hidden">
-        <AlertDialogHeader className="space-y-0">
-          {/* Header with icon */}
-          <div className="mb-4 flex flex-col items-center">
-            <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <Rocket01Icon className="h-8 w-8 text-primary" />
-            </div>
-            <AlertDialogTitle className="text-xl font-bold text-foreground">Promoting Your Product</AlertDialogTitle>
-            <AlertDialogDescription className="mt-1 text-center text-sm text-muted-foreground">
-              {productName}
-            </AlertDialogDescription>
+      <AlertDialogContent className="max-w-sm gap-0 overflow-hidden p-0 [&>button]:hidden">
+        <AlertDialogHeader className="bg-hero relative block space-y-0 px-6 pt-6 pb-5 text-left sm:text-left">
+          <div className="mb-4 flex size-11 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/15">
+            <Rocket01Icon className="size-5 text-brand-bright" />
           </div>
+          <p className="text-eyebrow text-brand-bright">Claim in progress</p>
+          <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Claiming your income</AlertDialogTitle>
+          <AlertDialogDescription className="mt-0.5 text-sm text-ink-foreground/70">
+            {productName}
+          </AlertDialogDescription>
+          <div className="brand-hairline absolute inset-x-0 bottom-0" />
         </AlertDialogHeader>
 
-        {/* Progress section using shadcn Progress */}
-        <div className="mb-4">
-          <Progress
-            value={progress}
-            className="h-3 bg-muted [&>div]:bg-linear-to-r [&>div]:from-primary [&>div]:to-accent"
-          />
-          <p className="mt-2 text-center text-sm font-medium text-primary">{Math.round(progress)}%</p>
-        </div>
+        <div className="px-6 pt-5 pb-6">
+          <Progress value={progress} className="h-1.5" />
+          <div className="mt-2 flex items-center justify-between text-xs">
+            <span className="text-muted-foreground">Processing</span>
+            <span className="font-semibold text-primary tabular-nums">{Math.round(progress)}%</span>
+          </div>
 
-        {/* Captivating info */}
-        <div className="space-y-3 rounded-xl bg-muted/50 p-4">
-          <div className="flex items-start gap-3">
-            <SparklesIcon className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-            <div>
-              <p className="text-sm font-medium text-foreground">Boosting Visibility</p>
-              <p className="text-xs text-muted-foreground">
-                Your product is being featured to thousands of potential investors
-              </p>
+          {/*
+            This copy used to promise the product was "being featured to
+            thousands of potential investors" and that promoted products "earn
+            up to 25% more". Nothing behind this dialog does either: it is a
+            timer followed by a single claimEarnings call. The copy now says
+            what actually happens.
+          */}
+          <div className="mt-5 space-y-3 rounded-lg bg-muted/70 p-4">
+            <div className="flex items-start gap-3">
+              <SparklesIcon className="mt-0.5 size-4 shrink-0 text-primary" />
+              <p className="text-sm text-foreground">Today&apos;s income for this product is being claimed.</p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Rocket01Icon className="mt-0.5 size-4 shrink-0 text-primary" />
+              <p className="text-sm text-muted-foreground">Your balance refreshes as soon as this completes.</p>
             </div>
           </div>
-          <div className="flex items-start gap-3">
-            <Rocket01Icon className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <div>
-              <p className="text-sm font-medium text-foreground">Maximizing Returns</p>
-              <p className="text-xs text-muted-foreground">Promoted products earn up to 25% more daily income</p>
-            </div>
-          </div>
-        </div>
 
-        <p className="mt-4 text-center text-xs text-muted-foreground">Please wait while we process your promotion...</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">Please keep this screen open.</p>
+        </div>
       </AlertDialogContent>
     </AlertDialog>
   )

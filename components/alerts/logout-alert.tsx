@@ -48,14 +48,17 @@ function LogoutAlert({isOpen, onClose}: Props) {
     <AlertDialog open={isOpen} onOpenChange={onClose}>
         <AlertDialogContent>
             <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-                You will be automatically logged out of your account
+            <AlertDialogTitle className="text-base font-semibold">Log out of Bima?</AlertDialogTitle>
+            <AlertDialogDescription className="text-sm">
+                You will need your phone number and password to sign back in.
             </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction className='bg-red-400 text-white' onClick={handleLogout}>Logout</AlertDialogAction>
+            {/* variant, not className: the action renders through Button asChild, and
+                Slot concatenates classes instead of merging them, so a bg-* override
+                loses to the variant's bg-primary. */}
+            <AlertDialogAction variant='destructive' onClick={handleLogout}>Log out</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>

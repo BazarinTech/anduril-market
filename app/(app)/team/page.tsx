@@ -47,67 +47,65 @@ function Page() {
     <div>
       <Topbar title="Team"/>
       {/* Invite Section */}
-      <div className="mx-4 mt-4 rounded-xl bg-muted/50 p-5 ">
-        <p className="text-center text-sm text-muted-foreground">Invite friend with link shared</p>
-        <p className="mt-2 text-center text-2xl font-bold tracking-wider text-foreground">{referralCode}</p>
-        <p className="mt-2 break-all text-center text-xs text-muted-foreground">{referralLink}</p>
-        <Button onClick={handleCopy} className="mt-4 w-full bg-primary text-primary-foreground hover:bg-primary/90">
+      <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-xl p-5 shadow-premium">
+        <p className="text-eyebrow text-brand-bright">Your invite code</p>
+        <p className="mt-2 font-mono text-3xl font-semibold tracking-[0.2em] text-ink-foreground">{referralCode}</p>
+        <p className="mt-2 break-all text-xs text-ink-foreground/60">{referralLink}</p>
+        <Button onClick={handleCopy} className="mt-4 h-11 w-full bg-white text-ink hover:bg-white/90">
           {copied ? (
             <>
               <CheckmarkCircle01Icon size={18} className="mr-2" />
-              COPIED!
+              Link copied
             </>
           ) : (
             <>
               <Copy01Icon size={18} className="mr-2" />
-              COPY
+              Copy invite link
             </>
           )}
         </Button>
       </div>
 
       {/* Stats Section */}
-      <div className="mx-4 mt-6 flex justify-between text-center">
-        <div className="flex-1">
-          <p className="text-xl font-bold text-foreground">{mainDetails?.referral.total_downlines}</p>
-          <p className="text-xs text-muted-foreground">Team Size</p>
+      <dl className="mx-4 mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-xl bg-border text-center ring-1 ring-border/70">
+        <div className="bg-card px-2 py-3">
+          <dd className="text-lg font-semibold text-foreground tabular-nums">{mainDetails?.referral.total_downlines}</dd>
+          <dt className="text-[11px] text-muted-foreground">Team Size</dt>
         </div>
-        <div className="flex-1">
-          <p className="text-xl font-bold text-primary">{mainDetails?.referral.active_downlines}</p>
-          <p className="text-xs text-muted-foreground">Total Active</p>
+        <div className="bg-card px-2 py-3">
+          <dd className="text-lg font-semibold text-primary tabular-nums">{mainDetails?.referral.active_downlines}</dd>
+          <dt className="text-[11px] text-muted-foreground">Total Active</dt>
         </div>
-      </div>
-      <div className="mx-4 mt-4 text-center">
-        <p className="text-xl font-bold text-foreground">{useCurrency(mainDetails?.wallet.invite_income ?? 0)}</p>
-        <p className="text-xs text-muted-foreground">Invite Income</p>
-      </div>
+        <div className="bg-card px-2 py-3">
+          <dd className="text-sm leading-7 font-semibold text-foreground tabular-nums">{useCurrency(mainDetails?.wallet.invite_income ?? 0)}</dd>
+          <dt className="text-[11px] text-muted-foreground">Invite Income</dt>
+        </div>
+      </dl>
 
       {/* Team Members Section */}
       <div className="mx-4 mt-6">
-        <div className="rounded-full border-2 border-primary py-3 text-center">
-          <span className="text-sm font-medium tracking-widest text-foreground">TEAM MEMBERS</span>
+        <div className="flex items-center gap-3">
+          <span className="text-eyebrow text-muted-foreground">Team members</span>
+          <span className="h-px flex-1 bg-border" />
         </div>
       </div>
 
       {/* Team Tabs */}
       <div className="mx-4 mt-4 mb-20">
         <Tabs defaultValue="teamB" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 rounded-full bg-primary p-1">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger
               value="teamB"
-              className="rounded-full text-primary-foreground data-[state=active]:bg-background data-[state=active]:text-foreground"
             >
               Level 1
             </TabsTrigger>
             <TabsTrigger
               value="teamC"
-              className="rounded-full text-primary-foreground data-[state=active]:bg-background data-[state=active]:text-foreground"
             >
               Level 2
             </TabsTrigger>
             <TabsTrigger
               value="teamD"
-              className="rounded-full text-primary-foreground data-[state=active]:bg-background data-[state=active]:text-foreground"
             >
               Level 3
             </TabsTrigger>

@@ -39,17 +39,20 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
   };
 
   return (
-    <div className="bg-card rounded-xl p-4 shadow-sm border border-border w-full flex-col justify-center items-center">
+    <div className="bg-card rounded-xl p-4 shadow-premium ring-1 ring-border/70 w-full flex-col justify-center items-center">
       {/* Product Name */}
-      <h3 className="text-lg font-semibold text-foreground mb-3">{name}</h3>
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <h3 className="text-base font-semibold text-foreground">{name}</h3>
+        <span className="text-eyebrow rounded-full bg-accent px-2.5 py-1 text-accent-foreground">{duration} days</span>
+      </div>
 
       {/* Product Info Row */}
       <div className="flex flex-col justify-center items-center w-full gap-4 mb-4">
         {/* Product Image */}
-        <div className="w-80 overflow-hidden shrink-0 relative">
+        <div className="w-full max-w-80 overflow-hidden rounded-lg bg-muted shrink-0 relative">
           {/* Loading skeleton */}
           {!imageLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center bg-muted rounded-lg animate-pulse">
+            <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
               <Loading01Icon className="w-8 h-8 text-muted-foreground animate-spin" />
             </div>
           )}
@@ -72,24 +75,24 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
         </div>
 
         {/* Product Details */}
-        <div className="flex-1 flex flex-col justify-center space-y-2 w-full">
-          <div className="flex justify-between items-center mb-1">
-            <span className="text-sm text-muted-foreground">Price :</span>
-            <span className="text-sm font-bold text-primary">{useCurrency(max)}</span>
+        <dl className="grid w-full grid-cols-2 gap-px overflow-hidden rounded-lg bg-border ring-1 ring-border">
+          <div className="bg-card px-3 py-2.5">
+            <dt className="text-[11px] text-muted-foreground">Price</dt>
+            <dd className="text-sm font-semibold text-foreground tabular-nums">{useCurrency(max)}</dd>
           </div>
-          <div className="flex justify-between items-center mb-1">
-            <span className="text-sm text-muted-foreground">Cycle :</span>
-            <span className="text-sm font-medium text-foreground">{duration} Days</span>
+          <div className="bg-card px-3 py-2.5">
+            <dt className="text-[11px] text-muted-foreground">Cycle</dt>
+            <dd className="text-sm font-semibold text-foreground tabular-nums">{duration} Days</dd>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Daily Income :</span>
-            <span className="text-sm font-bold text-primary">{useCurrency(returns)}</span>
+          <div className="bg-card px-3 py-2.5">
+            <dt className="text-[11px] text-muted-foreground">Daily Income</dt>
+            <dd className="text-sm font-semibold text-primary tabular-nums">{useCurrency(returns)}</dd>
           </div>
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Total Income :</span>
-            <span className="text-sm font-bold text-primary">{useCurrency(Number(returns) * Number(duration))}</span>
+          <div className="bg-card px-3 py-2.5">
+            <dt className="text-[11px] text-muted-foreground">Total Income</dt>
+            <dd className="text-sm font-semibold text-primary tabular-nums">{useCurrency(Number(returns) * Number(duration))}</dd>
           </div>
-        </div>
+        </dl>
       </div>
 
       {/* Progress Bar and Buy Button */}
@@ -104,8 +107,8 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
         </div>
 
         {/* Buy Button */}
-        <button className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-2 rounded-md font-semibold hover:bg-primary/90 transition-colors" disabled={isLoading} onClick={handleBuyProduct}>
-        {isLoading ? <>Processing... <Loading01Icon className="w-5 h-5" /></> : <>Get Package <ArrowRight01Icon className="w-5 h-5" /></>}
+        <button className="mt-2 flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-brand-deep disabled:opacity-60" disabled={isLoading} onClick={handleBuyProduct}>
+        {isLoading ? <>Processing... <Loading01Icon className="w-5 h-5 animate-spin" /></> : <>Get Package <ArrowRight01Icon className="w-5 h-5" /></>}
           
         </button>
       </div>

@@ -30,7 +30,7 @@ export function PasswordInput({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="pr-10 h-12 border-gray-300 focus:border-primary focus:ring-primary"
+        className="pr-10 h-12 text-sm"
       />
       <button
         type="button"

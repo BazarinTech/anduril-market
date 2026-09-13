@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home01Icon, ShoppingBag01Icon, Briefcase01Icon, Building01Icon, UserIcon } from "hugeicons-react"
+import { Home01Icon, ShoppingBag01Icon, Briefcase01Icon, UserGroupIcon, UserIcon } from "hugeicons-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -24,7 +24,7 @@ const navItems = [
   {
     label: "Team",
     href: "/team",
-    icon: Building01Icon,
+    icon: UserGroupIcon,
   },
   {
     label: "Mine",
@@ -37,7 +37,7 @@ export function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background pb-safe">
+    <nav className="fixed right-0 bottom-0 left-0 z-50 border-t border-border/80 bg-background/90 pb-safe backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-md items-center justify-around px-2">
         {navItems.map((item) => {
           const isActive = pathname === item.href
@@ -47,20 +47,17 @@ export function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
-                "flex flex-1 flex-col items-center justify-center gap-1 py-2 transition-colors",
+                "relative flex flex-1 flex-col items-center justify-center gap-1 py-2 transition-colors",
                 isActive ? "text-primary" : "text-muted-foreground hover:text-foreground",
               )}
             >
-              <Icon
-                size={24}
-                strokeWidth={isActive ? 2 : 1.5}
-                className={cn("transition-all", isActive && "scale-110")}
-              />
-              <span className={cn("text-xs transition-all", isActive ? "font-semibold" : "font-normal")}>
+              {isActive && <span className="absolute top-0 h-0.5 w-7 rounded-full bg-primary" />}
+              <Icon size={22} strokeWidth={isActive ? 2 : 1.5} />
+              <span className={cn("text-[11px] tracking-wide", isActive ? "font-semibold" : "font-medium")}>
                 {item.label}
               </span>
-              {isActive && <span className="absolute top-0 h-0.5 w-8 rounded-full bg-primary" />}
             </Link>
           )
         })}

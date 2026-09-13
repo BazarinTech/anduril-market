@@ -1,5 +1,3 @@
-"use client"
-
 import { Target02Icon, EyeIcon, StarIcon } from "hugeicons-react"
 
 const items = [
@@ -7,36 +5,36 @@ const items = [
     icon: Target02Icon,
     title: "Our Mission",
     description:
-      "To connect skilled workers with meaningful opportunities while helping businesses scale through efficient order promotion and workforce management.",
+      "To give every member one clear, dependable place to manage their products, their team and their money.",
   },
   {
     icon: EyeIcon,
     title: "Our Vision",
     description:
-      "To become the leading platform bridging the gap between workers seeking flexible employment and companies needing reliable promotion and rental services.",
+      "A platform that feels as considered as the things people value most — fast, precise and easy to trust.",
   },
   {
     icon: StarIcon,
     title: "Our Values",
     description:
-      "Integrity, reliability, and growth. We believe in fair compensation, transparent processes, and creating value for both workers and partners.",
+      "Clarity, security and respect for our members' time. Every figure on screen should be one you can check.",
   },
 ]
 
 export function MissionSection() {
   return (
     <div className="px-4 py-6">
-      <h2 className="text-lg font-bold text-foreground mb-4">Who We Are</h2>
-      <div className="space-y-4">
-        {items.map((item, index) => (
-          <div key={index} className="bg-card rounded-xl p-4 border border-border">
+      <h2 className="mb-4 text-base font-semibold text-foreground">Who We Are</h2>
+      <div className="space-y-3">
+        {items.map((item) => (
+          <div key={item.title} className="rounded-xl bg-card p-4 ring-1 ring-border/70">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <item.icon size={20} className="text-primary" />
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+                <item.icon size={20} />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{item.description}</p>
+                <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               </div>
             </div>
           </div>

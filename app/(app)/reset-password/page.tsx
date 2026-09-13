@@ -80,7 +80,7 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen bg-background flex flex-col">
       <Topbar title="Reset Password" backBtn />
 
-      <div className="flex-1 px-6 py-8">
+      <div className="mx-auto w-full max-w-md flex-1 px-5 py-8">
         <div className="text-center mb-8">
           <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
             <LockPasswordIcon size={40} className="text-primary" />
@@ -107,7 +107,7 @@ export default function ResetPasswordPage() {
             />
           </div>
 
-          <div className="h-px bg-gray-200 my-6" />
+          <div className="h-px bg-border my-6" />
 
           <div className="space-y-2">
             <Label htmlFor="newPassword">New Password</Label>
@@ -133,29 +133,29 @@ export default function ResetPasswordPage() {
           </div>
 
           <div className="pt-4">
-            <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
+            <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
               {isLoading ? "Updating..." : "Update Password"}
             </Button>
           </div>
         </form>
 
         {/* Password Requirements */}
-        <div className="mt-8 p-4 bg-muted rounded-xl">
+        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-xl">
           <h3 className="font-semibold mb-3 text-sm">Password Requirements:</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${newPassword.length >= 6 ? "bg-green-500" : "bg-gray-300"}`} />
+              <div className={`w-2 h-2 rounded-full ${newPassword.length >= 6 ? "bg-success" : "bg-input"}`} />
               At least 6 characters
             </li>
             <li className="flex items-center gap-2">
               <div
-                className={`w-2 h-2 rounded-full ${newPassword !== currentPassword && newPassword.length > 0 ? "bg-green-500" : "bg-gray-300"}`}
+                className={`w-2 h-2 rounded-full ${newPassword !== currentPassword && newPassword.length > 0 ? "bg-success" : "bg-input"}`}
               />
               Different from current password
             </li>
             <li className="flex items-center gap-2">
               <div
-                className={`w-2 h-2 rounded-full ${newPassword === confirmPassword && confirmPassword.length > 0 ? "bg-green-500" : "bg-gray-300"}`}
+                className={`w-2 h-2 rounded-full ${newPassword === confirmPassword && confirmPassword.length > 0 ? "bg-success" : "bg-input"}`}
               />
               Passwords match
             </li>
@@ -165,10 +165,10 @@ export default function ResetPasswordPage() {
 
       {/* Success Dialog */}
       <AlertDialog open={showSuccess}>
-        <AlertDialogContent className="max-w-sm mx-auto rounded-2xl">
+        <AlertDialogContent className="max-w-sm mx-auto">
           <AlertDialogHeader className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <CheckmarkCircle01Icon size={32} className="text-green-600" />
+            <div className="w-16 h-16 bg-success-soft rounded-full mx-auto mb-4 flex items-center justify-center">
+              <CheckmarkCircle01Icon size={32} className="text-success" />
             </div>
             <AlertDialogTitle className="text-center">Password Updated!</AlertDialogTitle>
             <AlertDialogDescription className="text-center">

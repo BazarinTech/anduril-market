@@ -1,5 +1,5 @@
 import React from "react";
-import { Inbox } from "lucide-react"; // modern icon
+import { InboxIcon } from "hugeicons-react";
 
 type Props = {
   title: string;
@@ -8,16 +8,12 @@ type Props = {
 
 function NoList({ title, description }: Props) {
   return (
-    <div className="flex flex-col items-center justify-center text-center p-6 border border-dashed rounded-2xl bg-gray-50 dark:bg-gray-900/40">
-      <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gray-200 dark:bg-gray-800">
-        <Inbox className="w-8 h-8 text-gray-500" />
+    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card p-8 text-center">
+      <div className="mb-4 flex size-14 items-center justify-center rounded-full bg-accent text-accent-foreground">
+        <InboxIcon className="size-7" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
-        {title}
-      </h3>
-      <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-        {description}
-      </p>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
+      <p className="mt-1.5 text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }

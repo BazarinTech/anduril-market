@@ -1,6 +1,6 @@
-# Anduril
+# Bima
 
-A mobile-first web app where users buy "farm products" that pay out daily returns, top up and cash out via M-Pesa, and earn commission from a three-level referral network.
+A mobile-first web app where users buy products that pay out daily returns, top up and cash out via M-Pesa, and earn commission from a three-level referral network.
 
 This repository is the **frontend only**. All business logic — balances, returns, payouts, referral commission — lives in a separate PHP backend that this app talks to over HTTP. Nothing in this codebase decides how much money anyone gets.
 

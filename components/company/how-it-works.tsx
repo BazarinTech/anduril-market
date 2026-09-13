@@ -1,55 +1,53 @@
-"use client"
-
-import { UserAdd01Icon, CheckmarkBadge01Icon, MoneyReceiveSquareIcon, ArrowUp01Icon } from "hugeicons-react"
+import { UserAdd01Icon, SmartPhone01Icon, ShoppingBag01Icon, MoneyReceiveSquareIcon } from "hugeicons-react"
 
 const steps = [
   {
     icon: UserAdd01Icon,
     step: "01",
     title: "Register",
-    description: "Create your account and complete your profile",
+    description: "Create your account with your phone number",
   },
   {
-    icon: CheckmarkBadge01Icon,
+    icon: SmartPhone01Icon,
     step: "02",
-    title: "Get Verified",
-    description: "Submit your documents for quick verification",
+    title: "Top Up",
+    description: "Add funds by confirming an M-Pesa STK push",
   },
   {
-    icon: ArrowUp01Icon,
+    icon: ShoppingBag01Icon,
     step: "03",
-    title: "Start Promoting",
-    description: "Promote products and earn commissions",
+    title: "Choose a Product",
+    description: "Pick a product and claim its income as it accrues",
   },
   {
     icon: MoneyReceiveSquareIcon,
     step: "04",
-    title: "Get Paid",
-    description: "Withdraw your earnings weekly",
+    title: "Withdraw",
+    description: "Cash out to your registered M-Pesa number",
   },
 ]
 
 export function HowItWorks() {
   return (
-    <div className="px-4 py-6">
-      <h2 className="text-lg font-bold text-foreground mb-4">How It Works</h2>
-      <div className="relative">
+    <div className="px-4 py-6 pb-10">
+      <h2 className="mb-4 text-base font-semibold text-foreground">How It Works</h2>
+      <ol>
         {steps.map((step, index) => (
-          <div key={index} className="flex gap-4 mb-4 last:mb-0">
+          <li key={step.step} className="flex gap-4">
             <div className="flex flex-col items-center">
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                <step.icon size={24} className="text-primary-foreground" />
+              <div className="flex size-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                <step.icon size={20} />
               </div>
-              {index < steps.length - 1 && <div className="w-0.5 h-full bg-primary/20 my-2" />}
+              {index < steps.length - 1 && <div className="my-1.5 w-px flex-1 bg-border" />}
             </div>
-            <div className="flex-1 pb-4">
-              <span className="text-xs font-medium text-primary">Step {step.step}</span>
-              <h3 className="font-semibold text-foreground">{step.title}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+            <div className="flex-1 pb-5">
+              <span className="font-mono text-xs font-semibold text-primary">Step {step.step}</span>
+              <h3 className="text-sm font-semibold text-foreground">{step.title}</h3>
+              <p className="mt-0.5 text-sm text-muted-foreground">{step.description}</p>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   )
 }

@@ -6,7 +6,7 @@ export default function Page() {
     <Suspense
       fallback={
         <div className="px-4 pt-4">
-          <div className="w-full h-12 bg-primary rounded-full p-1 mb-4" />
+          <div className="w-full h-11 bg-muted rounded-lg p-1 mb-4" />
           <TransactionListSkeleton />
         </div>
       }

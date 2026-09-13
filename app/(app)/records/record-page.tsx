@@ -1,6 +1,7 @@
 'use client'
 import Topbar from '@/components/shared/topbar'
 import { Skeleton } from '@/components/ui/skeleton'
+import NoList from '@/components/shared/no-list'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useCurrency } from '@/lib/hooks/use-currency'
 import { useMainStore } from '@/lib/stores/use-main-store'
@@ -8,27 +9,29 @@ import { useSearchParams } from 'next/dist/client/components/navigation'
 import React, { useEffect, useState } from 'react'
 
 
+// Soft, tinted chips: status should be scannable without shouting louder
+// than the amount it describes.
 const statusStyles: Record<TransactionStatus, string> = {
-  Pending: "bg-orange-400 text-white",
-  Success: "bg-green-500 text-white",
-  Failed: "bg-red-500 text-white",
-  Approved: "bg-green-500 text-white",
-  Rejected: "bg-red-500 text-white",
-  Completed: "bg-blue-500 text-white",
-  Processing: "bg-blue-500 text-white",
+  Pending: "bg-warning-soft text-warning",
+  Success: "bg-success-soft text-success",
+  Failed: "bg-destructive/10 text-destructive",
+  Approved: "bg-success-soft text-success",
+  Rejected: "bg-destructive/10 text-destructive",
+  Completed: "bg-accent text-accent-foreground",
+  Processing: "bg-accent text-accent-foreground",
 }
 
 function TransactionCard({ transaction }: { transaction: Transactions }) {
   
   return (
-    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+    <div className="bg-card rounded-xl p-4 ring-1 ring-border/70">
       <div className="flex justify-between items-start">
         <div className="space-y-1">
-          <p className="text-foreground font-medium">{transaction.type}</p>
-          <p className="text-primary font-semibold text-lg">{useCurrency(transaction.amount)}</p>
-          <p className="text-muted-foreground text-sm">{transaction.time}</p>
+          <p className="text-sm text-muted-foreground">{transaction.type}</p>
+          <p className="text-lg font-semibold text-foreground tabular-nums">{useCurrency(transaction.amount)}</p>
+          <p className="text-xs text-muted-foreground tabular-nums">{transaction.time}</p>
         </div>
-        <span className={`px-4 py-1 rounded-full text-sm font-medium ${statusStyles[transaction.status]}`}>
+        <span className={`text-eyebrow rounded-full px-2.5 py-1 ${statusStyles[transaction.status] ?? "bg-muted text-muted-foreground"}`}>
           {transaction.status}
         </span>
       </div>
@@ -38,14 +41,14 @@ function TransactionCard({ transaction }: { transaction: Transactions }) {
 
 function TransactionCardSkeleton() {
   return (
-    <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-100">
+    <div className="bg-card rounded-xl p-4 ring-1 ring-border/70">
       <div className="flex justify-between items-start">
         <div className="space-y-2">
           <Skeleton className="h-4 w-24" />
           <Skeleton className="h-6 w-32" />
           <Skeleton className="h-4 w-28" />
         </div>
-        <Skeleton className="h-7 w-24 rounded-full" />
+        <Skeleton className="h-6 w-20 rounded-full" />
       </div>
     </div>
   )
@@ -65,13 +68,14 @@ export function TransactionListSkeleton() {
 
 function TransactionList({ transactions, isLoading }: { transactions: Transactions[]; isLoading: boolean }) {
   if (isLoading) return <TransactionListSkeleton />
+  if (transactions.length === 0) return <NoList title="No records yet" description="Transactions will appear here as they happen." />
 
   return (
     <div className="space-y-3">
       {transactions.map((transaction) => (
         <TransactionCard key={transaction.ID} transaction={transaction} />
       ))}
-      <p className="text-center text-muted-foreground text-sm py-4">none more</p>
+      <p className="py-2 text-center text-xs text-muted-foreground">No more records</p>
     </div>
   )
 }
@@ -117,24 +121,21 @@ function RecordPage() {
     <div>
       <Topbar title="Records" backBtn />
 
-      <div className="px-4 pt-4">
+      <div className="mx-auto max-w-md px-4 pt-4 pb-10">
         <Tabs defaultValue={tab} className="w-full">
-          <TabsList className="w-full h-12 bg-primary rounded-full p-1 grid grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger
               value="account"
-              className="rounded-full text-white data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-none font-medium"
             >
               Account
             </TabsTrigger>
             <TabsTrigger
               value="deposit"
-              className="rounded-full text-white data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-none font-medium"
             >
               Recharge
             </TabsTrigger>
             <TabsTrigger
               value="withdraw"
-              className="rounded-full text-white data-[state=active]:bg-white data-[state=active]:text-foreground data-[state=active]:shadow-none font-medium"
             >
               Withdraw
             </TabsTrigger>

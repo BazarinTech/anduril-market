@@ -4,6 +4,7 @@ import LogoutAlert from '@/components/alerts/logout-alert'
 import WalletCard from '@/components/mine/wallet-card'
 import { BottomNav } from '@/components/shared/bottombar'
 import Topbar from '@/components/shared/topbar'
+import { BimaMark } from '@/components/shared/brand-logo'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -65,44 +66,41 @@ function Page() {
 
   return (
     <div>
-      <Topbar title="Anduril Profile" />
+      <Topbar title="My Account" />
       {/* Header with Profile */}
-      <div className="bg-primary text-primary-foreground pt-4 pb-8 px-4">
-        <h1 className="text-center font-semibold mb-6">Mine</h1>
-
-        {/* Profile Avatar and Info */}
+      <div className="bg-hero relative overflow-hidden px-4 pt-8 pb-14">
         <div className="flex flex-col items-center">
-          <div className="w-20 h-20 rounded-full bg-primary-foreground/20 flex items-center justify-center mb-2 border-2 border-primary-foreground/30 overflow-hidden">
-            <img src="/favicon.ico" alt="Avatar" className="w-12 h-12 object-contain" />
+          <div className="mb-3 flex size-20 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15">
+            <BimaMark size={48} title="Bima" />
           </div>
           {loading ? (
             <>
-              <Skeleton className="h-6 w-20 rounded-full mb-2 bg-primary-foreground/30" />
-              <Skeleton className="h-4 w-28 mb-1 bg-primary-foreground/30" />
-              <Skeleton className="h-4 w-24 bg-primary-foreground/30" />
+              <Skeleton className="h-6 w-20 rounded-full mb-2 bg-white/15" />
+              <Skeleton className="h-4 w-28 mb-1 bg-white/15" />
+              <Skeleton className="h-4 w-24 bg-white/15" />
             </>
           ) : (
             <>
-              <div className="bg-primary-foreground/20 px-3 py-0.5 rounded-full text-sm flex items-center gap-1 mb-2">
-                <span className="text-xs">▼</span>
-                <span>{mainDetails?.wallet.level}</span>
-              </div>
-              <p className="font-semibold">ID : {mainDetails?.user.ID}</p>
-              <p className="text-primary-foreground/80 text-sm">{mainDetails?.user.phone}</p>
+              <span className="text-eyebrow mb-2 rounded-full bg-white/10 px-3 py-1 text-brand-bright ring-1 ring-white/10">
+                {mainDetails?.wallet?.level}
+              </span>
+              <p className="font-semibold tabular-nums">ID {mainDetails?.user?.ID}</p>
+              <p className="text-sm text-ink-foreground/70 tabular-nums">{mainDetails?.user?.phone}</p>
             </>
           )}
         </div>
+        <div className="brand-hairline absolute inset-x-0 bottom-0" />
       </div>
 
-      <div className="px-4 -mt-4">
-        {/* Income & Coffee Beans Cards */}
+      <div className="relative mx-auto max-w-md px-4 -mt-7">
+        {/* Income & Team Cards */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <Card className="p-4 bg-card">
+          <Card className="p-4 shadow-premium ring-border/70">
             <div className="text-center mb-3">
               {loading ? (
                 <><Skeleton className="h-6 w-24 mx-auto mb-1" /><Skeleton className="h-3 w-32 mx-auto" /></>
               ) : (
-                <><p className="text-lg font-bold text-foreground">{useCurrency(mainDetails?.wallet.today_income ?? 0)}</p>
+                <><p className="text-lg font-semibold text-foreground tabular-nums">{useCurrency(mainDetails?.wallet?.today_income ?? 0)}</p>
                 <p className="text-xs text-muted-foreground">Today&apos;s Product Income</p></>
               )}
             </div>
@@ -116,12 +114,12 @@ function Page() {
             </Button>
           </Card>
 
-          <Card className="p-4 bg-card">
+          <Card className="p-4 shadow-premium ring-border/70">
             <div className="text-center mb-3">
               {loading ? (
                 <><Skeleton className="h-6 w-16 mx-auto mb-1" /><Skeleton className="h-3 w-24 mx-auto" /></>
               ) : (
-                <><p className="text-lg font-bold text-foreground">{mainDetails?.referral.active_downlines}</p>
+                <><p className="text-lg font-semibold text-foreground tabular-nums">{mainDetails?.referral?.active_downlines}</p>
                 <p className="text-xs text-muted-foreground">Active Team</p></>
               )}
             </div>
@@ -152,15 +150,17 @@ function Page() {
         </div>
 
           {/* Menu Items */}
-          <div className="space-y-1 mb-20">
+          <div className="mb-24 divide-y divide-border overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
             {menuItems.map((item, index) => {
               const isLogout = item.label.toLowerCase() === "logout" // or item.href === "/login"
 
               const RowContent = (
                 <>
                   <div className="flex items-center gap-3">
-                    <item.icon size={22} className="text-primary" />
-                    <span className="text-foreground">{item.label}</span>
+                    <span className={`flex size-9 items-center justify-center rounded-lg ${isLogout ? "bg-destructive/10 text-destructive" : "bg-accent text-accent-foreground"}`}>
+                      <item.icon size={18} />
+                    </span>
+                    <span className={`text-sm font-medium ${isLogout ? "text-destructive" : "text-foreground"}`}>{item.label}</span>
                   </div>
                   <ArrowRight01Icon size={18} className="text-muted-foreground" />
                 </>
@@ -172,7 +172,7 @@ function Page() {
                     key={index}
                     type="button"
                     onClick={handleLogoutClick}
-                    className="w-full flex items-center justify-between py-4 px-2 hover:bg-muted/50 rounded-lg transition-colors text-left"
+                    className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/60 transition-colors text-left"
                   >
                     {RowContent}
                   </button>
@@ -183,7 +183,7 @@ function Page() {
                 <Link
                   key={index}
                   href={item.href}
-                  className="flex items-center justify-between py-4 px-2 hover:bg-muted/50 rounded-lg transition-colors"
+                  className="flex items-center justify-between px-4 py-3 hover:bg-muted/60 transition-colors"
                 >
                   {RowContent}
                 </Link>

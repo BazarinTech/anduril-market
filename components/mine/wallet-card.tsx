@@ -1,7 +1,7 @@
 'use client'
 import { useMainStore } from "@/lib/stores/use-main-store"
-import { Card } from "../ui/card"
 import { useCurrency } from "@/lib/hooks/use-currency"
+import { cn } from "@/lib/utils"
 
 
 type Props = {
@@ -11,31 +11,34 @@ type Props = {
 function WalletCard({ className }: Props) {
   const mainDetails = useMainStore((state) => state.mainDetails)
   return (
-    <Card className={`p-4 bg-primary text-primary-foreground ${className}`}>
-      {/* Top row - 3 stats */}
-      <div className="flex justify-between border-b-2 border-primary-foreground/30 border-dotted pb-4 mb-4">
-        <div className="flex-1 text-center">
-          <p className="text-lg font-bold">{useCurrency(mainDetails?.wallet.balance ?? 0)}</p>
-          <p className="text-xs text-primary-foreground/80">Available Balance</p>
+    <div className={cn("bg-hero relative overflow-hidden rounded-xl p-5 shadow-premium", className)}>
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-eyebrow text-ink-foreground/60">Available balance</p>
+          <p className="mt-1 text-3xl font-semibold tabular-nums">{useCurrency(mainDetails?.wallet?.balance ?? 0)}</p>
         </div>
-        <div className="flex-1 text-center">
-          <p className="text-lg font-bold">{useCurrency(mainDetails?.wallet.total_withdrawals ?? 0)}</p>
-          <p className="text-xs text-primary-foreground/80">Total Withdraw</p>
-        </div>
+        <span className="text-eyebrow rounded-full bg-white/10 px-2.5 py-1 text-brand-bright ring-1 ring-white/10">
+          Wallet
+        </span>
       </div>
 
-      {/* Bottom row - 3 stats */}
-      <div className="flex justify-between">
-        <div className="flex-1 text-center">
-          <p className="text-lg font-bold">{useCurrency(mainDetails?.wallet.total_deposits ?? 0)}</p>
-          <p className="text-xs text-primary-foreground/80">Total Recharged</p>
+      <div className="brand-hairline my-4 opacity-60" />
+
+      <dl className="grid grid-cols-3 gap-3">
+        <div>
+          <dt className="text-[11px] text-ink-foreground/60">Recharged</dt>
+          <dd className="mt-0.5 text-sm font-semibold tabular-nums">{useCurrency(mainDetails?.wallet?.total_deposits ?? 0)}</dd>
         </div>
-        <div className="flex-1 text-center">
-          <p className="text-lg font-bold">{useCurrency(mainDetails?.wallet.income ?? 0)}</p>
-          <p className="text-xs text-primary-foreground/80">Total Obtained Income</p>
+        <div>
+          <dt className="text-[11px] text-ink-foreground/60">Withdrawn</dt>
+          <dd className="mt-0.5 text-sm font-semibold tabular-nums">{useCurrency(mainDetails?.wallet?.total_withdrawals ?? 0)}</dd>
         </div>
-      </div>
-    </Card>
+        <div>
+          <dt className="text-[11px] text-ink-foreground/60">Total income</dt>
+          <dd className="mt-0.5 text-sm font-semibold tabular-nums">{useCurrency(mainDetails?.wallet?.income ?? 0)}</dd>
+        </div>
+      </dl>
+    </div>
   )
 }
 

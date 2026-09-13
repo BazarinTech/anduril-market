@@ -1,43 +1,42 @@
-"use client"
+import { ShoppingBag01Icon, Wallet01Icon, UserMultiple02Icon, Award01Icon } from "hugeicons-react"
 
-import { UserSearch01Icon, PhoneOff01Icon, Briefcase01Icon, HandGripIcon } from "hugeicons-react"
-
+// What the platform actually offers. The previous list described worker
+// recruitment and a "rental business" -- neither exists anywhere in the app.
 const services = [
   {
-    icon: UserSearch01Icon,
-    title: "Worker Recruitment",
-    description:
-      "We source, vet, and connect skilled workers with businesses needing reliable staff for various roles.",
+    icon: ShoppingBag01Icon,
+    title: "Products",
+    description: "Choose products with a clear price, cycle and daily income.",
   },
   {
-    icon: PhoneOff01Icon,
-    title: "Order Promotion",
-    description: "Promote farm products for Anduril through our network of dedicated promoters.",
+    icon: Wallet01Icon,
+    title: "M-Pesa Wallet",
+    description: "Top up by STK push and cash out to your M-Pesa number.",
   },
   {
-    icon: Briefcase01Icon,
-    title: "Flexible Employment",
-    description: "Offering workers flexible earning opportunities with competitive pay and weekly incentives.",
+    icon: UserMultiple02Icon,
+    title: "Team Rewards",
+    description: "Invite members and follow your team across three levels.",
   },
   {
-    icon: HandGripIcon,
-    title: "Business Partnership",
-    description: "Partner with us to access our workforce network and boost your rental business growth.",
+    icon: Award01Icon,
+    title: "Incentives",
+    description: "Reach referral milestones to apply for incentive tiers.",
   },
 ]
 
 export function ServicesSection() {
   return (
-    <div className="px-4 py-6 bg-muted/30">
-      <h2 className="text-lg font-bold text-foreground mb-4">Our Services</h2>
+    <div className="bg-muted/40 px-4 py-6">
+      <h2 className="mb-4 text-base font-semibold text-foreground">Our Services</h2>
       <div className="grid grid-cols-2 gap-3">
-        {services.map((service, index) => (
-          <div key={index} className="bg-card rounded-xl p-4 border border-border">
-            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center mb-3">
-              <service.icon size={24} className="text-primary-foreground" />
+        {services.map((service) => (
+          <div key={service.title} className="rounded-xl bg-card p-4 ring-1 ring-border/70">
+            <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-ink text-ink-foreground">
+              <service.icon size={20} />
             </div>
-            <h3 className="font-semibold text-foreground text-sm">{service.title}</h3>
-            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{service.description}</p>
+            <h3 className="text-sm font-semibold text-foreground">{service.title}</h3>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{service.description}</p>
           </div>
         ))}
       </div>

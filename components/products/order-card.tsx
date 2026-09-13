@@ -27,12 +27,12 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
 
   return (
     <>
-      <div className="rounded-xl bg-background p-4 shadow-sm border border-border w-full">
-        <h3 className="mb-3 text-lg font-bold text-foreground">{name}</h3>
+      <div className="rounded-xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
+        <h3 className="mb-3 text-base font-semibold text-foreground">{name}</h3>
 
         <div className="flex gap-4">
           {/* Product Image */}
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg" >
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-muted" >
             {/*
               sizes tells Next which variant to generate. This box is 96px, so
               without it the browser assumes full viewport width and downloads
@@ -46,8 +46,8 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
               className="object-cover"
             />
             {status === "Expired" && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                <span className="rotate-[-15deg] rounded bg-destructive px-2 py-0.5 text-xs font-bold text-white">
+              <div className="absolute inset-0 flex items-center justify-center bg-ink/60">
+                <span className="text-eyebrow rounded-sm bg-card px-2 py-0.5 text-foreground">
                   EXPIRED
                 </span>
               </div>
@@ -59,15 +59,15 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
             
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Daily Income:</span>
-              <span className="text-sm font-semibold text-primary">{useCurrency(daily)}</span>
+              <span className="text-sm font-semibold text-primary tabular-nums">{useCurrency(daily)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Cycle:</span>
-              <span className="text-sm font-semibold text-foreground">{cycle}</span>
+              <span className="text-sm font-semibold text-foreground tabular-nums">{cycle}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Earned so far:</span>
-              <span className="text-sm font-semibold text-primary">{useCurrency(total)}</span>
+              <span className="text-sm font-semibold text-primary tabular-nums">{useCurrency(total)}</span>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
         {status === "Active" && (
           <Button
             onClick={() => setIsPromoting(true)}
-            className="mt-4 w-full from-primary to-accent py-6 font-semibold text-primary-foreground hover:opacity-90"
+            className="mt-4 h-11 w-full text-sm font-semibold"
             disabled={isPromoting || roll == 0}
           >
             <Speaker01Icon className="mr-2 h-5 w-5" />

@@ -6,28 +6,28 @@ function TeamTable({
   members: TeamUser[]
 }) {
   return (
-    <div className="rounded-lg border">
+    <div className="overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="text-xs">Account</TableHead>
-            <TableHead className="text-xs">Referrer</TableHead>
-            <TableHead className="text-right text-xs">Deposit Status</TableHead>
+            <TableHead className="text-eyebrow text-muted-foreground">Account</TableHead>
+            <TableHead className="text-eyebrow text-muted-foreground">Referrer</TableHead>
+            <TableHead className="text-eyebrow text-right text-muted-foreground">Deposit</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {members.length > 0 ? (
             members.map((member, index) => (
               <TableRow key={index}>
-                <TableCell className="text-xs font-medium">{member.phone}</TableCell>
+                <TableCell className="text-xs font-medium tabular-nums">{member.phone}</TableCell>
                 <TableCell className="text-xs">{member.refer}</TableCell>
                 <TableCell className="text-right">
                   <span
-                    className={`inline-block rounded-full px-2 py-0.5 text-xs ${
+                    className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
                       member.status === "Active"
-                        ? "bg-green-500/20 text-green-500"
+                        ? "bg-success-soft text-success"
                         : member.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-700"
+                          ? "bg-warning-soft text-warning"
                           : "bg-muted text-muted-foreground"
                     }`}
                   >

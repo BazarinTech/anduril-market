@@ -2,8 +2,8 @@
 import { EventsSection } from '@/components/home/events-sections'
 import { NotificationTicker } from '@/components/home/notification-ticker'
 import { QuickActions } from '@/components/home/quick-actions'
-import { VideoHero } from '@/components/home/video-hero'
 import { WelcomeModal } from '@/components/home/welcome-modal'
+import { BrandBanner } from '@/components/shared/brand-banner'
 import { BottomNav } from '@/components/shared/bottombar'
 import Topbar from '@/components/shared/topbar'
 import { useMainStore } from '@/lib/stores/use-main-store'
@@ -12,38 +12,34 @@ import React, { useEffect } from 'react'
 
 function Page() {
   const loginState = useMainStore((state) => state.loginState)
+  // `user?.` as well as `mainDetails?.`: when the API rejects a session it
+  // answers with an error body, which the store keeps as mainDetails as-is.
+  const username = useMainStore((state) => state.mainDetails?.user?.username)
   useEffect(() => {
     loginState()
   }, [loginState])
 
   return (
     <div>
+      <Topbar title="Bima" brand />
 
-      <Topbar title="Anduril" />
+      <main className="mx-auto flex w-full max-w-md flex-col gap-5 px-4 pt-4 pb-24">
+        <BrandBanner
+          eyebrow="Welcome back"
+          title={username ? `Hello, ${username}` : "Your Bima account"}
+          subtitle="Products, team and wallet — all in one place."
+        />
 
-         <div className="flex flex-col items-center w-full py-4 px-2 space-y-2">
+        <QuickActions />
 
-          {/* Main Content */}
-          {/* <main className="flex flex-col gap-6 py-4 px-4"> */}
-            {/* Video Hero Section */}
-            <div className="px-4">
-              <VideoHero />
-            </div>
+        <NotificationTicker />
 
-            {/* Quick Actions Menu */}
-            <QuickActions />
+        <EventsSection />
+      </main>
 
-            {/* Notification Ticker */}
-            <NotificationTicker />
-
-            {/* Events Section */}
-            <EventsSection />
-          {/* </main> */}
-         </div>
-    
       <WelcomeModal />
       <BottomNav />
-      </div>
+    </div>
   )
 }
 

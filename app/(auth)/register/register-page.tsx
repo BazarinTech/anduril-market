@@ -14,6 +14,7 @@ import { toast } from "sonner"
 import { auth } from "@/lib/backend/auth"
 import { useInviteCode } from "@/lib/hooks/use-invite-code"
 import { useMainStore } from "@/lib/stores/use-main-store"
+import { AuthHeader } from "@/components/auth/auth-header"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -81,17 +82,10 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
-      <div className="bg-primary text-primary-foreground py-12 px-6 text-center rounded-b-[2rem]">
-        <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-          <img src="/favicon.ico" alt="Anduril" className="w-12 h-12 object-contain" />
-        </div>
-        <h1 className="text-2xl font-bold">Create Account</h1>
-        <p className="text-primary-foreground/80 mt-1">Join Anduril today</p>
-      </div>
+      <AuthHeader title="Create your account" subtitle="Join Bima in under a minute" />
 
       {/* Form */}
-      <div className="flex-1 px-6 py-8">
+      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <form onSubmit={handleRegister} className="space-y-5">
           {error && (
             <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
@@ -109,7 +103,7 @@ export default function RegisterPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="0712345678"
-                className="pl-10 h-12 border-gray-300"
+                className="pl-10 h-12 text-sm"
               />
             </div>
           </div>
@@ -126,7 +120,7 @@ export default function RegisterPage() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Richard Lincoln"
-                className="pl-10 h-12 border-gray-300"
+                className="pl-10 h-12 text-sm"
               />
             </div>
           </div>
@@ -143,7 +137,7 @@ export default function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="lincoln@example.com"
-                className="pl-10 h-12 border-gray-300"
+                className="pl-10 h-12 text-sm"
               />
             </div>
           </div>
@@ -168,16 +162,16 @@ export default function RegisterPage() {
             />
           </div>
 
-          <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
+          <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
             {isLoading ? "Creating Account..." : "Create Account"}
           </Button>
         </form>
 
         <div className="mt-8 text-center">
-          <p className="text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link href="/login" className="text-primary font-semibold hover:underline">
-              Login
+              Sign in
             </Link>
           </p>
         </div>

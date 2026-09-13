@@ -1,32 +1,42 @@
-import { Card } from "@/components/ui/card"
+import { Megaphone01Icon, UserGroupIcon } from "hugeicons-react"
 
 const events = [
   {
     title: "Weekly Influencer Fund",
-    image: "/colorful-event-promotion-banner.jpg",
+    caption: "Reward tiers",
+    icon: Megaphone01Icon,
   },
   {
     title: "Offline Meeting",
-    image: "/business-meeting-with-people.jpg",
+    caption: "Community",
+    icon: UserGroupIcon,
   },
 ]
 
 export function EventsSection() {
   return (
-    <section className="px-4 w-full mb-20 mt-10">
-      <div className="flex items-center gap-2 mb-4">
-        <div className="w-1 h-5 bg-accent rounded-full" />
-        <h2 className="text-lg font-semibold text-foreground">Events</h2>
+    <section className="w-full">
+      <div className="mb-3 flex items-baseline justify-between">
+        <h2 className="text-base font-semibold text-foreground">Events</h2>
+        <span className="text-eyebrow text-muted-foreground">Bima</span>
       </div>
-      <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-        {events.map((event) => (
-          <Card key={event.title} className="shrink-0 w-44 overflow-hidden bg-card border-border">
-            <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-24 object-cover" />
-            <div className="p-3">
-              <p className="text-sm font-medium text-foreground text-center">{event.title}</p>
-            </div>
-          </Card>
-        ))}
+      <div className="scrollbar-hide flex gap-3 overflow-x-auto pb-2">
+        {events.map((event) => {
+          const Icon = event.icon
+          return (
+            <article
+              key={event.title}
+              className="w-44 shrink-0 overflow-hidden rounded-xl bg-card ring-1 ring-border/70"
+            >
+              <div className="bg-hero relative flex h-24 items-end p-3">
+                <Icon className="absolute top-3 right-3 size-6 text-brand-bright" strokeWidth={1.5} />
+                <span className="text-eyebrow text-ink-foreground/70">{event.caption}</span>
+                <div className="brand-hairline absolute inset-x-0 bottom-0" />
+              </div>
+              <p className="p-3 text-sm font-medium text-foreground">{event.title}</p>
+            </article>
+          )
+        })}
       </div>
     </section>
   )

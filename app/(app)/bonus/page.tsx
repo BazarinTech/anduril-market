@@ -75,13 +75,13 @@ function Page() {
       <Topbar title="Bonus" backBtn />
 
       {/* Coupon Redemption Section */}
-      <div className="mx-4 mb-6 rounded-xl bg-amber-50 p-5 mt-5">
+      <div className="bg-hero relative mx-4 mb-6 mt-5 overflow-hidden rounded-xl p-5 shadow-premium">
         <div className="mb-4 flex items-center gap-2">
-          <Ticket01Icon className="h-6 w-6 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground">Redeem Coupon Code</h2>
+          <Ticket01Icon className="h-5 w-5 text-brand-bright" />
+          <h2 className="text-base font-semibold text-ink-foreground">Redeem Coupon Code</h2>
         </div>
-        <p className="mb-4 text-sm text-muted-foreground">
-          Enter your coupon code below to claim exclusive bonuses and rewards!
+        <p className="mb-4 text-sm text-ink-foreground/70">
+          Enter your coupon code below to claim bonuses and rewards.
         </p>
         <form onSubmit={handleRedeemCoupon} className="space-y-3">
           <Input
@@ -89,12 +89,12 @@ function Page() {
             placeholder="Enter coupon code"
             value={couponCode}
             onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-            className="border-primary/30 bg-background text-center text-lg font-semibold uppercase tracking-wider"
+            className="h-12 border-white/15 bg-white/5 text-center font-mono text-lg font-semibold uppercase tracking-[0.2em] text-ink-foreground placeholder:text-ink-foreground/40"
             maxLength={20}
           />
           <Button
             type="submit"
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            className="h-11 w-full bg-white font-semibold text-ink hover:bg-white/90"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Redeeming..." : "Redeem Coupon"}
@@ -103,7 +103,7 @@ function Page() {
         {message && (
           <div
             className={`mt-3 rounded-lg p-3 text-center text-sm ${
-              message.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+              message.type === "success" ? "bg-success-soft text-success" : "bg-destructive/15 text-white"
             }`}
           >
             {message.text}
@@ -116,19 +116,19 @@ function Page() {
         {mainDetails?.bonuses.map((tier, index) => {
           const isReady = mainDetails.referral.active_downlines >= tier.target
           return (
-            <div key={index} className="overflow-hidden rounded-xl border-2 border-primary/20 bg-background">
+            <div key={index} className="overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
               {/* Header Row */}
-              <div className="grid grid-cols-3 border-b border-primary/10 px-4 py-3">
-                <span className="text-center text-sm text-muted-foreground">Invited Friends</span>
-                <span className="text-center text-sm text-muted-foreground">Bonus</span>
-                <span className="text-center text-sm text-muted-foreground">Claim</span>
+              <div className="grid grid-cols-3 border-b border-border bg-muted/50 px-4 py-2.5">
+                <span className="text-center text-xs font-medium text-muted-foreground">Invited Friends</span>
+                <span className="text-center text-xs font-medium text-muted-foreground">Bonus</span>
+                <span className="text-center text-xs font-medium text-muted-foreground">Claim</span>
               </div>
               {/* Values Row */}
               <div className="grid grid-cols-3 items-center px-4 py-4">
-                <span className="text-center text-lg font-bold text-foreground">
+                <span className="text-center text-base font-semibold text-foreground tabular-nums">
                   {mainDetails.referral.active_downlines}/{tier.target}
                 </span>
-                <span className="text-center text-lg font-bold text-foreground">Ksh {tier.reward}</span>
+                <span className="text-center text-base font-semibold text-foreground tabular-nums">KSH {tier.reward}</span>
                 <div className="flex justify-center">
                   <Button
                     variant={isReady ? "default" : tier.is_claimed ? "default" : "secondary"}
@@ -137,7 +137,7 @@ function Page() {
                       isReady 
                         ? "bg-primary text-primary-foreground"
                         : tier.is_claimed
-                        ? "bg-green-500 text-white cursor-not-allowed"
+                        ? "bg-success-soft text-success cursor-not-allowed disabled:opacity-100"
                         : "bg-muted text-muted-foreground cursor-not-allowed"
                     }
                     disabled={!isReady || tier.is_claimed || isLoading}

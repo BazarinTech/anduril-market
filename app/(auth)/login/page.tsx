@@ -13,6 +13,7 @@ import { SmartPhone01Icon, LockPasswordIcon } from "hugeicons-react"
 import { auth } from "@/lib/backend/auth"
 import { useMainStore } from "@/lib/stores/use-main-store"
 import { toast } from "sonner"
+import { AuthHeader } from "@/components/auth/auth-header"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -59,17 +60,10 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {/* Header */}
-      <div className="bg-primary text-primary-foreground py-12 px-6 text-center rounded-b-[2rem]">
-        <div className="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden">
-          <img src="/favicon.ico" alt="Anduril" className="w-12 h-12 object-contain" />
-        </div>
-        <h1 className="text-2xl font-bold">Welcome Back</h1>
-        <p className="text-primary-foreground/80 mt-1">Login to your account</p>
-      </div>
+      <AuthHeader title="Welcome back" subtitle="Sign in to your account" />
 
       {/* Form */}
-      <div className="flex-1 px-6 py-8">
+      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <form onSubmit={handleLogin} className="space-y-6">
           {error && (
             <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
@@ -87,7 +81,7 @@ export default function LoginPage() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="0712345678"
-                className="pl-10 h-12 border-gray-300"
+                className="pl-10 h-12 text-sm"
               />
             </div>
           </div>
@@ -108,18 +102,18 @@ export default function LoginPage() {
           </div>
 
           <div className="text-right">
-            <Link href="/forgot-password" className="text-sm text-primary hover:underline">
+            <Link href="/forgot-password" className="text-sm font-medium text-primary hover:underline">
               Forgot Password?
             </Link>
           </div>
 
-          <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+          <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
+            {isLoading ? "Signing in..." : "Sign in"}
           </Button>
         </form>
 
         <div className="mt-8 text-center">
-          <p className="text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
             <Link href="/register" className="text-primary font-semibold hover:underline">
               Register

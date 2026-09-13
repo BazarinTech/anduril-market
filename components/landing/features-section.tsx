@@ -1,49 +1,50 @@
-import { Wallet01Icon, UserMultiple02Icon, TimeScheduleIcon, Shield01Icon } from "hugeicons-react"
+import { Wallet01Icon, UserMultiple02Icon, ShoppingBag01Icon, Shield01Icon } from "hugeicons-react"
 
 export function FeaturesSection() {
   const features = [
     {
-      icon: Wallet01Icon,
-      title: "Earn Your Way",
-      description: "Set your own schedule and earn money promoting orders and completing tasks on your terms.",
+      icon: ShoppingBag01Icon,
+      title: "Products",
+      description: "Choose a product, see its price, cycle and daily income up front, and track what each one has earned.",
     },
     {
       icon: UserMultiple02Icon,
-      title: "Build Your Team",
-      description: "Invite friends to join and earn bonuses when they become active. Grow together.",
+      title: "Team rewards",
+      description: "Share your invite link and follow your team across three levels, with bonus and incentive tiers.",
     },
     {
-      icon: TimeScheduleIcon,
-      title: "Flexible Hours",
-      description: "Work when you want, where you want. No fixed schedules, no pressure.",
+      icon: Wallet01Icon,
+      title: "M-Pesa wallet",
+      description: "Top up with an STK push and cash out to your registered M-Pesa number, with every movement recorded.",
     },
     {
       icon: Shield01Icon,
-      title: "Secure Payments",
-      description: "Fast M-Pesa withdrawals within 24 hours. Your earnings, always accessible.",
+      title: "Built-in security",
+      description: "Withdrawals require your PIN, and a forgotten PIN is reset by SMS to the number on your account.",
     },
   ]
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Why workers choose us</h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Everything you need to start earning, all in one platform.
+    <section id="features" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+      <div className="max-w-2xl">
+        <p className="text-eyebrow text-primary">Features</p>
+        <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Everything in one account</h2>
+        <p className="mt-4 text-lg text-muted-foreground">
+          A single place for your products, your team and your money.
         </p>
       </div>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        {features.map((feature, index) => (
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((feature) => (
           <div
-            key={index}
-            className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg"
+            key={feature.title}
+            className="group rounded-xl bg-card p-6 ring-1 ring-border/70 transition-all hover:-translate-y-0.5 hover:shadow-premium"
           >
-            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <feature.icon className="h-6 w-6" />
+            <div className="mb-5 inline-flex size-11 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <feature.icon className="size-5" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground">{feature.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+            <h3 className="text-base font-semibold text-foreground">{feature.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
           </div>
         ))}
       </div>

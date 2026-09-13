@@ -38,6 +38,19 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Bima brand extensions. */
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-bright: var(--brand-bright);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-silver: var(--silver);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -48,73 +61,146 @@
   --font-heading: var(--font-sans);
 }
 
+/*
+ * Bima -- light theme.
+ *
+ * A German-automotive palette: a single saturated blue carried on cool,
+ * near-neutral greys, with a deep "ink" navy for hero surfaces. Blue is the
+ * only chromatic colour in the chrome; green and amber appear solely as
+ * semantic status (success / warning), never as decoration.
+ *
+ * Radius is deliberately tight. rounded-md resolves to 4px and rounded-xl to
+ * 10px, so buttons and inputs read as precise rather than soft.
+ */
 :root {
+  --background: oklch(0.972 0.005 258.3);
+  --foreground: oklch(0.181 0.016 261.5);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.181 0.016 261.5);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.181 0.016 261.5);
+  --primary: oklch(0.538 0.18 258.3);
+  --primary-foreground: oklch(0.99 0.003 258);
+  --secondary: oklch(0.944 0.011 256.7);
+  --secondary-foreground: oklch(0.181 0.016 261.5);
+  --muted: oklch(0.954 0.006 255.5);
+  --muted-foreground: oklch(0.501 0.028 259.8);
+  --accent: oklch(0.952 0.019 255.5);
+  --accent-foreground: oklch(0.438 0.16 259.1);
+  --destructive: oklch(0.576 0.209 29.5);
+  --border: oklch(0.921 0.009 258.3);
+  --input: oklch(0.889 0.013 255.5);
+  --ring: oklch(0.538 0.18 258.3);
+  --radius: 0.375rem;
+
+  --brand-deep: oklch(0.438 0.16 259.1);
+  --brand-bright: oklch(0.65 0.152 256.9);
+  --ink: oklch(0.164 0.018 263.9);
+  --ink-2: oklch(0.246 0.053 261.8);
+  --ink-foreground: oklch(0.975 0.006 255.5);
+  --silver: oklch(0.808 0.018 256.3);
+  --success: oklch(0.514 0.107 162.8);
+  --success-soft: oklch(0.955 0.017 168.5);
+  --warning: oklch(0.549 0.13 57.5);
+  --warning-soft: oklch(0.965 0.023 78.2);
+
+  --chart-1: oklch(0.538 0.18 258.3);
+  --chart-2: oklch(0.65 0.152 256.9);
+  --chart-3: oklch(0.438 0.16 259.1);
+  --chart-4: oklch(0.808 0.018 256.3);
+  --chart-5: oklch(0.501 0.028 259.8);
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.181 0.016 261.5);
+  --sidebar-primary: oklch(0.538 0.18 258.3);
+  --sidebar-primary-foreground: oklch(0.99 0.003 258);
+  --sidebar-accent: oklch(0.952 0.019 255.5);
+  --sidebar-accent-foreground: oklch(0.438 0.16 259.1);
+  --sidebar-border: oklch(0.921 0.009 258.3);
+  --sidebar-ring: oklch(0.538 0.18 258.3);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.159 0.014 264.1);
+  --foreground: oklch(0.96 0.008 253.9);
+  --card: oklch(0.205 0.023 265.5);
+  --card-foreground: oklch(0.96 0.008 253.9);
+  --popover: oklch(0.205 0.023 265.5);
+  --popover-foreground: oklch(0.96 0.008 253.9);
+  --primary: oklch(0.619 0.18 259.1);
+  --primary-foreground: oklch(0.99 0.003 258);
+  --secondary: oklch(0.248 0.03 264.9);
+  --secondary-foreground: oklch(0.96 0.008 253.9);
+  --muted: oklch(0.248 0.03 264.9);
+  --muted-foreground: oklch(0.703 0.029 260.3);
+  --accent: oklch(0.257 0.05 260.6);
+  --accent-foreground: oklch(0.811 0.095 258.8);
+  --destructive: oklch(0.66 0.19 28.2);
+  --border: oklch(0.288 0.03 262.8);
+  --input: oklch(0.321 0.035 263.9);
+  --ring: oklch(0.619 0.18 259.1);
+
+  --brand-deep: oklch(0.538 0.18 258.3);
+  --brand-bright: oklch(0.72 0.14 256.9);
+  --ink: oklch(0.13 0.016 263.9);
+  --ink-2: oklch(0.22 0.05 261.8);
+  --ink-foreground: oklch(0.975 0.006 255.5);
+  --silver: oklch(0.703 0.029 260.3);
+  --success: oklch(0.73 0.142 163.7);
+  --success-soft: oklch(0.251 0.033 168.8);
+  --warning: oklch(0.786 0.137 71.1);
+  --warning-soft: oklch(0.248 0.031 74.2);
+
+  --chart-1: oklch(0.619 0.18 259.1);
+  --chart-2: oklch(0.72 0.14 256.9);
+  --chart-3: oklch(0.538 0.18 258.3);
+  --chart-4: oklch(0.703 0.029 260.3);
+  --chart-5: oklch(0.501 0.028 259.8);
+
+  --sidebar: oklch(0.205 0.023 265.5);
+  --sidebar-foreground: oklch(0.96 0.008 253.9);
+  --sidebar-primary: oklch(0.619 0.18 259.1);
+  --sidebar-primary-foreground: oklch(0.99 0.003 258);
+  --sidebar-accent: oklch(0.257 0.05 260.6);
+  --sidebar-accent-foreground: oklch(0.811 0.095 258.8);
+  --sidebar-border: oklch(0.288 0.03 262.8);
+  --sidebar-ring: oklch(0.619 0.18 259.1);
+}
+
+/*
+ * Hero surface: deep ink with a cool blue light falling in from the top
+ * right. Used for page headers, the wallet card and the brand banner -- the
+ * places that should feel like the "cabin" of the product.
+ */
+@utility bg-hero {
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(120% 90% at 100% 0%, color-mix(in oklch, var(--primary) 42%, transparent) 0%, transparent 58%),
+    radial-gradient(80% 60% at 0% 100%, color-mix(in oklch, var(--ink-2) 90%, transparent) 0%, transparent 70%),
+    linear-gradient(165deg, var(--ink) 0%, var(--ink-2) 100%);
+  color: var(--ink-foreground);
+}
+
+/* A thin blue light-line, fading at both ends. */
+@utility brand-hairline {
+  height: 1px;
+  background-image: linear-gradient(90deg, transparent, var(--brand-bright) 30%, var(--primary) 70%, transparent);
+}
+
+/* Small uppercase label that sits above headings. */
+@utility text-eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Soft two-layer elevation: a crisp contact shadow plus a long, faint drop. */
+@utility shadow-premium {
+  box-shadow:
+    0 1px 2px color-mix(in oklch, var(--ink) 6%, transparent),
+    0 12px 32px -16px color-mix(in oklch, var(--ink) 28%, transparent);
 }
 
 @layer base {
@@ -126,5 +212,8 @@
   }
   html {
     @apply font-sans;
+  }
+  h1, h2, h3 {
+    @apply tracking-tight;
   }
 }

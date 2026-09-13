@@ -1,66 +1,55 @@
-import { UserAdd01Icon, SmartPhone01Icon, MoneyReceiveSquareIcon, CheckmarkCircle02Icon } from "hugeicons-react"
+import { UserAdd01Icon, SmartPhone01Icon, ShoppingBag01Icon, MoneyReceiveSquareIcon } from "hugeicons-react"
 
 export function HowItWorksSection() {
   const steps = [
     {
       icon: UserAdd01Icon,
       step: "01",
-      title: "Create Account",
-      description: "Sign up in minutes with just your phone number. Quick verification, instant access.",
+      title: "Create your account",
+      description: "Sign up with your phone number, name and email.",
     },
     {
       icon: SmartPhone01Icon,
       step: "02",
-      title: "Browse Tasks",
-      description: "Explore available tasks and order promotions. Choose what fits your schedule.",
+      title: "Top up with M-Pesa",
+      description: "Enter an amount and confirm the STK push on your phone.",
     },
     {
-      icon: CheckmarkCircle02Icon,
+      icon: ShoppingBag01Icon,
       step: "03",
-      title: "Complete Work",
-      description: "Finish tasks, promote orders, and invite friends to boost your earnings.",
+      title: "Choose a product",
+      description: "Compare price, cycle and daily income, then add a product.",
     },
     {
       icon: MoneyReceiveSquareIcon,
       step: "04",
-      title: "Get Paid",
-      description: "Withdraw your earnings instantly to M-Pesa. Fast, secure, hassle-free.",
+      title: "Cash out",
+      description: "Withdraw to your registered M-Pesa number with your PIN.",
     },
   ]
 
   return (
-    <section className="bg-secondary/30 px-6 py-24">
+    <section id="how-it-works" className="scroll-mt-20 border-y border-border bg-card px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Start earning in 4 simple steps
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Getting started is easy. No experience required.
-          </p>
+        <div className="max-w-2xl">
+          <p className="text-eyebrow text-primary">How it works</p>
+          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps to get going</h2>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((item, index) => (
-            <div key={index} className="relative">
-              {/* Connector Line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-[60%] w-full h-0.5 bg-border" />
-              )}
-
-              <div className="relative rounded-2xl bg-card p-6 border border-border">
-                <span className="absolute -top-3 left-6 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                  {item.step}
+        <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {steps.map((item) => (
+            <li key={item.step} className="relative rounded-xl bg-background p-6 ring-1 ring-border/70">
+              <div className="flex items-center justify-between">
+                <span className="flex size-11 items-center justify-center rounded-lg bg-ink text-ink-foreground">
+                  <item.icon className="size-5" />
                 </span>
-                <div className="mt-2 mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <item.icon className="h-7 w-7" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                <span className="font-mono text-sm font-semibold text-muted-foreground/70">{item.step}</span>
               </div>
-            </div>
+              <h3 className="mt-5 text-base font-semibold text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )

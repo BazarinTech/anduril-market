@@ -65,7 +65,7 @@ export function VerificationCodeInput({ length = 6, value, onChange }: Verificat
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e)}
           onPaste={handlePaste}
-          className="w-12 h-14 text-center text-xl font-semibold border-gray-300 focus:border-primary focus:ring-primary"
+          className="w-12 h-14 text-center text-xl font-semibold tabular-nums"
         />
       ))}
     </div>

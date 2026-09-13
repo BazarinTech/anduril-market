@@ -7,17 +7,16 @@ export function FloatingButtons() {
   if (!SUPPORT_URL) return null
 
   return (
-    <div className="fixed bottom-24 right-4 flex flex-col gap-3 z-40">
+    <div className="fixed right-4 bottom-24 z-40">
       <a
         href={SUPPORT_URL}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact customer support"
-        className="w-14 h-14 rounded-full bg-accent flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        className="flex size-12 items-center justify-center rounded-full bg-ink text-ink-foreground shadow-premium ring-1 ring-white/10 transition-transform hover:scale-105 active:scale-95"
       >
-        <CustomerSupportIcon className="w-6 h-6 text-accent-foreground" />
+        <CustomerSupportIcon className="size-6" />
       </a>
-      <div className="text-xs text-foreground font-medium text-center">Support</div>
     </div>
   )
 }

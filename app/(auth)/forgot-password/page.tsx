@@ -12,6 +12,7 @@ import { SmartPhone01Icon, Mail01Icon, LockPasswordIcon, CheckmarkCircle01Icon }
 import { VerificationCodeInput } from "@/components/auth/verification-input"
 import { requestVerificationCode, resetPassword, verifyCode } from "@/lib/backend/actions"
 import { toast } from "sonner"
+import { BimaLogo } from "@/components/shared/brand-logo"
 
 type Step = "phone" | "verify" | "reset" | "success"
 
@@ -137,8 +138,13 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <header className="flex h-16 items-center justify-center border-b border-border/80 bg-background/85 backdrop-blur-lg">
+        <Link href="/login" aria-label="Bima — back to sign in">
+          <BimaLogo size="sm" />
+        </Link>
+      </header>
 
-      <div className="flex-1 px-6 py-8">
+      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         {error && (
           <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center mb-6">{error}</div>
         )}
@@ -174,12 +180,12 @@ export default function ForgotPasswordPage() {
               </div>
             </div>
 
-            <Button onClick={handleRequestCode} className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
+            <Button onClick={handleRequestCode} className="w-full h-12 text-base font-semibold" disabled={isLoading}>
               {isLoading ? "Sending..." : "Send Verification Code"}
             </Button>
 
             <div className="text-center">
-              <Link href="/login" className="text-primary text-sm hover:underline">
+              <Link href="/login" className="text-primary text-sm font-medium hover:underline">
                 Back to Login
               </Link>
             </div>
@@ -201,7 +207,7 @@ export default function ForgotPasswordPage() {
 
             <Button
               onClick={handleVerifyCode}
-              className="w-full h-12 text-lg font-semibold"
+              className="w-full h-12 text-base font-semibold"
               disabled={isLoading || verificationCode.length !== 6}
             >
               {isLoading ? "Verifying..." : "Verify Code"}
@@ -258,7 +264,7 @@ export default function ForgotPasswordPage() {
               />
             </div>
 
-            <Button type="submit" className="w-full h-12 text-lg font-semibold" disabled={isLoading}>
+            <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
               {isLoading ? "Resetting..." : "Reset Password"}
             </Button>
           </form>
@@ -267,8 +273,8 @@ export default function ForgotPasswordPage() {
         {/* Success */}
         {step === "success" && (
           <div className="text-center space-y-6">
-            <div className="w-24 h-24 bg-green-100 rounded-full mx-auto flex items-center justify-center">
-              <CheckmarkCircle01Icon size={48} className="text-green-600" />
+            <div className="w-24 h-24 bg-success-soft rounded-full mx-auto flex items-center justify-center">
+              <CheckmarkCircle01Icon size={48} className="text-success" />
             </div>
             <div>
               <h2 className="text-xl font-semibold">Password Reset Successful</h2>
@@ -276,7 +282,7 @@ export default function ForgotPasswordPage() {
                 Your password has been changed successfully. You can now login with your new password.
               </p>
             </div>
-            <Button onClick={() => router.push("/login")} className="w-full h-12 text-lg font-semibold">
+            <Button onClick={() => router.push("/login")} className="w-full h-12 text-base font-semibold">
               Go to Login
             </Button>
           </div>

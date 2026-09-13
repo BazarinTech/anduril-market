@@ -3,6 +3,7 @@
 import { OrderCard } from '@/components/products/order-card'
 import { BottomNav } from '@/components/shared/bottombar'
 import Topbar from '@/components/shared/topbar'
+import NoList from '@/components/shared/no-list'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useMainStore } from '@/lib/stores/use-main-store'
@@ -10,7 +11,7 @@ import { useEffect, useState } from 'react'
 
 function OrderCardSkeleton() {
   return (
-    <div className="rounded-xl bg-background p-4 shadow-sm border border-border w-full">
+    <div className="rounded-xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
       <Skeleton className="h-5 w-36 mb-3" />
       <div className="flex gap-4">
         <Skeleton className="h-24 w-24 rounded-lg shrink-0" />
@@ -20,7 +21,7 @@ function OrderCardSkeleton() {
           <div className="flex justify-between"><Skeleton className="h-4 w-28" /><Skeleton className="h-4 w-16" /></div>
         </div>
       </div>
-      <Skeleton className="h-11 w-full rounded-full mt-4" />
+      <Skeleton className="h-11 w-full rounded-md mt-4" />
     </div>
   )
 }
@@ -46,28 +47,26 @@ function Page() {
   }, [mainDetails]);
   return (
     <div>
-      <Topbar title="Tasks"/>
+      <Topbar title="Income"/>
       {/* Summary Section */}
-        <div className="px-4 py-6 mb-20">
+        <div className="mx-auto max-w-md px-4 py-5 mb-20">
 
           <Tabs defaultValue="valid" className="mt-1">
-          <TabsList className="grid w-full grid-cols-2 rounded-full bg-background p-1 space-x-1">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger
               value="valid"
-              className="rounded-full data-[state=inactive]:bg-background data-[state=active]:text-secondary data-[state=inactive]:shadow-sm data-[state=active]:bg-primary data-[state=inactive]:text-accent-foreground py-4"
             >
               Valid
             </TabsTrigger>
             <TabsTrigger
               value="expired"
-              className="rounded-full data-[state=inactive]:bg-background data-[state=active]:text-secondary data-[state=inactive]:shadow-sm data-[state=active]:bg-primary data-[state=inactive]:text-accent-foreground py-4"
             >
               Expired
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="valid" className="mt-5">
-            <div className="space-y-4 p-4">
+            <div className="space-y-4">
               {isMainFetching && !mainDetails && (
                 <>
                   <OrderCardSkeleton />
@@ -92,14 +91,14 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <p className="py-8 text-center text-muted-foreground">No valid orders found</p>
+                !isMainFetching && <NoList title="No active orders" description="Products you add will appear here while they earn." />
               )}
-              {!isMainFetching && <p className="py-4 text-center text-sm text-muted-foreground">none more</p>}
+              {!isMainFetching && validOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
             </div>
           </TabsContent>
 
           <TabsContent value="expired" className="mt-5">
-            <div className="space-y-4 p-4">
+            <div className="space-y-4">
               {isMainFetching && !mainDetails && (
                 <>
                   <OrderCardSkeleton />
@@ -124,9 +123,9 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <p className="py-8 text-center text-muted-foreground">No expired orders found</p>
+                !isMainFetching && <NoList title="No expired orders" description="Orders move here once their cycle ends." />
               )}
-              {!isMainFetching && <p className="py-4 text-center text-sm text-muted-foreground">none more</p>}
+              {!isMainFetching && expiredOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
             </div>
           </TabsContent>
         </Tabs>

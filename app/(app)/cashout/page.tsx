@@ -170,7 +170,7 @@ export default function CashoutPage() {
     <div>
       <Topbar title="Withdraw" backBtn />
 
-      <div className="flex-1 px-6 py-6">
+      <div className="mx-auto max-w-md flex-1 px-5 py-6">
         {/* Check if withdrawal account is set */}
         {!hasWithdrawalAccount ? (
           <div className="flex flex-col items-center justify-center py-12">
@@ -191,17 +191,18 @@ export default function CashoutPage() {
         ) : (
           <>
             {/* Balance Card */}
-            <div className="gradient-to-br from-accent to-primary/80 rounded-2xl p-5 text-accent-foreground mb-6">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-accent-foreground/80 text-sm">Available Balance</span>
-                <Link href="/cashout-wallet" className="p-2 hover:bg-white/20 rounded-full transition-colors">
-                  <Settings01Icon size={20} />
+            <div className="bg-hero relative overflow-hidden rounded-xl p-5 mb-6 shadow-premium">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-eyebrow text-ink-foreground/60">Available balance</span>
+                <Link href="/cashout-wallet" aria-label="Withdrawal wallet settings" className="p-2 -mr-2 hover:bg-white/10 rounded-full transition-colors">
+                  <Settings01Icon size={18} />
                 </Link>
               </div>
-              <p className="text-3xl font-bold">KSH {walletData.balance.toLocaleString()}</p>
-              <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/20 text-sm">
-                <span className="text-accent-foreground/80">Withdraw to:</span>
-                <span className="font-medium">{walletData.mpesaPhone}</span>
+              <p className="text-3xl font-semibold tabular-nums">KSH {walletData.balance.toLocaleString()}</p>
+              <div className="brand-hairline my-4 opacity-60" />
+              <div className="flex items-center gap-2 text-sm">
+                <span className="text-ink-foreground/60">Withdraw to</span>
+                <span className="font-medium tabular-nums">{walletData.mpesaPhone}</span>
               </div>
             </div>
 
@@ -214,12 +215,12 @@ export default function CashoutPage() {
                     key={preset}
                     onClick={() => handleAmountSelect(preset)}
                     disabled={preset > walletData.balance}
-                    className={`py-3 px-4 rounded-xl font-semibold text-sm transition-all ${
+                    className={`h-11 px-2 rounded-md font-semibold text-sm tabular-nums transition-all ${
                       amount === preset.toString()
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-primary text-primary-foreground shadow-premium"
                         : preset > walletData.balance
-                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                          : "bg-card border border-border hover:border-primary"
+                          ? "bg-muted text-muted-foreground/60 cursor-not-allowed"
+                          : "bg-card ring-1 ring-border hover:ring-primary"
                     }`}
                   >
                     KSH {preset.toLocaleString()}
@@ -240,7 +241,7 @@ export default function CashoutPage() {
                   value={amount}
                   onChange={handleAmountChange}
                   placeholder="0"
-                  className="pl-14 h-14 text-xl font-semibold"
+                  className="pl-14 h-14 text-xl font-semibold tabular-nums"
                 />
               </div>
               <p className="text-xs text-muted-foreground">
@@ -254,23 +255,23 @@ export default function CashoutPage() {
 
             {/* Withdraw Summary */}
             {amount && Number.parseInt(amount) > 0 && (
-              <div className="bg-muted rounded-xl p-4 mb-6">
+              <div className="bg-card ring-1 ring-border/70 rounded-xl p-4 mb-6">
                 <h3 className="font-semibold mb-3 text-sm">Withdrawal Summary</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Amount</span>
-                    <span className="font-medium">KSH {Number.parseInt(amount).toLocaleString()}</span>
+                    <span className="font-medium tabular-nums">KSH {Number.parseInt(amount).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Transaction Fee</span>
-                    <span className="font-medium text-green-600">
+                    <span className="font-medium text-muted-foreground tabular-nums">
                       {useCurrency((Number(amount) * fee) / 100)}
                     </span>
                   </div>
                   <div className="h-px bg-border my-2" />
                   <div className="flex justify-between">
                     <span className="font-semibold">You&apos;ll Receive</span>
-                    <span className="font-bold text-primary">
+                    <span className="font-semibold text-foreground tabular-nums">
                       {useCurrency(Number(amount) - (Number(amount) * fee) / 100)}
                     </span>
                   </div>
@@ -280,7 +281,7 @@ export default function CashoutPage() {
 
             <Button
               onClick={handleProceed}
-              className="w-full h-14 text-lg font-semibold gap-2"
+              className="w-full h-12 text-base font-semibold gap-2"
               disabled={!amount || Number.parseInt(amount) <= 0}
             >
               Withdraw
@@ -288,9 +289,9 @@ export default function CashoutPage() {
             </Button>
 
             {/* Info */}
-            <div className="mt-6 flex items-start gap-3 p-4 bg-blue-50 rounded-xl">
-              <InformationCircleIcon size={20} className="text-blue-600 shrink-0 mt-0.5" />
-              <p className="text-sm text-blue-700">
+            <div className="mt-6 flex items-start gap-3 p-4 bg-accent rounded-xl">
+              <InformationCircleIcon size={20} className="text-accent-foreground shrink-0 mt-0.5" />
+              <p className="text-sm text-accent-foreground">
                 Withdrawals are processed a maximum of 10 seconds to your registered M-Pesa number. Fee charged is{" "}
                 {mainDetails?.controls.withFee}% per transaction.
               </p>
@@ -301,7 +302,7 @@ export default function CashoutPage() {
 
       {/* PIN Dialog */}
       <AlertDialog open={showPinDialog} onOpenChange={setShowPinDialog}>
-        <AlertDialogContent className="max-w-sm mx-auto rounded-2xl">
+        <AlertDialogContent className="max-w-sm mx-auto">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-center">Enter Withdrawal PIN</AlertDialogTitle>
             <AlertDialogDescription className="text-center">
@@ -334,15 +335,15 @@ export default function CashoutPage() {
 
       {/* Success Dialog */}
       <AlertDialog open={showSuccessDialog}>
-        <AlertDialogContent className="max-w-sm mx-auto rounded-2xl [&>button]:hidden">
+        <AlertDialogContent className="max-w-sm mx-auto [&>button]:hidden">
           <AlertDialogHeader className="text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <CheckmarkCircle01Icon size={40} className="text-green-600" />
+            <div className="w-20 h-20 bg-success-soft rounded-full mx-auto mb-4 flex items-center justify-center">
+              <CheckmarkCircle01Icon size={40} className="text-success" />
             </div>
             <AlertDialogTitle className="text-center">Withdrawal Successful!</AlertDialogTitle>
             <AlertDialogDescription className="text-center space-y-2">
               <p>
-                <span className="font-bold text-foreground text-xl">
+                <span className="font-semibold text-foreground text-xl tabular-nums">
                   KSH {Number.parseInt(amount || "0").toLocaleString()}
                 </span>
               </p>
@@ -355,10 +356,10 @@ export default function CashoutPage() {
 
       {/* Error Dialog */}
       <AlertDialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
-        <AlertDialogContent className="max-w-sm mx-auto rounded-2xl">
+        <AlertDialogContent className="max-w-sm mx-auto">
           <AlertDialogHeader className="text-center">
-            <div className="w-16 h-16 bg-red-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <Cancel01Icon size={32} className="text-red-600" />
+            <div className="w-16 h-16 bg-destructive/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Cancel01Icon size={32} className="text-destructive" />
             </div>
             <AlertDialogTitle className="text-center">Withdrawal Failed</AlertDialogTitle>
             <AlertDialogDescription className="text-center">{errorMessage}</AlertDialogDescription>

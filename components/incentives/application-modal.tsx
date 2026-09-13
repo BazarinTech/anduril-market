@@ -71,11 +71,12 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md mx-4 rounded-2xl">
+      <DialogContent className="sm:max-w-md mx-4">
         {!isSubmitted ? (
           <>
             <DialogHeader>
-              <DialogTitle className="text-xl font-bold text-primary">Agent Application</DialogTitle>
+              <p className="text-eyebrow text-primary">Bima Incentives</p>
+              <DialogTitle className="text-lg font-semibold text-foreground">Agent Application</DialogTitle>
               <DialogDescription className="text-muted-foreground">
                 Apply for <span className="font-semibold text-foreground">{tierName}</span> with weekly reward of{" "}
                 <span className="font-semibold text-primary">{reward}</span>
@@ -93,7 +94,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   required
-                  className="rounded-lg border-gray-300 focus:border-primary focus:ring-primary"
+                  className="h-11 text-sm"
                 />
               </div>
 
@@ -108,7 +109,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
                   value={formData.phoneNumber}
                   onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                   required
-                  className="rounded-lg border-gray-300 focus:border-primary focus:ring-primary"
+                  className="h-11 text-sm"
                 />
               </div>
 
@@ -122,11 +123,11 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
                   value={formData.idNumber}
                   onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
                   required
-                  className="rounded-lg border-gray-300 focus:border-primary focus:ring-primary"
+                  className="h-11 text-sm"
                 />
               </div>
 
-              <div className="flex items-center gap-2 p-3 bg-amber-50 rounded-lg text-amber-800 text-sm">
+              <div className="flex items-center gap-2 p-3 bg-accent rounded-lg text-accent-foreground text-sm">
                 <Clock01Icon size={18} className="shrink-0" />
                 <span>Applications are reviewed within 12 hours</span>
               </div>
@@ -134,7 +135,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-white py-6 font-semibold"
+                className="w-full h-11 font-semibold"
               >
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
@@ -142,17 +143,17 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
           </>
         ) : (
           <div className="flex flex-col items-center justify-center py-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <CheckmarkCircle02Icon size={40} className="text-green-600" />
+            <div className="w-16 h-16 bg-success-soft rounded-full flex items-center justify-center mb-4">
+              <CheckmarkCircle02Icon size={36} className="text-success" />
             </div>
-            <h3 className="text-xl font-bold text-foreground mb-2">Application Submitted!</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-2">Application submitted</h3>
             <p className="text-muted-foreground mb-1">
               Your application for <span className="font-semibold">{tierName}</span> has been received.
             </p>
             <p className="text-sm text-muted-foreground mb-6">
               We will review and respond within <span className="font-semibold text-primary">12 hours</span>.
             </p>
-            <Button onClick={handleClose} className="bg-primary hover:bg-primary/90 text-white px-8">
+            <Button onClick={handleClose} className="h-11 px-10 font-semibold">
               Done
             </Button>
           </div>

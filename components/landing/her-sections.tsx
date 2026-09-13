@@ -1,65 +1,65 @@
-"use client"
-
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight02Icon } from "hugeicons-react"
-// Static import so next/image reads the intrinsic 678x452 size at build time --
-// no width/height to keep in sync, and no layout shift while it loads.
-import bannerAnduril from "@/public/banner-anduril.jpeg"
+import { ArrowRight02Icon, LockPasswordIcon, SmartPhone01Icon, Invoice01Icon } from "hugeicons-react"
+import { BrandBanner } from "@/components/shared/brand-banner"
+
+// Each of these is something the app demonstrably does. They replace a
+// "Trusted by 5,000+ workers" line and a "Now hiring across 50+ cities" badge,
+// neither of which anything in the product backs up.
+const assurances = [
+  { icon: SmartPhone01Icon, label: "M-Pesa top-ups & withdrawals" },
+  { icon: LockPasswordIcon, label: "PIN-protected cash-outs" },
+  { icon: Invoice01Icon, label: "Full transaction history" },
+]
 
 export function HeroSection() {
   return (
-    <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 text-center">
-      {/* Announcement Badge */}
-      <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm">
-        <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-        <span className="text-muted-foreground">Now hiring across 50+ cities</span>
-        <Link href="/about" className="font-medium text-primary hover:underline">
-          Learn more
-        </Link>
-      </div>
+    <section className="relative overflow-hidden px-6 pt-16 pb-20 sm:pt-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+        <div className="text-center lg:text-left">
+          <p className="text-eyebrow inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-accent-foreground">
+            <span className="size-1.5 rounded-full bg-primary" />
+            Introducing Bima
+          </p>
 
-      {/* Main Headline */}
-      <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl text-balance">
-        Your gateway to
-        <span className="text-primary"> farm earnings</span>
-      </h1>
+          <h1 className="mt-6 text-4xl font-semibold text-balance text-foreground sm:text-5xl lg:text-6xl">
+            The premium way to
+            <span className="block text-primary">manage your earnings</span>
+          </h1>
 
-      {/* Subheadline */}
-      <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl text-pretty leading-relaxed">
-        Join thousands of workers earning on their own terms. Connect with farm opportunities, promote products, and
-        build your income with Anduril.
-      </p>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground lg:mx-0">
+            Bima brings your products, team rewards and M-Pesa wallet together in one fast, secure account.
+          </p>
 
-      {/* CTA Buttons */}
-      <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
-        <Button asChild size="lg" className="px-8 text-base">
-          <Link href="/register">
-            Get started free
-            <ArrowRight02Icon className="ml-2 h-5 w-5" />
-          </Link>
-        </Button>
-        <Button asChild variant="outline" size="lg" className="px-8 text-base bg-transparent">
-          <Link href="/about">How it works</Link>
-        </Button>
-      </div>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <Button asChild size="lg" className="h-12 px-7 text-base font-semibold">
+              <Link href="/register">
+                Create your account
+                <ArrowRight02Icon className="ml-1 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="h-12 bg-card px-7 text-base">
+              <a href="#how-it-works">How it works</a>
+            </Button>
+          </div>
 
-      {/* Banner */}
-      <div className="mt-14 w-full max-w-3xl overflow-hidden rounded-xl border border-border shadow-sm">
-        <Image
-          src={bannerAnduril}
-          alt="Anduril"
-          priority
-          sizes="(max-width: 768px) 100vw, 768px"
-          className="h-auto w-full object-cover"
+          <ul className="mt-10 flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6 lg:justify-start">
+            {assurances.map(({ icon: Icon, label }) => (
+              <li key={label} className="inline-flex items-center justify-center gap-2">
+                <Icon className="size-4 text-primary" />
+                {label}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <BrandBanner
+          size="lg"
+          eyebrow="One account"
+          title="Built with precision. Designed for you."
+          subtitle="Products, team and wallet — all in one place."
         />
       </div>
-
-      {/* Trust Indicator */}
-      <p className="mt-10 text-sm text-muted-foreground">
-        Trusted by <span className="font-semibold text-foreground">5,000+</span> workers nationwide
-      </p>
     </section>
   )
 }
