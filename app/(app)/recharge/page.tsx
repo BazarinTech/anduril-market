@@ -13,6 +13,7 @@ import {
 } from "hugeicons-react"
 import Topbar from "@/components/shared/topbar"
 import { useMainStore } from "@/lib/stores/use-main-store"
+import { parseLimit } from "@/lib/limits/amount"
 import { toast } from "sonner"
 import { initiateDeposit } from "@/lib/backend/actions"
 
@@ -24,10 +25,19 @@ export default function RechargePage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const [successMessage, setSuccessMessage] = useState("")
+  const mainDetails = useMainStore((state) => state.mainDetails)
   const fetchMainDetails = useMainStore((state) => state.fetchMainDetails)
   const token = useMainStore((state) => state.token)
 
-  const minDeposit = 400
+  /**
+   * The minimum comes from the platform settings, not from this file.
+   *
+   * It used to be a hardcoded 400 that was *displayed* and never compared
+   * against, so the screen stated a floor it did not enforce -- a KSH 1
+   * deposit passed straight through to the STK push. null means "not known
+   * yet", which blocks rather than permits.
+   */
+  const minDeposit = parseLimit(mainDetails?.controls?.minDeposit)
   const maxDeposit = 80000
 
   const handleAmountSelect = (value: number) => {
@@ -51,6 +61,21 @@ export default function RechargePage() {
 
     if (!amount || numAmount <= 0) {
       setError("Please enter a valid amount")
+      return
+    }
+
+    if (minDeposit === null) {
+      setError("Still loading deposit limits. Please try again in a moment.")
+      return
+    }
+
+    if (numAmount < minDeposit) {
+      setError(`Minimum deposit is KSH ${minDeposit}`)
+      return
+    }
+
+    if (numAmount > maxDeposit) {
+      setError(`Maximum deposit is KSH ${maxDeposit.toLocaleString()}`)
       return
     }
 
@@ -138,7 +163,7 @@ export default function RechargePage() {
             />
           </div>
           <p className="text-xs text-muted-foreground">
-            Min: KSH {minDeposit} | Max: KSH {maxDeposit.toLocaleString()}
+            Min: KSH {minDeposit ?? "..."} | Max: KSH {maxDeposit.toLocaleString()}
           </p>
         </div>
 

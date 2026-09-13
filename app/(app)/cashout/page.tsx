@@ -26,6 +26,7 @@ import Link from "next/link"
 import Topbar from "@/components/shared/topbar"
 import { PasswordInput } from "@/components/auth/password-input"
 import { useMainStore } from "@/lib/stores/use-main-store"
+import { parseLimit } from "@/lib/limits/amount"
 import { initiateWithdrawal } from "@/lib/backend/actions"
 import { toast } from "sonner"
 import { useCurrency } from "@/lib/hooks/use-currency"
@@ -50,7 +51,10 @@ export default function CashoutPage() {
     balance: 0,
     mpesaPhone: "",
     accountName: "",
-    minWithdraw: 0,
+    // null, not 0. Before the API responds the minimum is *unknown*, and 0
+    // would make `amount < min` false for every amount -- the check would be
+    // silently absent for anyone who submits during that window.
+    minWithdraw: null as number | null,
     maxWithdraw: 0,
   })
 
@@ -64,7 +68,7 @@ export default function CashoutPage() {
         balance: Number(mainDetails.wallet.balance),
         mpesaPhone: mainDetails.wallet.withdrawal_account,
         accountName: mainDetails.wallet.withdrawal_name,
-        minWithdraw: Number(mainDetails.controls.minWithdrawal),
+        minWithdraw: parseLimit(mainDetails.controls.minWithdrawal),
         maxWithdraw: 1000000,
       })
       setFee(mainDetails.controls.withFee)
@@ -91,6 +95,11 @@ export default function CashoutPage() {
 
     if (!amount || numAmount <= 0) {
       setError("Please enter a valid amount")
+      return
+    }
+
+    if (walletData.minWithdraw === null) {
+      setError("Still loading withdrawal limits. Please try again in a moment.")
       return
     }
 
@@ -235,7 +244,7 @@ export default function CashoutPage() {
                 />
               </div>
               <p className="text-xs text-muted-foreground">
-                Min: KSH {walletData.minWithdraw} | Max: KSH {walletData.maxWithdraw.toLocaleString()}
+                Min: KSH {walletData.minWithdraw ?? "..."} | Max: KSH {walletData.maxWithdraw.toLocaleString()}
               </p>
             </div>
 

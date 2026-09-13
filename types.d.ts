@@ -151,6 +151,7 @@ type Mains = {
     average_return: string
     controls: {
         minWithdrawal: Amount
+        minDeposit?: Amount
         withFee: number
         minTransfer: Amount
         tranFee: number
