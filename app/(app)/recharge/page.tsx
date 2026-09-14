@@ -17,7 +17,7 @@ import { parseLimit } from "@/lib/limits/amount"
 import { toast } from "sonner"
 import { initiateDeposit } from "@/lib/backend/actions"
 
-const PRESET_AMOUNTS = [400, 800, 1200, 4500, 8500, 15000, 24000, 40000]
+const PRESET_AMOUNTS = [150, 800, 1200, 4500, 8500, 15000, 24000, 40000]
 
 export default function RechargePage() {
   const [amount, setAmount] = useState("")
