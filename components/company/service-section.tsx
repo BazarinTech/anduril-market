@@ -6,22 +6,22 @@ const services = [
   {
     icon: ShoppingBag01Icon,
     title: "Products",
-    description: "Choose products with a clear price, cycle and daily income.",
+    description: "Clear price, cycle and daily income.",
   },
   {
     icon: Wallet01Icon,
     title: "M-Pesa Wallet",
-    description: "Top up by STK push and cash out to your M-Pesa number.",
+    description: "STK push in, M-Pesa out.",
   },
   {
     icon: UserMultiple02Icon,
     title: "Team Rewards",
-    description: "Invite members and follow your team across three levels.",
+    description: "Follow your legion across three levels.",
   },
   {
     icon: Award01Icon,
     title: "Incentives",
-    description: "Reach referral milestones to apply for incentive tiers.",
+    description: "Hit milestones, claim your tier.",
   },
 ]
 
@@ -31,8 +31,8 @@ export function ServicesSection() {
       <h2 className="mb-4 text-base font-semibold text-foreground">Our Services</h2>
       <div className="grid grid-cols-2 gap-3">
         {services.map((service) => (
-          <div key={service.title} className="rounded-xl bg-card p-4 ring-1 ring-border/70">
-            <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-ink text-ink-foreground">
+          <div key={service.title} className="rounded-2xl bg-card p-4 ring-1 ring-border/70">
+            <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-ink text-ink-foreground">
               <service.icon size={20} />
             </div>
             <h3 className="text-sm font-semibold text-foreground">{service.title}</h3>

@@ -179,7 +179,7 @@ export default function CashoutPage() {
             </div>
             <h2 className="text-xl font-semibold mb-2 text-center">No Withdrawal Account</h2>
             <p className="text-muted-foreground text-center mb-6 max-w-xs">
-              You need to set up your withdrawal account before you can withdraw funds.
+              Set up your withdrawal account first.
             </p>
             <Button asChild className="gap-2">
               <Link href="/cashout-wallet">
@@ -191,7 +191,7 @@ export default function CashoutPage() {
         ) : (
           <>
             {/* Balance Card */}
-            <div className="bg-hero relative overflow-hidden rounded-xl p-5 mb-6 shadow-premium">
+            <div className="bg-hero relative overflow-hidden rounded-2xl p-5 mb-6 shadow-premium">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-eyebrow text-ink-foreground/60">Available balance</span>
                 <Link href="/cashout-wallet" aria-label="Withdrawal wallet settings" className="p-2 -mr-2 hover:bg-white/10 rounded-full transition-colors">
@@ -215,7 +215,7 @@ export default function CashoutPage() {
                     key={preset}
                     onClick={() => handleAmountSelect(preset)}
                     disabled={preset > walletData.balance}
-                    className={`h-11 px-2 rounded-md font-semibold text-sm tabular-nums transition-all ${
+                    className={`h-11 px-2 rounded-4xl font-semibold text-sm tabular-nums transition-all ${
                       amount === preset.toString()
                         ? "bg-primary text-primary-foreground shadow-premium"
                         : preset > walletData.balance
@@ -250,12 +250,12 @@ export default function CashoutPage() {
             </div>
 
             {error && (
-              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center mb-6">{error}</div>
+              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center mb-6">{error}</div>
             )}
 
             {/* Withdraw Summary */}
             {amount && Number.parseInt(amount) > 0 && (
-              <div className="bg-card ring-1 ring-border/70 rounded-xl p-4 mb-6">
+              <div className="bg-card ring-1 ring-border/70 rounded-2xl p-4 mb-6">
                 <h3 className="font-semibold mb-3 text-sm">Withdrawal Summary</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
@@ -289,11 +289,10 @@ export default function CashoutPage() {
             </Button>
 
             {/* Info */}
-            <div className="mt-6 flex items-start gap-3 p-4 bg-accent rounded-xl">
+            <div className="mt-6 flex items-start gap-3 p-4 bg-accent rounded-2xl">
               <InformationCircleIcon size={20} className="text-accent-foreground shrink-0 mt-0.5" />
               <p className="text-sm text-accent-foreground">
-                Withdrawals are processed a maximum of 10 seconds to your registered M-Pesa number. Fee charged is{" "}
-                {mainDetails?.controls.withFee}% per transaction.
+                Sent to your registered M-Pesa number. Fee: {mainDetails?.controls.withFee}% per transaction.
               </p>
             </div>
           </>
@@ -348,7 +347,7 @@ export default function CashoutPage() {
                 </span>
               </p>
               <p>has been sent to {walletData.mpesaPhone}</p>
-              <p className="text-xs">You will receive an M-Pesa confirmation shortly.</p>
+              <p className="text-xs">An M-Pesa confirmation follows shortly.</p>
             </AlertDialogDescription>
           </AlertDialogHeader>
         </AlertDialogContent>

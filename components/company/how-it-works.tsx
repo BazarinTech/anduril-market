@@ -5,25 +5,25 @@ const steps = [
     icon: UserAdd01Icon,
     step: "01",
     title: "Register",
-    description: "Create your account with your phone number",
+    description: "Your phone number is enough",
   },
   {
     icon: SmartPhone01Icon,
     step: "02",
     title: "Top Up",
-    description: "Add funds by confirming an M-Pesa STK push",
+    description: "Confirm the M-Pesa STK push",
   },
   {
     icon: ShoppingBag01Icon,
     step: "03",
     title: "Choose a Product",
-    description: "Pick a product and claim its income as it accrues",
+    description: "Pick one and claim as it earns",
   },
   {
     icon: MoneyReceiveSquareIcon,
     step: "04",
     title: "Withdraw",
-    description: "Cash out to your registered M-Pesa number",
+    description: "Straight to your M-Pesa number",
   },
 ]
 

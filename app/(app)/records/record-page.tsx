@@ -24,7 +24,7 @@ const statusStyles: Record<TransactionStatus, string> = {
 function TransactionCard({ transaction }: { transaction: Transactions }) {
   
   return (
-    <div className="bg-card rounded-xl p-4 ring-1 ring-border/70">
+    <div className="bg-card rounded-2xl p-4 ring-1 ring-border/70">
       <div className="flex justify-between items-start">
         <div className="space-y-1">
           <p className="text-sm text-muted-foreground">{transaction.type}</p>
@@ -41,7 +41,7 @@ function TransactionCard({ transaction }: { transaction: Transactions }) {
 
 function TransactionCardSkeleton() {
   return (
-    <div className="bg-card rounded-xl p-4 ring-1 ring-border/70">
+    <div className="bg-card rounded-2xl p-4 ring-1 ring-border/70">
       <div className="flex justify-between items-start">
         <div className="space-y-2">
           <Skeleton className="h-4 w-24" />

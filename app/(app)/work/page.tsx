@@ -11,17 +11,17 @@ import { useEffect, useState } from 'react'
 
 function OrderCardSkeleton() {
   return (
-    <div className="rounded-xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
+    <div className="rounded-2xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
       <Skeleton className="h-5 w-36 mb-3" />
       <div className="flex gap-4">
-        <Skeleton className="h-24 w-24 rounded-lg shrink-0" />
+        <Skeleton className="h-24 w-24 rounded-xl shrink-0" />
         <div className="flex-1 space-y-2 py-1">
           <div className="flex justify-between"><Skeleton className="h-4 w-24" /><Skeleton className="h-4 w-16" /></div>
           <div className="flex justify-between"><Skeleton className="h-4 w-12" /><Skeleton className="h-4 w-10" /></div>
           <div className="flex justify-between"><Skeleton className="h-4 w-28" /><Skeleton className="h-4 w-16" /></div>
         </div>
       </div>
-      <Skeleton className="h-11 w-full rounded-md mt-4" />
+      <Skeleton className="h-11 w-full rounded-4xl mt-4" />
     </div>
   )
 }
@@ -91,7 +91,7 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <NoList title="No active orders" description="Products you add will appear here while they earn." />
+                !isMainFetching && <NoList title="No active orders" description="Products appear here while they earn." />
               )}
               {!isMainFetching && validOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
             </div>
@@ -123,7 +123,7 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <NoList title="No expired orders" description="Orders move here once their cycle ends." />
+                !isMainFetching && <NoList title="Nothing expired" description="Orders move here when their cycle ends." />
               )}
               {!isMainFetching && expiredOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
             </div>

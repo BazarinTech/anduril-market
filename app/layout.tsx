@@ -17,16 +17,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Bima",
-    template: "%s · Bima",
+    default: "Spatakas",
+    template: "%s · Spatakas",
   },
   description: "Products, team rewards and an M-Pesa wallet in one account.",
-  applicationName: "Bima",
+  applicationName: "Spatakas",
 };
 
 // Tints the mobile browser chrome to match the ink hero surfaces.
 export const viewport: Viewport = {
-  themeColor: "#0A0E16",
+  themeColor: "#151110",
 };
 
 export const dynamic = "force-dynamic"

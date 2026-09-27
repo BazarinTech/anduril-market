@@ -39,13 +39,14 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Bima brand extensions. */
+  /* Spatakas brand extensions. */
   --color-brand-deep: var(--brand-deep);
   --color-brand-bright: var(--brand-bright);
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
   --color-ink-foreground: var(--ink-foreground);
-  --color-silver: var(--silver);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
@@ -62,7 +63,7 @@
 }
 
 /*
- * Bima -- light theme.
+ * Spatakas -- light theme.
  *
  * A German-automotive palette: a single saturated blue carried on cool,
  * near-neutral greys, with a deep "ink" navy for hero surfaces. Blue is the
@@ -73,134 +74,138 @@
  * 10px, so buttons and inputs read as precise rather than soft.
  */
 :root {
-  --background: oklch(0.972 0.005 258.3);
-  --foreground: oklch(0.181 0.016 261.5);
+  --background: oklch(0.977 0.007 80.7);
+  --foreground: oklch(0.204 0.008 48.3);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.181 0.016 261.5);
+  --card-foreground: oklch(0.204 0.008 48.3);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.181 0.016 261.5);
-  --primary: oklch(0.538 0.18 258.3);
-  --primary-foreground: oklch(0.99 0.003 258);
-  --secondary: oklch(0.944 0.011 256.7);
-  --secondary-foreground: oklch(0.181 0.016 261.5);
-  --muted: oklch(0.954 0.006 255.5);
-  --muted-foreground: oklch(0.501 0.028 259.8);
-  --accent: oklch(0.952 0.019 255.5);
-  --accent-foreground: oklch(0.438 0.16 259.1);
-  --destructive: oklch(0.576 0.209 29.5);
-  --border: oklch(0.921 0.009 258.3);
-  --input: oklch(0.889 0.013 255.5);
-  --ring: oklch(0.538 0.18 258.3);
+  --popover-foreground: oklch(0.204 0.008 48.3);
+  --primary: oklch(0.464 0.173 20.6);
+  --primary-foreground: oklch(0.99 0.005 80);
+  --secondary: oklch(0.934 0.015 77.1);
+  --secondary-foreground: oklch(0.204 0.008 48.3);
+  --muted: oklch(0.948 0.012 79.8);
+  --muted-foreground: oklch(0.499 0.019 64.4);
+  --accent: oklch(0.953 0.027 87.9);
+  --accent-foreground: oklch(0.498 0.087 84.1);
+  --destructive: oklch(0.587 0.198 29.6);
+  --border: oklch(0.907 0.018 78.2);
+  --input: oklch(0.858 0.023 78.2);
+  --ring: oklch(0.464 0.173 20.6);
   --radius: 0.375rem;
 
-  --brand-deep: oklch(0.438 0.16 259.1);
-  --brand-bright: oklch(0.65 0.152 256.9);
-  --ink: oklch(0.164 0.018 263.9);
-  --ink-2: oklch(0.246 0.053 261.8);
-  --ink-foreground: oklch(0.975 0.006 255.5);
-  --silver: oklch(0.808 0.018 256.3);
-  --success: oklch(0.514 0.107 162.8);
-  --success-soft: oklch(0.955 0.017 168.5);
-  --warning: oklch(0.549 0.13 57.5);
-  --warning-soft: oklch(0.965 0.023 78.2);
+  --brand-deep: oklch(0.379 0.141 20.2);
+  /* The accent used on ink surfaces: antique gold, not a lighter crimson. */
+  --brand-bright: oklch(0.797 0.105 87.9);
+  --gold: oklch(0.688 0.113 87.8);
+  --gold-deep: oklch(0.552 0.094 86.7);
+  --ink: oklch(0.182 0.007 34.3);
+  --ink-2: oklch(0.245 0.032 16.4);
+  --ink-foreground: oklch(0.963 0.012 79.8);
+  --success: oklch(0.489 0.094 131.7);
+  --success-soft: oklch(0.958 0.018 120.7);
+  --warning: oklch(0.602 0.117 76.5);
+  --warning-soft: oklch(0.96 0.03 85.6);
 
-  --chart-1: oklch(0.538 0.18 258.3);
-  --chart-2: oklch(0.65 0.152 256.9);
-  --chart-3: oklch(0.438 0.16 259.1);
-  --chart-4: oklch(0.808 0.018 256.3);
-  --chart-5: oklch(0.501 0.028 259.8);
+  --chart-1: oklch(0.464 0.173 20.6);
+  --chart-2: oklch(0.688 0.113 87.8);
+  --chart-3: oklch(0.379 0.141 20.2);
+  --chart-4: oklch(0.797 0.105 87.9);
+  --chart-5: oklch(0.499 0.019 64.4);
 
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.181 0.016 261.5);
-  --sidebar-primary: oklch(0.538 0.18 258.3);
-  --sidebar-primary-foreground: oklch(0.99 0.003 258);
-  --sidebar-accent: oklch(0.952 0.019 255.5);
-  --sidebar-accent-foreground: oklch(0.438 0.16 259.1);
-  --sidebar-border: oklch(0.921 0.009 258.3);
-  --sidebar-ring: oklch(0.538 0.18 258.3);
+  --sidebar-foreground: oklch(0.204 0.008 48.3);
+  --sidebar-primary: oklch(0.464 0.173 20.6);
+  --sidebar-primary-foreground: oklch(0.99 0.005 80);
+  --sidebar-accent: oklch(0.953 0.027 87.9);
+  --sidebar-accent-foreground: oklch(0.498 0.087 84.1);
+  --sidebar-border: oklch(0.907 0.018 78.2);
+  --sidebar-ring: oklch(0.464 0.173 20.6);
 }
 
 .dark {
-  --background: oklch(0.159 0.014 264.1);
-  --foreground: oklch(0.96 0.008 253.9);
-  --card: oklch(0.205 0.023 265.5);
-  --card-foreground: oklch(0.96 0.008 253.9);
-  --popover: oklch(0.205 0.023 265.5);
-  --popover-foreground: oklch(0.96 0.008 253.9);
-  --primary: oklch(0.619 0.18 259.1);
-  --primary-foreground: oklch(0.99 0.003 258);
-  --secondary: oklch(0.248 0.03 264.9);
-  --secondary-foreground: oklch(0.96 0.008 253.9);
-  --muted: oklch(0.248 0.03 264.9);
-  --muted-foreground: oklch(0.703 0.029 260.3);
-  --accent: oklch(0.257 0.05 260.6);
-  --accent-foreground: oklch(0.811 0.095 258.8);
-  --destructive: oklch(0.66 0.19 28.2);
-  --border: oklch(0.288 0.03 262.8);
-  --input: oklch(0.321 0.035 263.9);
-  --ring: oklch(0.619 0.18 259.1);
+  --background: oklch(0.175 0.003 17.5);
+  --foreground: oklch(0.957 0.012 79.8);
+  --card: oklch(0.216 0.006 56);
+  --card-foreground: oklch(0.957 0.012 79.8);
+  --popover: oklch(0.216 0.006 56);
+  --popover-foreground: oklch(0.957 0.012 79.8);
+  --primary: oklch(0.631 0.179 14);
+  --primary-foreground: oklch(0.99 0.005 80);
+  --secondary: oklch(0.253 0.008 31.1);
+  --secondary-foreground: oklch(0.957 0.012 79.8);
+  --muted: oklch(0.253 0.008 31.1);
+  --muted-foreground: oklch(0.699 0.022 69.9);
+  --accent: oklch(0.256 0.019 59.7);
+  --accent-foreground: oklch(0.829 0.092 88);
+  --destructive: oklch(0.672 0.18 29.7);
+  --border: oklch(0.297 0.013 41.7);
+  --input: oklch(0.331 0.016 43);
+  --ring: oklch(0.631 0.179 14);
 
-  --brand-deep: oklch(0.538 0.18 258.3);
-  --brand-bright: oklch(0.72 0.14 256.9);
-  --ink: oklch(0.13 0.016 263.9);
-  --ink-2: oklch(0.22 0.05 261.8);
-  --ink-foreground: oklch(0.975 0.006 255.5);
-  --silver: oklch(0.703 0.029 260.3);
-  --success: oklch(0.73 0.142 163.7);
-  --success-soft: oklch(0.251 0.033 168.8);
-  --warning: oklch(0.786 0.137 71.1);
-  --warning-soft: oklch(0.248 0.031 74.2);
+  --brand-deep: oklch(0.464 0.173 20.6);
+  --brand-bright: oklch(0.829 0.092 88);
+  --gold: oklch(0.797 0.105 87.9);
+  --gold-deep: oklch(0.688 0.113 87.8);
+  --ink: oklch(0.15 0.006 34.3);
+  --ink-2: oklch(0.228 0.03 16.4);
+  --ink-foreground: oklch(0.963 0.012 79.8);
+  --success: oklch(0.733 0.124 129.7);
+  --success-soft: oklch(0.259 0.031 132.1);
+  --warning: oklch(0.786 0.119 79.1);
+  --warning-soft: oklch(0.251 0.029 75.2);
 
-  --chart-1: oklch(0.619 0.18 259.1);
-  --chart-2: oklch(0.72 0.14 256.9);
-  --chart-3: oklch(0.538 0.18 258.3);
-  --chart-4: oklch(0.703 0.029 260.3);
-  --chart-5: oklch(0.501 0.028 259.8);
+  --chart-1: oklch(0.631 0.179 14);
+  --chart-2: oklch(0.797 0.105 87.9);
+  --chart-3: oklch(0.464 0.173 20.6);
+  --chart-4: oklch(0.829 0.092 88);
+  --chart-5: oklch(0.699 0.022 69.9);
 
-  --sidebar: oklch(0.205 0.023 265.5);
-  --sidebar-foreground: oklch(0.96 0.008 253.9);
-  --sidebar-primary: oklch(0.619 0.18 259.1);
-  --sidebar-primary-foreground: oklch(0.99 0.003 258);
-  --sidebar-accent: oklch(0.257 0.05 260.6);
-  --sidebar-accent-foreground: oklch(0.811 0.095 258.8);
-  --sidebar-border: oklch(0.288 0.03 262.8);
-  --sidebar-ring: oklch(0.619 0.18 259.1);
+  --sidebar: oklch(0.216 0.006 56);
+  --sidebar-foreground: oklch(0.957 0.012 79.8);
+  --sidebar-primary: oklch(0.631 0.179 14);
+  --sidebar-primary-foreground: oklch(0.99 0.005 80);
+  --sidebar-accent: oklch(0.256 0.019 59.7);
+  --sidebar-accent-foreground: oklch(0.829 0.092 88);
+  --sidebar-border: oklch(0.297 0.013 41.7);
+  --sidebar-ring: oklch(0.631 0.179 14);
 }
 
 /*
- * Hero surface: deep ink with a cool blue light falling in from the top
- * right. Used for page headers, the wallet card and the brand banner -- the
- * places that should feel like the "cabin" of the product.
+ * Arena surface: torch-lit stone. Obsidian ground, a crimson glow falling from
+ * the top right, warm shadow pooling bottom left. Used for page headers, the
+ * wallet card and the banner -- the places that should feel like the arena
+ * floor rather than the page around it.
  */
 @utility bg-hero {
   background-color: var(--ink);
   background-image:
-    radial-gradient(120% 90% at 100% 0%, color-mix(in oklch, var(--primary) 42%, transparent) 0%, transparent 58%),
-    radial-gradient(80% 60% at 0% 100%, color-mix(in oklch, var(--ink-2) 90%, transparent) 0%, transparent 70%),
+    radial-gradient(115% 85% at 100% 0%, color-mix(in oklch, var(--primary) 55%, transparent) 0%, transparent 60%),
+    radial-gradient(75% 60% at 0% 100%, color-mix(in oklch, var(--ink-2) 95%, transparent) 0%, transparent 72%),
     linear-gradient(165deg, var(--ink) 0%, var(--ink-2) 100%);
   color: var(--ink-foreground);
 }
 
-/* A thin blue light-line, fading at both ends. */
+/* Gilded edge: the thin gold line that closes every arena surface. */
 @utility brand-hairline {
   height: 1px;
-  background-image: linear-gradient(90deg, transparent, var(--brand-bright) 30%, var(--primary) 70%, transparent);
+  background-image: linear-gradient(90deg, transparent, var(--gold) 28%, var(--brand-bright) 50%, var(--gold) 72%, transparent);
 }
 
-/* Small uppercase label that sits above headings. */
+/* Small uppercase label, spaced like an inscription. */
 @utility text-eyebrow {
   font-size: 0.6875rem;
   line-height: 1rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
 /* Soft two-layer elevation: a crisp contact shadow plus a long, faint drop. */
 @utility shadow-premium {
   box-shadow:
-    0 1px 2px color-mix(in oklch, var(--ink) 6%, transparent),
-    0 12px 32px -16px color-mix(in oklch, var(--ink) 28%, transparent);
+    0 1px 2px color-mix(in oklch, var(--ink) 8%, transparent),
+    0 12px 32px -16px color-mix(in oklch, var(--ink) 30%, transparent);
 }
 
 @layer base {

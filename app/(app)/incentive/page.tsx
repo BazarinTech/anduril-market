@@ -12,11 +12,11 @@ function IncentivesSkeleton() {
   return (
     <div className="space-y-4" aria-busy="true" aria-label="Loading incentives">
       {/* Progress card: same ink surface as the real one, so the swap is calm. */}
-      <div className="bg-hero rounded-xl p-4 shadow-premium">
+      <div className="bg-hero rounded-2xl p-4 shadow-premium">
         <Skeleton className="mb-4 h-5 w-32 bg-white/10" />
         <div className="grid grid-cols-3 gap-3">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="flex flex-col items-center gap-2 rounded-lg p-3 ring-1 ring-white/10">
+            <div key={i} className="flex flex-col items-center gap-2 rounded-xl p-3 ring-1 ring-white/10">
               <Skeleton className="size-6 rounded-full bg-white/10" />
               <Skeleton className="h-6 w-10 bg-white/10" />
               <Skeleton className="h-3 w-16 bg-white/10" />
@@ -25,12 +25,12 @@ function IncentivesSkeleton() {
         </div>
       </div>
 
-      <Skeleton className="h-18.5 w-full rounded-xl" />
+      <Skeleton className="h-18.5 w-full rounded-2xl" />
 
       <Skeleton className="h-5 w-28" />
 
       {[0, 1].map((i) => (
-        <div key={i} className="overflow-hidden rounded-xl bg-card shadow-premium ring-1 ring-border/70">
+        <div key={i} className="overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
           <div className="bg-hero flex items-center gap-2 px-4 py-3">
             <Skeleton className="h-5 w-8 rounded-full bg-white/10" />
             <Skeleton className="h-5 w-28 bg-white/10" />
@@ -117,10 +117,9 @@ function Page() {
             <ReferralStats currentReferrals={currentReferrals} nextMilestone={nextMilestone} currentLevel={mainDetails.wallet?.level ?? ''} />
 
             {/* Info Banner */}
-            <div className="bg-accent border border-primary/15 rounded-xl p-4">
+            <div className="bg-accent border border-primary/15 rounded-2xl p-4">
               <p className="text-accent-foreground text-sm">
-                <span className="font-semibold">Become an Agent!</span> Invite friends to join and when they become active
-                members, unlock amazing rewards and weekly salary bonuses.
+                <span className="font-semibold">Become an agent.</span> Active referrals unlock weekly rewards.
               </p>
             </div>
 
@@ -129,7 +128,7 @@ function Page() {
               <h2 className="text-base font-semibold text-foreground">Reward Tiers</h2>
 
               {incentiveTiers.length === 0 ? (
-                <NoList title="No reward tiers yet" description="New incentive tiers will appear here when they are available." />
+                <NoList title="No tiers yet" description="New incentive tiers appear here when available." />
               ) : (
                 incentiveTiers.map((tier) => (
                   <IncentiveTierCard

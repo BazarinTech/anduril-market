@@ -6,7 +6,7 @@ function TeamTable({
   members: TeamUser[]
 }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
+    <div className="overflow-hidden rounded-2xl bg-card ring-1 ring-border/70">
       <Table>
         <TableHeader>
           <TableRow>

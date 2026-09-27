@@ -27,12 +27,12 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
 
   return (
     <>
-      <div className="rounded-xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
+      <div className="rounded-2xl bg-card p-4 shadow-premium ring-1 ring-border/70 w-full">
         <h3 className="mb-3 text-base font-semibold text-foreground">{name}</h3>
 
         <div className="flex gap-4">
           {/* Product Image */}
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg bg-muted" >
+          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-muted" >
             {/*
               sizes tells Next which variant to generate. This box is 96px, so
               without it the browser assumes full viewport width and downloads
@@ -47,7 +47,7 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
             />
             {status === "Expired" && (
               <div className="absolute inset-0 flex items-center justify-center bg-ink/60">
-                <span className="text-eyebrow rounded-sm bg-card px-2 py-0.5 text-foreground">
+                <span className="text-eyebrow rounded-full bg-card px-2 py-0.5 text-foreground">
                   EXPIRED
                 </span>
               </div>

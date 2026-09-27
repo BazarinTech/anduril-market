@@ -11,7 +11,7 @@ import React from 'react'
 function Page() {
   return (
     <div>
-      <Topbar title="About Bima" backBtn/>
+      <Topbar title="About Spatakas" backBtn/>
       
       <CompanyHero />
       <MissionSection  />

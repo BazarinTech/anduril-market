@@ -9,19 +9,22 @@ import React, { useEffect } from 'react'
 
 function ProductCardSkeleton() {
   return (
-    <div className="bg-card rounded-xl p-4 shadow-premium ring-1 ring-border/70 w-full">
-      <Skeleton className="h-6 w-40 mb-3" />
-      <div className="flex flex-col items-center gap-4 mb-4">
-        <Skeleton className="w-full max-w-80 h-48 rounded-lg" />
-        <div className="w-full space-y-2">
-          <div className="flex justify-between"><Skeleton className="h-4 w-16" /><Skeleton className="h-4 w-20" /></div>
-          <div className="flex justify-between"><Skeleton className="h-4 w-12" /><Skeleton className="h-4 w-16" /></div>
-          <div className="flex justify-between"><Skeleton className="h-4 w-24" /><Skeleton className="h-4 w-20" /></div>
-          <div className="flex justify-between"><Skeleton className="h-4 w-24" /><Skeleton className="h-4 w-20" /></div>
+    <div className="overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
+      <div className="flex gap-4 p-4">
+        <Skeleton className="h-36 w-28 shrink-0 rounded-t-full rounded-b-2xl" />
+        <div className="flex-1 space-y-3 py-1">
+          <div className="flex justify-between"><Skeleton className="h-5 w-28" /><Skeleton className="h-5 w-12 rounded-full" /></div>
+          <Skeleton className="h-px w-full" />
+          <Skeleton className="h-3 w-10" />
+          <Skeleton className="h-7 w-28" />
+          <div className="flex justify-between"><Skeleton className="h-4 w-12" /><Skeleton className="h-4 w-20" /></div>
+          <div className="flex justify-between"><Skeleton className="h-4 w-10" /><Skeleton className="h-4 w-24" /></div>
         </div>
       </div>
-      <Skeleton className="h-2 w-full mb-3 rounded-full" />
-      <Skeleton className="h-11 w-full rounded-md" />
+      <div className="flex items-center gap-3 border-t border-border bg-muted/40 px-4 py-3">
+        <Skeleton className="h-4 w-16" />
+        <Skeleton className="ml-auto h-11 flex-1 rounded-4xl" />
+      </div>
     </div>
   )
 }

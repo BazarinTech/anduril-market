@@ -6,25 +6,25 @@ export function HowItWorksSection() {
       icon: UserAdd01Icon,
       step: "01",
       title: "Create your account",
-      description: "Sign up with your phone number, name and email.",
+      description: "Phone number, name, email.",
     },
     {
       icon: SmartPhone01Icon,
       step: "02",
       title: "Top up with M-Pesa",
-      description: "Enter an amount and confirm the STK push on your phone.",
+      description: "Confirm the STK push on your phone.",
     },
     {
       icon: ShoppingBag01Icon,
       step: "03",
       title: "Choose a product",
-      description: "Compare price, cycle and daily income, then add a product.",
+      description: "Compare, then take your pick.",
     },
     {
       icon: MoneyReceiveSquareIcon,
       step: "04",
       title: "Cash out",
-      description: "Withdraw to your registered M-Pesa number with your PIN.",
+      description: "Straight to your M-Pesa number.",
     },
   ]
 
@@ -33,14 +33,14 @@ export function HowItWorksSection() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <p className="text-eyebrow text-primary">How it works</p>
-          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps to get going</h2>
+          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps in</h2>
         </div>
 
         <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((item) => (
-            <li key={item.step} className="relative rounded-xl bg-background p-6 ring-1 ring-border/70">
+            <li key={item.step} className="relative rounded-2xl bg-background p-6 ring-1 ring-border/70">
               <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-lg bg-ink text-ink-foreground">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-ink text-ink-foreground">
                   <item.icon className="size-5" />
                 </span>
                 <span className="font-mono text-sm font-semibold text-muted-foreground/70">{item.step}</span>

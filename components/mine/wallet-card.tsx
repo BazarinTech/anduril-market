@@ -11,7 +11,7 @@ type Props = {
 function WalletCard({ className }: Props) {
   const mainDetails = useMainStore((state) => state.mainDetails)
   return (
-    <div className={cn("bg-hero relative overflow-hidden rounded-xl p-5 shadow-premium", className)}>
+    <div className={cn("bg-hero relative overflow-hidden rounded-2xl p-5 shadow-premium", className)}>
       <div className="flex items-start justify-between">
         <div>
           <p className="text-eyebrow text-ink-foreground/60">Available balance</p>

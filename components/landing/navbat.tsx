@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu01Icon, Cancel01Icon } from "hugeicons-react"
-import { BimaLogo } from "@/components/shared/brand-logo"
+import { SpatakasLogo } from "@/components/shared/brand-logo"
 
 // In-page anchors. The old links pointed at /about and /incentives, neither of
 // which exists, so every nav click on the landing page was a 404.
@@ -21,8 +21,8 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-lg">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" aria-label="Bima home">
-            <BimaLogo size="sm" />
+          <Link href="/" aria-label="Spatakas home">
+            <SpatakasLogo size="sm" />
           </Link>
 
           {/* Desktop Navigation */}

@@ -8,15 +8,15 @@ export function CTASection() {
       <div className="bg-hero relative mx-auto max-w-4xl overflow-hidden rounded-2xl px-8 py-16 text-center shadow-premium sm:px-16">
         <p className="text-eyebrow text-brand-bright">Get started</p>
         <h2 className="mt-3 text-3xl font-semibold text-balance text-ink-foreground sm:text-4xl">
-          Your Bima account is a minute away
+          The gate is open
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-ink-foreground/70">
-          Create an account with your phone number and set up your M-Pesa wallet when you are ready.
+        <p className="mx-auto mt-4 max-w-md text-lg text-ink-foreground/70">
+          All you need is a phone number.
         </p>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Button asChild size="lg" className="h-12 bg-white px-7 text-base font-semibold text-ink hover:bg-white/90">
             <Link href="/register">
-              Create account
+              Enter the arena
               <ArrowRight02Icon className="ml-1 h-5 w-5" />
             </Link>
           </Button>

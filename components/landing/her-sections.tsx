@@ -19,22 +19,22 @@ export function HeroSection() {
         <div className="text-center lg:text-left">
           <p className="text-eyebrow inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-accent-foreground">
             <span className="size-1.5 rounded-full bg-primary" />
-            Introducing Bima
+            Enter the arena
           </p>
 
           <h1 className="mt-6 text-4xl font-semibold text-balance text-foreground sm:text-5xl lg:text-6xl">
-            The premium way to
-            <span className="block text-primary">manage your earnings</span>
+            Fortune favours
+            <span className="block text-primary">the bold</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground lg:mx-0">
-            Bima brings your products, team rewards and M-Pesa wallet together in one fast, secure account.
+          <p className="mx-auto mt-6 max-w-md text-lg text-pretty text-muted-foreground lg:mx-0">
+            Products, team and wallet. One account.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <Button asChild size="lg" className="h-12 px-7 text-base font-semibold">
               <Link href="/register">
-                Create your account
+                Enter the arena
                 <ArrowRight02Icon className="ml-1 h-5 w-5" />
               </Link>
             </Button>
@@ -55,9 +55,9 @@ export function HeroSection() {
 
         <BrandBanner
           size="lg"
-          eyebrow="One account"
-          title="Built with precision. Designed for you."
-          subtitle="Products, team and wallet — all in one place."
+          eyebrow="The arena"
+          title="Step in. Claim your ground."
+          subtitle="Built for champions."
         />
       </div>
     </section>

@@ -38,7 +38,7 @@ const tabsListVariants = cva(
   {
     variants: {
       variant: {
-        default: "h-11 rounded-lg bg-muted p-1",
+        default: "h-11 rounded-4xl bg-muted p-1",
         line: "h-10 rounded-none bg-transparent",
       },
     },
@@ -74,7 +74,7 @@ function TabsTrigger({
       className={cn(
         // h-full: the trigger always fills the track's content box, whatever
         // height the track is given, so the raised chip can never overhang it.
-        "relative inline-flex h-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-md px-3 text-sm font-medium whitespace-nowrap text-muted-foreground transition-all group-data-vertical/tabs:h-auto group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:py-2 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/30 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative inline-flex h-full min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl px-3 text-sm font-medium whitespace-nowrap text-muted-foreground transition-all group-data-vertical/tabs:h-auto group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start group-data-vertical/tabs:py-2 hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/30 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         "data-active:bg-card data-active:text-foreground data-active:shadow-sm data-active:ring-1 data-active:ring-foreground/5",
         "group-data-[variant=line]/tabs-list:rounded-none group-data-[variant=line]/tabs-list:data-active:bg-transparent group-data-[variant=line]/tabs-list:data-active:shadow-none group-data-[variant=line]/tabs-list:data-active:ring-0",
         "after:absolute after:bg-primary after:opacity-0 after:transition-opacity group-data-horizontal/tabs:after:inset-x-0 group-data-horizontal/tabs:after:bottom-0 group-data-horizontal/tabs:after:h-0.5 group-data-vertical/tabs:after:inset-y-0 group-data-vertical/tabs:after:-right-1 group-data-vertical/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-active:after:opacity-100",

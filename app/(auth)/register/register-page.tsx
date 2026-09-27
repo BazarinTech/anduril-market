@@ -82,13 +82,13 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Create your account" subtitle="Join Bima in under a minute" />
+      <AuthHeader title="Join the ranks" subtitle="Your place in the arena, in a minute" />
 
       {/* Form */}
       <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <form onSubmit={handleRegister} className="space-y-5">
           {error && (
-            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
+            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
           )}
 
           <div className="space-y-2">

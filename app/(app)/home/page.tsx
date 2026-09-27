@@ -21,13 +21,13 @@ function Page() {
 
   return (
     <div>
-      <Topbar title="Bima" brand />
+      <Topbar title="Spatakas" brand />
 
       <main className="mx-auto flex w-full max-w-md flex-col gap-5 px-4 pt-4 pb-24">
         <BrandBanner
-          eyebrow="Welcome back"
-          title={username ? `Hello, ${username}` : "Your Bima account"}
-          subtitle="Products, team and wallet — all in one place."
+          eyebrow="The arena"
+          title={username ? `Salute, ${username}` : "Welcome, champion"}
+          subtitle="Products · Team · Wallet"
         />
 
         <QuickActions />

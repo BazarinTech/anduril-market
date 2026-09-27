@@ -90,10 +90,10 @@ export function PromotionDialog({ isOpen, onComplete, productName, orderID }: Pr
     <AlertDialog open={isOpen}>
       <AlertDialogContent className="max-w-sm gap-0 overflow-hidden p-0 [&>button]:hidden">
         <AlertDialogHeader className="bg-hero relative block space-y-0 px-6 pt-6 pb-5 text-left sm:text-left">
-          <div className="mb-4 flex size-11 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/15">
+          <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
             <Rocket01Icon className="size-5 text-brand-bright" />
           </div>
-          <p className="text-eyebrow text-brand-bright">Claim in progress</p>
+          <p className="text-eyebrow text-brand-bright">In the arena</p>
           <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Claiming your income</AlertDialogTitle>
           <AlertDialogDescription className="mt-0.5 text-sm text-ink-foreground/70">
             {productName}
@@ -115,18 +115,14 @@ export function PromotionDialog({ isOpen, onComplete, productName, orderID }: Pr
             timer followed by a single claimEarnings call. The copy now says
             what actually happens.
           */}
-          <div className="mt-5 space-y-3 rounded-lg bg-muted/70 p-4">
+          <div className="mt-5 space-y-3 rounded-xl bg-muted/70 p-4">
             <div className="flex items-start gap-3">
               <SparklesIcon className="mt-0.5 size-4 shrink-0 text-primary" />
-              <p className="text-sm text-foreground">Today&apos;s income for this product is being claimed.</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <Rocket01Icon className="mt-0.5 size-4 shrink-0 text-primary" />
-              <p className="text-sm text-muted-foreground">Your balance refreshes as soon as this completes.</p>
+              <p className="text-sm text-muted-foreground">Claiming today&apos;s income. Your balance updates when it completes.</p>
             </div>
           </div>
 
-          <p className="mt-4 text-center text-xs text-muted-foreground">Please keep this screen open.</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">Keep this screen open.</p>
         </div>
       </AlertDialogContent>
     </AlertDialog>

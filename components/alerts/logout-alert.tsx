@@ -48,7 +48,7 @@ function LogoutAlert({isOpen, onClose}: Props) {
     <AlertDialog open={isOpen} onOpenChange={onClose}>
         <AlertDialogContent>
             <AlertDialogHeader>
-            <AlertDialogTitle className="text-base font-semibold">Log out of Bima?</AlertDialogTitle>
+            <AlertDialogTitle className="text-base font-semibold">Log out of Spatakas?</AlertDialogTitle>
             <AlertDialogDescription className="text-sm">
                 You will need your phone number and password to sign back in.
             </AlertDialogDescription>

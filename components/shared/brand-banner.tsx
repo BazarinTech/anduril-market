@@ -1,6 +1,5 @@
-import { useId } from "react"
 import { cn } from "@/lib/utils"
-import { BimaLogo } from "./brand-logo"
+import { SpatakasLogo } from "./brand-logo"
 
 type Props = {
   eyebrow?: string
@@ -14,11 +13,11 @@ type Props = {
 }
 
 /**
- * The Bima hero banner: ink surface, blue light trails, and copy.
+ * The arena banner: torch-lit stone, a colonnade of arches, a gilded edge.
  *
- * This replaces the photographic banners. Those were pictures of another
- * company's building signage, so they had to go regardless -- and a drawn
- * banner stays crisp, weighs nothing, and follows the theme tokens.
+ * The arcade is drawn, not photographed -- it stays crisp at any size, weighs
+ * nothing, and recolours with the theme. Arches are generated rather than
+ * hand-written so the run always fills the width evenly.
  */
 export function BrandBanner({
   eyebrow,
@@ -29,42 +28,42 @@ export function BrandBanner({
   className,
   children,
 }: Props) {
-  const trailId = `bima-trail-${useId().replace(/:/g, "")}`
   const large = size === "lg"
+  const arches = Array.from({ length: 9 }, (_, i) => i)
 
   return (
     <div
       className={cn(
-        "bg-hero relative isolate w-full overflow-hidden rounded-xl shadow-premium",
+        "bg-hero relative isolate w-full overflow-hidden rounded-2xl shadow-premium",
         large ? "min-h-72 p-7 sm:p-10" : "min-h-44 p-5",
         className,
       )}
     >
-      {/* Light trails: long, shallow curves sweeping up to the right. */}
+      {/* Colonnade: two receding tiers of arches along the back wall. */}
       <svg
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full"
-        viewBox="0 0 400 220"
-        preserveAspectRatio="xMaxYMid slice"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-full w-full"
+        viewBox="0 0 360 200"
+        preserveAspectRatio="xMidYMax slice"
       >
-        <defs>
-          <linearGradient id={trailId} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#4D8FEA" stopOpacity="0" />
-            <stop offset="0.55" stopColor="#4D8FEA" stopOpacity="0.55" />
-            <stop offset="1" stopColor="#CFE2FF" stopOpacity="0.95" />
-          </linearGradient>
-        </defs>
-        <g fill="none" stroke={`url(#${trailId})`} strokeLinecap="round">
-          <path d="M40 236C150 214 250 160 430 58" strokeWidth="1.6" />
-          <path d="M70 250C180 226 270 176 440 86" strokeWidth="1" opacity="0.7" />
-          <path d="M110 262C210 240 300 196 450 118" strokeWidth="0.7" opacity="0.5" />
-          <path d="M10 222C130 200 230 140 420 26" strokeWidth="0.6" opacity="0.45" />
-          <path d="M160 270C250 252 330 216 460 150" strokeWidth="0.5" opacity="0.35" />
+        <g stroke="currentColor" fill="none" className="text-gold">
+          <g opacity="0.16">
+            {arches.map((i) => (
+              <path key={i} d={`M${8 + i * 40} 200v-46a16 16 0 0 1 32 0v46`} strokeWidth="1.5" />
+            ))}
+            <path d="M0 154h360" strokeWidth="1.5" />
+          </g>
+          <g opacity="0.09">
+            {arches.map((i) => (
+              <path key={i} d={`M${28 + i * 40} 150v-30a11 11 0 0 1 22 0v30`} strokeWidth="1.2" />
+            ))}
+            <path d="M0 120h360" strokeWidth="1.2" />
+          </g>
         </g>
       </svg>
 
-      <div className={cn("flex h-full flex-col", large ? "gap-6" : "gap-4")}>
-        {showLogo && <BimaLogo size={large ? "md" : "sm"} inverse />}
+      <div className={cn("relative flex h-full flex-col", large ? "gap-6" : "gap-4")}>
+        {showLogo && <SpatakasLogo size={large ? "md" : "sm"} inverse />}
 
         <div className={cn("max-w-md", large ? "mt-auto pt-10" : "mt-auto pt-4")}>
           {eyebrow && <p className="text-eyebrow text-brand-bright">{eyebrow}</p>}

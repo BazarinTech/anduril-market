@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { BimaLogo } from "@/components/shared/brand-logo"
+import { SpatakasLogo } from "@/components/shared/brand-logo"
 
 const SUPPORT_URL = process.env.NEXT_PUBLIC_CUSTOMER_SUPPORT
 
@@ -12,7 +12,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 md:col-span-1">
-            <BimaLogo size="sm" />
+            <SpatakasLogo size="sm" />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Products, team rewards and an M-Pesa wallet in one account.
             </p>
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Bima. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Spatakas. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className={linkClass}>Privacy</Link>
             <Link href="#" className={linkClass}>Terms</Link>

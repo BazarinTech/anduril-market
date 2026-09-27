@@ -60,13 +60,13 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Welcome back" subtitle="Sign in to your account" />
+      <AuthHeader title="Welcome back" subtitle="Return to the arena" />
 
       {/* Form */}
       <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
         <form onSubmit={handleLogin} className="space-y-6">
           {error && (
-            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
+            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
           )}
 
           <div className="space-y-2">

@@ -28,8 +28,43 @@ import { useMainStore } from "@/lib/stores/use-main-store"
 import { toast } from "sonner"
 import { cashoutWalletSetup } from "@/lib/backend/actions"
 import { ResetPinDialog } from "@/components/wallet/reset-pin-dialog"
+import { Skeleton } from "@/components/ui/skeleton"
 
 type ViewMode = "display" | "setup" | "edit" | "change-pin"
+
+function WalletSkeleton() {
+  return (
+    <div className="mx-auto max-w-md flex-1 px-5 py-6" aria-busy="true" aria-label="Loading withdrawal wallet">
+      <Skeleton className="mb-6 h-20 w-full rounded-2xl" />
+
+      <div className="rounded-2xl bg-card p-5 shadow-premium ring-1 ring-border/70">
+        <div className="mb-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Skeleton className="size-12 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-28" />
+              <Skeleton className="h-3 w-36" />
+            </div>
+          </div>
+          <Skeleton className="h-8 w-16 rounded-4xl" />
+        </div>
+
+        <div className="space-y-3 border-t border-border pt-3">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="flex justify-between">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-28" />
+            </div>
+          ))}
+        </div>
+
+        <Skeleton className="mt-4 h-11 w-full rounded-4xl" />
+      </div>
+
+      <Skeleton className="mt-8 h-28 w-full rounded-2xl" />
+    </div>
+  )
+}
 
 export default function CashoutWalletPage() {
   const [mpesaPhone, setMpesaPhone] = useState("")
@@ -276,27 +311,36 @@ export default function CashoutWalletPage() {
     }
   }
 
+  if (!mainDetails) {
+    return (
+      <div>
+        <Topbar title="Withdrawal Wallet" backBtn />
+        <WalletSkeleton />
+      </div>
+    )
+  }
+
   return (
     <div>
       <Topbar title="Withdrawal Wallet" backBtn />
 
       <div className="mx-auto max-w-md flex-1 px-5 py-6">
         {/* Info Card */}
-        <div className="bg-accent rounded-xl p-4 mb-6 flex gap-3">
+        <div className="bg-accent rounded-2xl p-4 mb-6 flex gap-3">
           <InformationCircleIcon size={24} className="text-primary shrink-0 mt-0.5" />
           <div>
             <h3 className="font-semibold text-sm text-accent-foreground">Important Notice</h3>
             <p className="text-sm text-muted-foreground mt-1">
               {hasExistingWallet
-                ? "Your withdrawals will be sent to the number below. Keep your PIN secure."
-                : "Set up your M-Pesa withdrawal details to start receiving payments."}
+                ? "Withdrawals go to the number below. Keep your PIN private."
+                : "Add your M-Pesa details to start cashing out."}
             </p>
           </div>
         </div>
 
         {/* Current Wallet Display */}
         {hasExistingWallet && viewMode === "display" && (
-          <div className="bg-card ring-1 ring-border/70 shadow-premium rounded-xl p-5 mb-6">
+          <div className="bg-card ring-1 ring-border/70 shadow-premium rounded-2xl p-5 mb-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -366,13 +410,11 @@ export default function CashoutWalletPage() {
                 <Wallet01Icon size={32} className="text-primary" />
               </div>
               <h2 className="text-lg font-semibold">Set Up Withdrawal Wallet</h2>
-              <p className="text-muted-foreground text-sm mt-1">
-                Configure your M-Pesa withdrawal account to receive payments
-              </p>
+              <p className="text-muted-foreground text-sm mt-1">Where your winnings land</p>
             </div>
 
             {error && (
-              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
+              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
             )}
 
             <div className="space-y-2">
@@ -391,7 +433,7 @@ export default function CashoutWalletPage() {
                   className="pl-10 h-12"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">The number registered with M-Pesa</p>
+              <p className="text-xs text-muted-foreground">Registered with M-Pesa</p>
             </div>
 
             <div className="space-y-2">
@@ -407,7 +449,7 @@ export default function CashoutWalletPage() {
                   className="pl-10 h-12"
                 />
               </div>
-              <p className="text-xs text-muted-foreground">Must match your M-Pesa registered name</p>
+              <p className="text-xs text-muted-foreground">Must match your M-Pesa name</p>
             </div>
 
             <div className="h-px bg-border my-4" />
@@ -421,7 +463,7 @@ export default function CashoutWalletPage() {
                 onChange={setNewPin}
                 placeholder="Enter 4-6 digit PIN"
               />
-              <p className="text-xs text-muted-foreground">This PIN will be required when making withdrawals</p>
+              <p className="text-xs text-muted-foreground">Required for every withdrawal</p>
             </div>
 
             <div className="space-y-2">
@@ -453,7 +495,7 @@ export default function CashoutWalletPage() {
             </div>
 
             {error && (
-              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
+              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
             )}
 
             <div className="space-y-2">
@@ -491,7 +533,7 @@ export default function CashoutWalletPage() {
 
             <div className="h-px bg-border my-4" />
 
-            <div className="bg-warning-soft border border-warning/20 rounded-lg p-4 mb-2">
+            <div className="bg-warning-soft border border-warning/20 rounded-xl p-4 mb-2">
               <p className="text-sm text-warning font-medium">Security Verification</p>
               <p className="text-xs text-warning/90 mt-1">Enter your current withdrawal PIN to confirm these changes</p>
             </div>
@@ -535,7 +577,7 @@ export default function CashoutWalletPage() {
             </div>
 
             {error && (
-              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center">{error}</div>
+              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
             )}
 
             <div className="space-y-2">
@@ -605,12 +647,12 @@ export default function CashoutWalletPage() {
         )}
 
         {/* Security Notice */}
-        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-xl">
+        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-2xl">
           <h3 className="text-eyebrow text-muted-foreground mb-2">Security tips</h3>
           <ul className="text-sm text-foreground/80 space-y-1">
-            <li>• Never share your withdrawal PIN with anyone</li>
-            <li>• Use a unique PIN different from other accounts</li>
-            <li>• Contact support if you suspect unauthorized access</li>
+            <li>• Never share your PIN</li>
+            <li>• Use a PIN you use nowhere else</li>
+            <li>• Tell support if something looks wrong</li>
           </ul>
         </div>
       </div>

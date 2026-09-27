@@ -5,19 +5,19 @@ const items = [
     icon: Target02Icon,
     title: "Our Mission",
     description:
-      "To give every member one clear, dependable place to manage their products, their team and their money.",
+      "One clear, dependable place for your products, your team and your money.",
   },
   {
     icon: EyeIcon,
     title: "Our Vision",
     description:
-      "A platform that feels as considered as the things people value most — fast, precise and easy to trust.",
+      "A platform worth trusting — fast, precise, and plain to read.",
   },
   {
     icon: StarIcon,
     title: "Our Values",
     description:
-      "Clarity, security and respect for our members' time. Every figure on screen should be one you can check.",
+      "Clarity and security. Every figure on screen is one you can check.",
   },
 ]
 
@@ -27,9 +27,9 @@ export function MissionSection() {
       <h2 className="mb-4 text-base font-semibold text-foreground">Who We Are</h2>
       <div className="space-y-3">
         {items.map((item) => (
-          <div key={item.title} className="rounded-xl bg-card p-4 ring-1 ring-border/70">
+          <div key={item.title} className="rounded-2xl bg-card p-4 ring-1 ring-border/70">
             <div className="flex items-start gap-3">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                 <item.icon size={20} />
               </div>
               <div>

@@ -75,7 +75,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
         {!isSubmitted ? (
           <>
             <DialogHeader>
-              <p className="text-eyebrow text-primary">Bima Incentives</p>
+              <p className="text-eyebrow text-primary">Spatakas Incentives</p>
               <DialogTitle className="text-lg font-semibold text-foreground">Agent Application</DialogTitle>
               <DialogDescription className="text-muted-foreground">
                 Apply for <span className="font-semibold text-foreground">{tierName}</span> with weekly reward of{" "}
@@ -127,7 +127,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
                 />
               </div>
 
-              <div className="flex items-center gap-2 p-3 bg-accent rounded-lg text-accent-foreground text-sm">
+              <div className="flex items-center gap-2 p-3 bg-accent rounded-xl text-accent-foreground text-sm">
                 <Clock01Icon size={18} className="shrink-0" />
                 <span>Applications are reviewed within 12 hours</span>
               </div>

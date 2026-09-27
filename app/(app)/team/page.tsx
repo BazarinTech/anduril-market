@@ -47,7 +47,7 @@ function Page() {
     <div>
       <Topbar title="Team"/>
       {/* Invite Section */}
-      <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-xl p-5 shadow-premium">
+      <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
         <p className="text-eyebrow text-brand-bright">Your invite code</p>
         <p className="mt-2 font-mono text-3xl font-semibold tracking-[0.2em] text-ink-foreground">{referralCode}</p>
         <p className="mt-2 break-all text-xs text-ink-foreground/60">{referralLink}</p>
@@ -67,7 +67,7 @@ function Page() {
       </div>
 
       {/* Stats Section */}
-      <dl className="mx-4 mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-xl bg-border text-center ring-1 ring-border/70">
+      <dl className="mx-4 mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-border text-center ring-1 ring-border/70">
         <div className="bg-card px-2 py-3">
           <dd className="text-lg font-semibold text-foreground tabular-nums">{mainDetails?.referral.total_downlines}</dd>
           <dt className="text-[11px] text-muted-foreground">Team Size</dt>

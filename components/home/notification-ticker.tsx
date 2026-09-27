@@ -4,8 +4,8 @@ import { Notification01Icon } from "hugeicons-react"
 import { useEffect, useState } from "react"
 
 const notifications = [
-  "Welcome to Bima — everything you need is one tap away.",
-  "Keep your withdrawal PIN private. Bima will never ask you for it.",
+  "Welcome to the arena — everything is one tap away.",
+  "Keep your PIN private. Spatakas will never ask for it.",
 ]
 
 export function NotificationTicker() {
@@ -19,7 +19,7 @@ export function NotificationTicker() {
   }, [])
 
   return (
-    <div className="flex w-full items-center gap-3 rounded-xl bg-card px-4 py-3 ring-1 ring-border/70">
+    <div className="flex w-full items-center gap-3 rounded-2xl bg-card px-4 py-3 ring-1 ring-border/70">
       <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
         <Notification01Icon className="size-4" />
       </span>

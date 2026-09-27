@@ -16,7 +16,7 @@ export function IncentiveTierCard({ tier, currentReferrals, onApply, hasApplied 
   const progress = Math.min((currentReferrals / tier.referrals) * 100, 100)
 
   return (
-    <div className="bg-card rounded-xl ring-1 ring-border/70 shadow-premium overflow-hidden">
+    <div className="bg-card rounded-2xl ring-1 ring-border/70 shadow-premium overflow-hidden">
       {/* Header */}
       <div className="bg-hero relative px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">

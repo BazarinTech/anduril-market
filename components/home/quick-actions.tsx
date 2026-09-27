@@ -26,7 +26,7 @@ const actions = [
 export function QuickActions() {
   const router = useRouter()
   return (
-    <section aria-label="Quick actions" className="rounded-xl bg-card p-4 shadow-premium ring-1 ring-border/70">
+    <section aria-label="Quick actions" className="rounded-2xl bg-card p-4 shadow-premium ring-1 ring-border/70">
       <div className="grid grid-cols-4 gap-x-2 gap-y-5">
         {actions.map((action) => {
           const Icon = action.icon
@@ -36,7 +36,7 @@ export function QuickActions() {
               className="group flex flex-col items-center gap-2"
               onClick={() => router.push(action.link)}
             >
-              <span className="flex size-12 items-center justify-center rounded-xl bg-accent text-accent-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground group-active:scale-95">
+              <span className="flex size-12 items-center justify-center rounded-2xl bg-accent text-accent-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground group-active:scale-95">
                 <Icon className="size-6" strokeWidth={1.6} />
               </span>
               <span className="text-xs font-medium text-foreground">{action.label}</span>

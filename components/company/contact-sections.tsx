@@ -14,10 +14,10 @@ export function ContactSection() {
   return (
     <div className="bg-muted/40 px-4 py-6">
       <h2 className="mb-4 text-base font-semibold text-foreground">Contact Us</h2>
-      <div className="divide-y divide-border overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
+      <div className="divide-y divide-border overflow-hidden rounded-2xl bg-card ring-1 ring-border/70">
         {SUPPORT_URL && (
           <a href={SUPPORT_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 hover:bg-muted/60">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
               <CustomerSupportIcon size={20} />
             </div>
             <div>
@@ -27,7 +27,7 @@ export function ContactSection() {
           </a>
         )}
         <div className="flex items-center gap-3 p-4">
-          <div className="flex size-10 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
             <Location01Icon size={20} />
           </div>
           <div>
@@ -37,7 +37,7 @@ export function ContactSection() {
         </div>
       </div>
       <p className="mt-6 text-center text-xs text-muted-foreground">
-        &copy; {new Date().getFullYear()} Bima. All rights reserved.
+        &copy; {new Date().getFullYear()} Spatakas. All rights reserved.
       </p>
     </div>
   )

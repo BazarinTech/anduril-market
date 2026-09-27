@@ -112,18 +112,18 @@ export default function RechargePage() {
 
       <div className="mx-auto max-w-md flex-1 px-5 py-6">
         {/* M-Pesa Info Banner */}
-        <div className="bg-hero relative overflow-hidden rounded-xl p-5 mb-6 shadow-premium">
+        <div className="bg-hero relative overflow-hidden rounded-2xl p-5 mb-6 shadow-premium">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 bg-white/10 ring-1 ring-white/15 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-white/10 ring-1 ring-white/15 rounded-xl flex items-center justify-center">
               <SmartPhone01Icon size={20} className="text-brand-bright" />
             </div>
             <div>
-              <p className="text-eyebrow text-brand-bright">Bima Wallet</p>
+              <p className="text-eyebrow text-brand-bright">Spatakas Wallet</p>
               <h3 className="font-semibold text-ink-foreground">M-Pesa Deposit</h3>
             </div>
           </div>
           <p className="text-sm text-ink-foreground/70 mt-3">
-            You will receive an STK push to complete the payment on your phone.
+            An STK push arrives on your phone to confirm.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export default function RechargePage() {
               <button
                 key={preset}
                 onClick={() => handleAmountSelect(preset)}
-                className={`h-11 px-2 rounded-md font-semibold text-sm tabular-nums transition-all ${
+                className={`h-11 px-2 rounded-4xl font-semibold text-sm tabular-nums transition-all ${
                   amount === preset.toString()
                     ? "bg-primary text-primary-foreground shadow-premium"
                     : "bg-card ring-1 ring-border hover:ring-primary"
@@ -181,11 +181,11 @@ export default function RechargePage() {
               className="pl-10 h-12"
             />
           </div>
-          <p className="text-xs text-muted-foreground">Enter the phone number to receive STK push</p>
+          <p className="text-xs text-muted-foreground">Where the STK push is sent</p>
         </div>
 
         {error && (
-          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center mb-6">{error}</div>
+          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center mb-6">{error}</div>
         )}
 
         {/*
@@ -196,7 +196,7 @@ export default function RechargePage() {
           exactly this across the app.
         */}
         {successMessage && (
-          <div className="bg-success-soft border border-success/20 rounded-lg p-4 mb-6 flex items-start gap-3">
+          <div className="bg-success-soft border border-success/20 rounded-xl p-4 mb-6 flex items-start gap-3">
             <CheckmarkCircle01Icon size={20} className="text-success shrink-0 mt-0.5" />
             <p className="text-sm text-success">{successMessage}</p>
           </div>
@@ -204,7 +204,7 @@ export default function RechargePage() {
 
         {/* Deposit Summary */}
         {amount && Number.parseInt(amount) > 0 && (
-          <div className="bg-card ring-1 ring-border/70 rounded-xl p-4 mb-6">
+          <div className="bg-card ring-1 ring-border/70 rounded-2xl p-4 mb-6">
             <h3 className="font-semibold mb-3 text-sm">Deposit Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
@@ -234,15 +234,14 @@ export default function RechargePage() {
 
         {/* Instructions */}
         <div className="mt-6 space-y-3">
-          <div className="flex items-start gap-3 p-4 bg-accent rounded-xl">
+          <div className="flex items-start gap-3 p-4 bg-accent rounded-2xl">
             <InformationCircleIcon size={20} className="text-primary shrink-0 mt-0.5" />
             <div className="text-sm text-foreground">
-              <p className="font-semibold mb-1">How it works:</p>
-              <ol className="list-decimal list-inside space-y-1">
-                <li>Click &quot;Pay with M-Pesa&quot;</li>
-                <li>You&apos;ll receive an STK push on your phone</li>
-                <li>Enter your M-Pesa PIN to complete</li>
-                <li>Your account will be credited instantly</li>
+              <p className="font-semibold mb-1">How it works</p>
+              <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
+                <li>Tap Pay with M-Pesa</li>
+                <li>Confirm the STK push with your PIN</li>
+                <li>Your balance updates</li>
               </ol>
             </div>
           </div>

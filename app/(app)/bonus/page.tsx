@@ -14,7 +14,7 @@ import { toast } from 'sonner'
 
 function BonusTierSkeleton() {
   return (
-    <div className="overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
+    <div className="overflow-hidden rounded-2xl bg-card ring-1 ring-border/70">
       <div className="grid grid-cols-3 border-b border-border bg-muted/50 px-4 py-2.5">
         {[0, 1, 2].map((i) => <Skeleton key={i} className="mx-auto h-4 w-16" />)}
       </div>
@@ -100,13 +100,13 @@ function Page() {
       <Topbar title="Bonus" backBtn />
 
       {/* Coupon Redemption Section */}
-      <div className="bg-hero relative mx-4 mb-6 mt-5 overflow-hidden rounded-xl p-5 shadow-premium">
+      <div className="bg-hero relative mx-4 mb-6 mt-5 overflow-hidden rounded-2xl p-5 shadow-premium">
         <div className="mb-4 flex items-center gap-2">
           <Ticket01Icon className="h-5 w-5 text-brand-bright" />
           <h2 className="text-base font-semibold text-ink-foreground">Redeem Coupon Code</h2>
         </div>
         <p className="mb-4 text-sm text-ink-foreground/70">
-          Enter your coupon code below to claim bonuses and rewards.
+          Enter a code to claim your reward.
         </p>
         <form onSubmit={handleRedeemCoupon} className="space-y-3">
           <Input
@@ -127,7 +127,7 @@ function Page() {
         </form>
         {message && (
           <div
-            className={`mt-3 rounded-lg p-3 text-center text-sm ${
+            className={`mt-3 rounded-xl p-3 text-center text-sm ${
               message.type === "success" ? "bg-success-soft text-success" : "bg-destructive/15 text-white"
             }`}
           >
@@ -149,12 +149,12 @@ function Page() {
             <BonusTierSkeleton />
           </div>
         ) : bonuses.length === 0 ? (
-          <NoList title="No bonuses yet" description="Referral bonuses will appear here when they are available." />
+          <NoList title="No bonuses yet" description="Referral bonuses appear here when available." />
         ) : bonuses.map((tier) => {
           const isReady = !tier.is_claimed && activeReferrals >= tier.target
           const isClaiming = claimingId === tier.ID
           return (
-            <div key={tier.ID} className="overflow-hidden rounded-xl bg-card ring-1 ring-border/70">
+            <div key={tier.ID} className="overflow-hidden rounded-2xl bg-card ring-1 ring-border/70">
               {/* Header Row */}
               <div className="grid grid-cols-3 border-b border-border bg-muted/50 px-4 py-2.5">
                 <span className="text-center text-xs font-medium text-muted-foreground">Invited Friends</span>

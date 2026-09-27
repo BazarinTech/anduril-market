@@ -92,7 +92,7 @@ export default function ResetPasswordPage() {
         </div>
 
         {error && (
-          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-lg text-center mb-6">{error}</div>
+          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center mb-6">{error}</div>
         )}
 
         <form onSubmit={handleResetPassword} className="space-y-5">
@@ -140,7 +140,7 @@ export default function ResetPasswordPage() {
         </form>
 
         {/* Password Requirements */}
-        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-xl">
+        <div className="mt-8 p-4 bg-card ring-1 ring-border/70 rounded-2xl">
           <h3 className="font-semibold mb-3 text-sm">Password Requirements:</h3>
           <ul className="text-sm text-muted-foreground space-y-2">
             <li className="flex items-center gap-2">
