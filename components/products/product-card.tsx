@@ -48,7 +48,7 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
   };
 
   return (
-    <article className="relative overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
+    <article data-tour="product-card" className="relative overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
       <div className="flex gap-4 p-4">
         {/* Portrait in an arena arch */}
         <div className="relative w-28 shrink-0">

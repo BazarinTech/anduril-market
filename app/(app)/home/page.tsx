@@ -24,13 +24,17 @@ function Page() {
       <Topbar title="Spatakas" brand />
 
       <main className="mx-auto flex w-full max-w-md flex-col gap-5 px-4 pt-4 pb-24">
-        <BrandBanner
-          eyebrow="The arena"
-          title={username ? `Salute, ${username}` : "Welcome, champion"}
-          subtitle="Products · Team · Wallet"
-        />
+        <div data-tour="home-banner">
+          <BrandBanner
+            eyebrow="The arena"
+            title={username ? `Salute, ${username}` : "Welcome, champion"}
+            subtitle="Products · Team · Wallet"
+          />
+        </div>
 
-        <QuickActions />
+        <div data-tour="quick-actions">
+          <QuickActions />
+        </div>
 
         <NotificationTicker />
 

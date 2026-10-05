@@ -7,6 +7,7 @@ import { SpatakasMark } from '@/components/shared/brand-logo'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useCurrency } from '@/lib/hooks/use-currency'
 import { useMainStore } from '@/lib/stores/use-main-store'
+import { useTourStore } from '@/lib/stores/use-tour-store'
 import {
   Wallet01Icon,
   Download01Icon,
@@ -23,6 +24,7 @@ import {
   TelegramIcon,
   UserGroupIcon,
   Coins01Icon,
+  Compass01Icon,
 } from "hugeicons-react"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -30,21 +32,32 @@ import React, { useEffect, useState } from 'react'
 
 // Grouped rather than one ten-row list: the money settings and the community
 // links were interleaved, so neither was scannable.
-const menuGroups = [
+type MenuItem = {
+  icon: typeof Wallet01Icon
+  label: string
+  href?: string
+  action?: "tour"
+  tour?: string
+}
+
+const menuGroups: { label: string; tour?: string; items: MenuItem[] }[] = [
   {
     label: "Account",
+    tour: "profile-menu",
     items: [
       { icon: InformationCircleIcon, label: "Withdraw Account", href: "/cashout-wallet" },
       { icon: File01Icon, label: "Records", href: "/records" },
       { icon: Ticket02Icon, label: "My Coupon", href: "/bonus" },
       { icon: LockPasswordIcon, label: "Reset Password", href: "/reset-password" },
+      // Spartacus on demand: the tour is offered once, so this is how it is found again.
+      { icon: Compass01Icon, label: "Replay guide", action: "tour" as const },
     ],
   },
   {
     label: "Community",
     items: [
       { icon: TelegramIcon, label: "Telegram Channel", href: process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL ?? "" },
-      { icon: WhatsappIcon, label: "Whatsapp group", href: process.env.NEXT_PUBLIC_WHATSAPP_GROUP ?? "" },
+      { icon: WhatsappIcon, label: "Whatsapp group", href: process.env.NEXT_PUBLIC_WHATSAPP_GROUP ?? "", tour: "whatsapp" },
       { icon: CustomerServiceIcon, label: "Customer Service", href: process.env.NEXT_PUBLIC_CUSTOMER_SUPPORT ?? "" },
       { icon: InformationSquareIcon, label: "About US", href: "/company" },
       { icon: Download02Icon, label: "App Download", href: "https://apk.e-droid.net/apk/app3980533-tdv41u.apk?v=2" },
@@ -61,6 +74,9 @@ function Page() {
   useEffect(() => {
     loginState()
   }, [loginState])
+
+  // Spartacus starts from the top when replayed from here.
+  const startTour = () => useTourStore.getState().start(0)
 
   const loading = !mainDetails
   const wallet = mainDetails?.wallet
@@ -159,22 +175,38 @@ function Page() {
         {menuGroups.map((group) => (
           <section key={group.label} className="mt-5">
             <h2 className="text-eyebrow mb-2 px-1 text-muted-foreground">{group.label}</h2>
-            <div className="divide-y divide-border overflow-hidden rounded-2xl bg-card ring-1 ring-border/70">
-              {group.items.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="flex items-center justify-between px-4 py-3 transition-colors hover:bg-muted/60"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-                      <item.icon size={18} />
+            <div
+              data-tour={group.tour}
+              className="divide-y divide-border overflow-hidden rounded-2xl bg-card ring-1 ring-border/70"
+            >
+              {group.items.map((item) => {
+                const row = (
+                  <>
+                    <span className="flex items-center gap-3">
+                      <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                        <item.icon size={18} />
+                      </span>
+                      <span className="text-sm font-medium text-foreground">{item.label}</span>
                     </span>
-                    <span className="text-sm font-medium text-foreground">{item.label}</span>
-                  </span>
-                  <ArrowRight01Icon size={18} className="text-muted-foreground" />
-                </Link>
-              ))}
+                    <ArrowRight01Icon size={18} className="text-muted-foreground" />
+                  </>
+                )
+                const rowClass = "flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-muted/60"
+
+                if (item.action === "tour") {
+                  return (
+                    <button key={item.label} type="button" data-tour={item.tour} className={rowClass} onClick={startTour}>
+                      {row}
+                    </button>
+                  )
+                }
+
+                return (
+                  <Link key={item.label} href={item.href ?? "#"} data-tour={item.tour} className={rowClass}>
+                    {row}
+                  </Link>
+                )
+              })}
             </div>
           </section>
         ))}

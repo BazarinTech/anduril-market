@@ -280,6 +280,7 @@ export default function CashoutPage() {
             )}
 
             <Button
+              data-tour="withdraw"
               onClick={handleProceed}
               className="w-full h-12 text-base font-semibold gap-2"
               disabled={!amount || Number.parseInt(amount) <= 0}

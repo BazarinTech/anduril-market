@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { BrandBanner } from '@/components/shared/brand-banner'
+import { useTourStore } from '@/lib/stores/use-tour-store'
 
 const WHATSAPP_GROUP_URL = process.env.NEXT_PUBLIC_WHATSAPP_GROUP
 const STORAGE_KEY = 'sf_show_welcome'
@@ -23,6 +24,17 @@ export function WelcomeModal() {
       setOpen(true)
     }
   }, [])
+
+  /**
+   * Closing the welcome modal hands straight over to Spartacus, but only for
+   * someone who has never been shown the tour on this device. Dismissing the
+   * modal any other way (escape, tapping outside) leaves them alone.
+   */
+  const handleEnter = () => {
+    setOpen(false)
+    const { isFirstTime, start } = useTourStore.getState()
+    if (isFirstTime()) setTimeout(() => start(0), 350)
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -64,7 +76,7 @@ export function WelcomeModal() {
 
             <Button
               className="h-11 w-full text-sm font-semibold"
-              onClick={() => setOpen(false)}
+              onClick={handleEnter}
             >
               Enter the arena
             </Button>

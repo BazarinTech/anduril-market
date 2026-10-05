@@ -222,3 +222,170 @@
     @apply tracking-tight;
   }
 }
+
+/*
+ * Spartacus's tutorial card.
+ *
+ * Modelled on game onboarding: a bold gold panel, a heavy headline, step pips
+ * along the bottom, and the character cut out against the right edge.
+ *
+ * The character is a CSS layer rather than a React node because driver.js owns
+ * this DOM. Drop a transparent PNG at public/spartacus.png and he appears; if
+ * the file is absent nothing renders and the card still reads correctly.
+ */
+.driver-popover.spartacus-popover {
+  --spartacus-figure: 104px;
+  position: relative;
+  overflow: visible;
+  max-width: 21rem;
+  padding: 1.1rem 1.15rem 0.9rem;
+  border: 1px solid color-mix(in oklch, var(--ink) 25%, transparent);
+  border-radius: calc(var(--radius) + 16px);
+  background-color: var(--gold);
+  background-image: linear-gradient(135deg, oklch(0.84 0.1 88) 0%, var(--gold) 55%, oklch(0.63 0.11 86) 100%);
+  color: var(--ink);
+  box-shadow:
+    0 2px 4px color-mix(in oklch, var(--ink) 18%, transparent),
+    0 22px 48px -20px color-mix(in oklch, var(--ink) 70%, transparent);
+}
+
+/*
+ * The fighter, standing past the card's edge.
+ *
+ * The artwork is a wide image with the character off-centre (he occupies
+ * x 29-79%, centred at 54%), so this frames him with `cover` anchored on that
+ * centre. `contain` would letterbox the whole canvas and shrink him to nothing.
+ * Swapping the art for a tighter cut-out needs no change here.
+ */
+.driver-popover.spartacus-popover::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  bottom: 0;
+  width: var(--spartacus-figure);
+  height: 142px;
+  background: url("/spatakas-character.png") no-repeat 54% bottom / cover;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgb(0 0 0 / 0.4));
+}
+
+.driver-popover.spartacus-popover .driver-popover-title,
+.driver-popover.spartacus-popover .driver-popover-description {
+  padding-right: calc(var(--spartacus-figure) - 24px);
+}
+
+.driver-popover.spartacus-popover .driver-popover-title {
+  font-size: 1.25rem;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* His name, set above the headline. */
+.driver-popover.spartacus-popover .driver-popover-title::before {
+  content: "Spartacus";
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: color-mix(in oklch, var(--ink) 62%, transparent);
+}
+
+.driver-popover.spartacus-popover .spartacus-dialogue {
+  margin-top: 0.55rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: color-mix(in oklch, var(--ink) 88%, transparent);
+}
+
+.driver-popover.spartacus-popover .spartacus-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.9rem;
+}
+
+.driver-popover.spartacus-popover .spartacus-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background-color: color-mix(in oklch, var(--ink) 28%, transparent);
+}
+
+.driver-popover.spartacus-popover .spartacus-dots i.is-done {
+  background-color: color-mix(in oklch, var(--ink) 55%, transparent);
+}
+
+.driver-popover.spartacus-popover .spartacus-dots i.is-current {
+  width: 16px;
+  background-color: var(--primary);
+}
+
+.driver-popover.spartacus-popover .spartacus-dots span {
+  margin-left: 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: color-mix(in oklch, var(--ink) 65%, transparent);
+}
+
+.driver-popover.spartacus-popover .driver-popover-footer {
+  margin-top: 0.85rem;
+  gap: 0.5rem;
+  /* Clear of the figure: he overhangs the card by 12px, so the rest of his
+     width sits over the footer and was covering the Next button. */
+  padding-right: calc(var(--spartacus-figure) - 12px);
+}
+
+.driver-popover.spartacus-popover .driver-popover-footer button {
+  border-radius: calc(var(--radius) + 16px);
+  padding: 0.45rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-shadow: none;
+  border: 1px solid color-mix(in oklch, var(--ink) 20%, transparent);
+  background-color: transparent;
+  color: var(--ink);
+}
+
+.driver-popover.spartacus-popover .driver-popover-footer .driver-popover-next-btn {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.driver-popover.spartacus-popover .driver-popover-close-btn {
+  color: color-mix(in oklch, var(--ink) 55%, transparent);
+}
+
+.driver-popover.spartacus-popover .driver-popover-arrow {
+  border-color: var(--gold);
+}
+
+/* Element-less steps sit dead centre, not below the midpoint. */
+.driver-popover.spartacus-centred {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+  /* Driver sizes the card to the room beside its anchor; from a centre point
+     that left half the width unused and wrapped the text to ribbons. */
+  width: min(21rem, calc(100vw - 2rem)) !important;
+  max-width: none !important;
+}
+
+.driver-popover.spartacus-centred .driver-popover-arrow {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .driver-popover.spartacus-popover {
+    --spartacus-figure: 84px;
+    max-width: calc(100vw - 2rem);
+  }
+}

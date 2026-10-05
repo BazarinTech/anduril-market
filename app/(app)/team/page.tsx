@@ -47,7 +47,7 @@ function Page() {
     <div>
       <Topbar title="Team"/>
       {/* Invite Section */}
-      <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
+      <div data-tour="invite" className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
         <p className="text-eyebrow text-brand-bright">Your invite code</p>
         <p className="mt-2 font-mono text-3xl font-semibold tracking-[0.2em] text-ink-foreground">{referralCode}</p>
         <p className="mt-2 break-all text-xs text-ink-foreground/60">{referralLink}</p>
@@ -93,7 +93,7 @@ function Page() {
       {/* Team Tabs */}
       <div className="mx-4 mt-4 mb-20">
         <Tabs defaultValue="teamB" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList data-tour="levels" className="grid w-full grid-cols-3">
             <TabsTrigger
               value="teamB"
             >

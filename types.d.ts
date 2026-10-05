@@ -114,6 +114,8 @@ type Transactions = {
 
 type TeamUser = User & {
     deposits: Amount
+    /** Total spent on packages. Commission is a percentage of this. */
+    purchases: Amount
     commission: Amount
     downlines: number
     level: string

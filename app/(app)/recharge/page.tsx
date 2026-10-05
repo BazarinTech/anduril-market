@@ -225,6 +225,7 @@ export default function RechargePage() {
         )}
 
         <Button
+          data-tour="deposit"
           onClick={handleInitiateSTK}
           className="w-full h-12 text-base font-semibold"
           disabled={!amount || Number.parseInt(amount) <= 0 || isLoading}
