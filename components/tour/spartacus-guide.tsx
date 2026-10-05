@@ -11,7 +11,7 @@ import { useTourStore } from "@/lib/stores/use-tour-store"
 const TOUR_EXIT_ROUTE = "/products"
 
 /** Resolves once the element exists, or null if it never turns up. */
-function waitForElement(selector: string, timeoutMs = 4000): Promise<HTMLElement | null> {
+function waitForElement(selector: string, timeoutMs = 2500): Promise<HTMLElement | null> {
   return new Promise((resolve) => {
     const existing = document.querySelector<HTMLElement>(selector)
     if (existing) return resolve(existing)
@@ -59,6 +59,7 @@ export function SpartacusGuide() {
   const isActive = useTourStore((s) => s.isActive)
   const stepIndex = useTourStore((s) => s.stepIndex)
   const driverRef = useRef<Driver | null>(null)
+  const resizeRef = useRef<ResizeObserver | null>(null)
 
   // Resume a tour interrupted by a hard reload.
   useEffect(() => {
@@ -67,6 +68,8 @@ export function SpartacusGuide() {
 
   useEffect(() => {
     const destroy = () => {
+      resizeRef.current?.disconnect()
+      resizeRef.current = null
       driverRef.current?.destroy()
       driverRef.current = null
     }
@@ -105,6 +108,18 @@ export function SpartacusGuide() {
         onDestroyStarted: () => finish("skipped"),
       })
       driverRef.current = instance
+
+      /*
+       * Targets grow after the card is placed: a page renders its skeleton,
+       * then the data arrives and the element gets taller. driver.js positions
+       * once, so the card was left overlapping the very thing it points at
+       * (the invite panel, most visibly). Re-position whenever it resizes.
+       */
+      if (element) {
+        const observer = new ResizeObserver(() => instance.refresh())
+        observer.observe(element)
+        resizeRef.current = observer
+      }
 
       instance.highlight({
         element: element ?? undefined,
@@ -152,7 +167,13 @@ export function SpartacusGuide() {
   }, [isActive, stepIndex, pathname, router])
 
   // Tear the overlay down if the component itself unmounts (e.g. logout).
-  useEffect(() => () => driverRef.current?.destroy(), [])
+  useEffect(
+    () => () => {
+      resizeRef.current?.disconnect()
+      driverRef.current?.destroy()
+    },
+    [],
+  )
 
   return null
 }

@@ -52,7 +52,7 @@ function Page() {
         <div className="mx-auto max-w-md px-4 py-5 mb-20">
 
           <Tabs defaultValue="valid" className="mt-1">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList data-tour="income" className="grid w-full grid-cols-2">
             <TabsTrigger
               value="valid"
             >

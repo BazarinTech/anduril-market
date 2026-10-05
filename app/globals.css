@@ -235,7 +235,11 @@
  */
 .driver-popover.spartacus-popover {
   --spartacus-figure: 104px;
-  position: relative;
+  /* No position override here. driver.css positions the card with
+     `position: fixed` plus inline offsets; setting `relative` made those
+     offsets resolve against the card's static spot at the end of <body>,
+     which threw it to the top or bottom of the page instead of next to its
+     target. A fixed element still anchors the character's ::after layer. */
   overflow: visible;
   max-width: 21rem;
   padding: 1.1rem 1.15rem 0.9rem;

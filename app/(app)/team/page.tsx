@@ -47,11 +47,11 @@ function Page() {
     <div>
       <Topbar title="Team"/>
       {/* Invite Section */}
-      <div data-tour="invite" className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
+      <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
         <p className="text-eyebrow text-brand-bright">Your invite code</p>
         <p className="mt-2 font-mono text-3xl font-semibold tracking-[0.2em] text-ink-foreground">{referralCode}</p>
         <p className="mt-2 break-all text-xs text-ink-foreground/60">{referralLink}</p>
-        <Button onClick={handleCopy} className="mt-4 h-11 w-full bg-white text-ink hover:bg-white/90">
+        <Button data-tour="invite" onClick={handleCopy} className="mt-4 h-11 w-full bg-white text-ink hover:bg-white/90">
           {copied ? (
             <>
               <CheckmarkCircle01Icon size={18} className="mr-2" />

@@ -75,11 +75,14 @@ export const TOUR_STEPS: TourStep[] = [
   {
     id: "claim",
     route: "/work",
-    element: '[data-tour="claim"]',
-    title: "Claim your spoils",
+    // Anchored to the tabs, not to a Claim button: a new fighter owns nothing
+    // yet, so that button does not exist and the whole step was being skipped
+    // for exactly the people this tour is for.
+    element: '[data-tour="income"]',
+    title: "Where you claim",
     dialogue:
-      "Your products earn each day, but the spoils are not yours until you claim them. Return here daily.",
-    side: "top",
+      "This is where your products pay you. Once you own one, its daily earnings wait here under Valid — come back each day and claim them. Finished runs move to Expired.",
+    side: "bottom",
   },
   {
     id: "withdraw",
@@ -87,15 +90,15 @@ export const TOUR_STEPS: TourStep[] = [
     element: '[data-tour="withdraw"]',
     title: "Carry it home",
     dialogue:
-      "Out to the M-Pesa number on your account. Your PIN guards this gate — give it to no one. Not even me.",
-    side: "top",
+      "Your way out. Set your withdrawal account once, then send your balance to that M-Pesa number whenever you please. Your PIN guards this gate — give it to no one. Not even me.",
+    side: "bottom",
   },
   {
     id: "invite",
     route: "/team",
     element: '[data-tour="invite"]',
     title: "Raise your legion",
-    dialogue: "Your code. Everyone who enters through it stands in your ranks.",
+    dialogue: "Your code sits above. Copy it, share it — everyone who enters through it stands in your ranks.",
     side: "bottom",
   },
   {

@@ -74,7 +74,6 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
 
         {status === "Active" && (
           <Button
-            data-tour="claim"
             onClick={() => setIsPromoting(true)}
             className="mt-4 h-11 w-full text-sm font-semibold"
             disabled={isPromoting || roll == 0}
