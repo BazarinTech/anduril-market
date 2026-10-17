@@ -119,7 +119,7 @@ export default function RegisterPage() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder="Richard Lincoln"
+                placeholder="Hewllet plaka"
                 className="pl-10 h-12 text-sm"
               />
             </div>
@@ -136,7 +136,7 @@ export default function RegisterPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="lincoln@example.com"
+                placeholder="linHewlletn@farmer.com"
                 className="pl-10 h-12 text-sm"
               />
             </div>
