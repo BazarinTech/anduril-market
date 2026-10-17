@@ -60,7 +60,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Welcome back" subtitle="Return to the arena" />
+      <AuthHeader title="Welcome back" subtitle="Back to the farm" />
 
       {/* Form */}
       <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">

@@ -12,7 +12,7 @@ import { SmartPhone01Icon, Mail01Icon, LockPasswordIcon, CheckmarkCircle01Icon }
 import { VerificationCodeInput } from "@/components/auth/verification-input"
 import { requestVerificationCode, resetPassword, verifyCode } from "@/lib/backend/actions"
 import { toast } from "sonner"
-import { SpatakasLogo } from "@/components/shared/brand-logo"
+import { CloudFarmerLogo } from "@/components/shared/brand-logo"
 
 type Step = "phone" | "verify" | "reset" | "success"
 
@@ -139,8 +139,8 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="flex h-16 items-center justify-center border-b border-border/80 bg-background/85 backdrop-blur-lg">
-        <Link href="/login" aria-label="Spatakas — back to sign in">
-          <SpatakasLogo size="sm" />
+        <Link href="/login" aria-label="Cloud Farmer — back to sign in">
+          <CloudFarmerLogo size="sm" />
         </Link>
       </header>
 

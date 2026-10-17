@@ -3,7 +3,7 @@
 import LogoutAlert from '@/components/alerts/logout-alert'
 import { BottomNav } from '@/components/shared/bottombar'
 import Topbar from '@/components/shared/topbar'
-import { SpatakasMark } from '@/components/shared/brand-logo'
+import { CloudFarmerMark } from '@/components/shared/brand-logo'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useCurrency } from '@/lib/hooks/use-currency'
 import { useMainStore } from '@/lib/stores/use-main-store'
@@ -49,7 +49,7 @@ const menuGroups: { label: string; tour?: string; items: MenuItem[] }[] = [
       { icon: File01Icon, label: "Records", href: "/records" },
       { icon: Ticket02Icon, label: "My Coupon", href: "/bonus" },
       { icon: LockPasswordIcon, label: "Reset Password", href: "/reset-password" },
-      // Spartacus on demand: the tour is offered once, so this is how it is found again.
+      // Kimani on demand: the tour is offered once, so this is how it is found again.
       { icon: Compass01Icon, label: "Replay guide", action: "tour" as const },
     ],
   },
@@ -75,7 +75,7 @@ function Page() {
     loginState()
   }, [loginState])
 
-  // Spartacus starts from the top when replayed from here.
+  // Kimani starts from the top when replayed from here.
   const startTour = () => useTourStore.getState().start(0)
 
   const loading = !mainDetails
@@ -100,8 +100,8 @@ function Page() {
           action buttons were three stacked sections saying one thing. */}
       <header className="bg-hero relative overflow-hidden px-4 pt-6 pb-16">
         <div className="mx-auto flex max-w-md items-center gap-4">
-          <div className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-gold/25">
-            <SpatakasMark size={40} title="Spatakas" />
+          <div className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-leaf/25">
+            <CloudFarmerMark size={40} title="Cloud Farmer" />
           </div>
           <div className="min-w-0 flex-1">
             {loading ? (
@@ -112,8 +112,8 @@ function Page() {
             ) : (
               <>
                 <div className="flex items-center gap-2">
-                  <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Champion"}</p>
-                  <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-gold/25">
+                  <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Farmer"}</p>
+                  <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-leaf/25">
                     {wallet?.level}
                   </span>
                 </div>
@@ -159,7 +159,7 @@ function Page() {
           <dl className="grid grid-cols-3 gap-2">
             {stats.map(({ icon: Icon, label, value }) => (
               <div key={label} className="text-center">
-                <Icon size={16} className="mx-auto mb-1 text-gold" />
+                <Icon size={16} className="mx-auto mb-1 text-leaf" />
                 {loading ? (
                   <Skeleton className="mx-auto h-4 w-14" />
                 ) : (

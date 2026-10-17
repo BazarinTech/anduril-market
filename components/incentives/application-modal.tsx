@@ -75,7 +75,7 @@ export function ApplicationModal({ open, onOpenChange, tierName, reward, tierID 
         {!isSubmitted ? (
           <>
             <DialogHeader>
-              <p className="text-eyebrow text-primary">Spatakas Incentives</p>
+              <p className="text-eyebrow text-primary">Cloud Farmer Incentives</p>
               <DialogTitle className="text-lg font-semibold text-foreground">Agent Application</DialogTitle>
               <DialogDescription className="text-muted-foreground">
                 Apply for <span className="font-semibold text-foreground">{tierName}</span> with weekly reward of{" "}

@@ -39,14 +39,14 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Spatakas brand extensions. */
+  /* Cloud Farmer brand extensions. */
   --color-brand-deep: var(--brand-deep);
   --color-brand-bright: var(--brand-bright);
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
   --color-ink-foreground: var(--ink-foreground);
-  --color-gold: var(--gold);
-  --color-gold-deep: var(--gold-deep);
+  --color-leaf: var(--leaf);
+  --color-sun: var(--sun);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
@@ -63,7 +63,7 @@
 }
 
 /*
- * Spatakas -- light theme.
+ * Cloud Farmer -- light theme.
  *
  * A German-automotive palette: a single saturated blue carried on cool,
  * near-neutral greys, with a deep "ink" navy for hero surfaces. Blue is the
@@ -74,122 +74,124 @@
  * 10px, so buttons and inputs read as precise rather than soft.
  */
 :root {
-  --background: oklch(0.977 0.007 80.7);
-  --foreground: oklch(0.204 0.008 48.3);
+  --background: oklch(0.982 0.004 157.2);
+  --foreground: oklch(0.181 0.009 169.2);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.204 0.008 48.3);
+  --card-foreground: oklch(0.181 0.009 169.2);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.204 0.008 48.3);
-  --primary: oklch(0.464 0.173 20.6);
-  --primary-foreground: oklch(0.99 0.005 80);
-  --secondary: oklch(0.934 0.015 77.1);
-  --secondary-foreground: oklch(0.204 0.008 48.3);
-  --muted: oklch(0.948 0.012 79.8);
-  --muted-foreground: oklch(0.499 0.019 64.4);
-  --accent: oklch(0.953 0.027 87.9);
-  --accent-foreground: oklch(0.498 0.087 84.1);
-  --destructive: oklch(0.587 0.198 29.6);
-  --border: oklch(0.907 0.018 78.2);
-  --input: oklch(0.858 0.023 78.2);
-  --ring: oklch(0.464 0.173 20.6);
+  --popover-foreground: oklch(0.181 0.009 169.2);
+  --primary: oklch(0.518 0.128 150.7);
+  --primary-foreground: oklch(0.99 0.004 157);
+  --secondary: oklch(0.948 0.01 155.1);
+  --secondary-foreground: oklch(0.181 0.009 169.2);
+  --muted: oklch(0.963 0.006 153.8);
+  --muted-foreground: oklch(0.498 0.017 164.2);
+  --accent: oklch(0.955 0.018 155.8);
+  --accent-foreground: oklch(0.445 0.108 151.8);
+  --destructive: oklch(0.547 0.188 27.5);
+  --border: oklch(0.929 0.012 153.7);
+  --input: oklch(0.893 0.015 158.2);
+  --ring: oklch(0.518 0.128 150.7);
   --radius: 0.375rem;
 
-  --brand-deep: oklch(0.379 0.141 20.2);
-  /* The accent used on ink surfaces: antique gold, not a lighter crimson. */
-  --brand-bright: oklch(0.797 0.105 87.9);
-  --gold: oklch(0.688 0.113 87.8);
-  --gold-deep: oklch(0.552 0.094 86.7);
-  --ink: oklch(0.182 0.007 34.3);
-  --ink-2: oklch(0.245 0.032 16.4);
-  --ink-foreground: oklch(0.963 0.012 79.8);
-  --success: oklch(0.489 0.094 131.7);
-  --success-soft: oklch(0.958 0.018 120.7);
-  --warning: oklch(0.602 0.117 76.5);
-  --warning-soft: oklch(0.96 0.03 85.6);
+  --brand-deep: oklch(0.393 0.098 150.5);
+  /* The accent used on dark field surfaces: new-growth green, not a paler brand green. */
+  --brand-bright: oklch(0.809 0.126 151.4);
+  --leaf: oklch(0.676 0.145 148.8);
+  --sun: oklch(0.795 0.143 83.5);
+  --ink: oklch(0.171 0.01 158.8);
+  --ink-2: oklch(0.242 0.029 156.1);
+  --ink-foreground: oklch(0.974 0.007 151.9);
+  --success: oklch(0.518 0.128 150.7);
+  --success-soft: oklch(0.955 0.018 155.8);
+  --warning: oklch(0.605 0.13 67.3);
+  --warning-soft: oklch(0.961 0.027 83.5);
 
-  --chart-1: oklch(0.464 0.173 20.6);
-  --chart-2: oklch(0.688 0.113 87.8);
-  --chart-3: oklch(0.379 0.141 20.2);
-  --chart-4: oklch(0.797 0.105 87.9);
-  --chart-5: oklch(0.499 0.019 64.4);
+  --chart-1: oklch(0.518 0.128 150.7);
+  --chart-2: oklch(0.676 0.145 148.8);
+  --chart-3: oklch(0.393 0.098 150.5);
+  --chart-4: oklch(0.795 0.143 83.5);
+  --chart-5: oklch(0.498 0.017 164.2);
 
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.204 0.008 48.3);
-  --sidebar-primary: oklch(0.464 0.173 20.6);
-  --sidebar-primary-foreground: oklch(0.99 0.005 80);
-  --sidebar-accent: oklch(0.953 0.027 87.9);
-  --sidebar-accent-foreground: oklch(0.498 0.087 84.1);
-  --sidebar-border: oklch(0.907 0.018 78.2);
-  --sidebar-ring: oklch(0.464 0.173 20.6);
+  --sidebar-foreground: oklch(0.181 0.009 169.2);
+  --sidebar-primary: oklch(0.518 0.128 150.7);
+  --sidebar-primary-foreground: oklch(0.99 0.004 157);
+  --sidebar-accent: oklch(0.955 0.018 155.8);
+  --sidebar-accent-foreground: oklch(0.445 0.108 151.8);
+  --sidebar-border: oklch(0.929 0.012 153.7);
+  --sidebar-ring: oklch(0.518 0.128 150.7);
 }
 
 .dark {
-  --background: oklch(0.175 0.003 17.5);
-  --foreground: oklch(0.957 0.012 79.8);
-  --card: oklch(0.216 0.006 56);
-  --card-foreground: oklch(0.957 0.012 79.8);
-  --popover: oklch(0.216 0.006 56);
-  --popover-foreground: oklch(0.957 0.012 79.8);
-  --primary: oklch(0.631 0.179 14);
-  --primary-foreground: oklch(0.99 0.005 80);
-  --secondary: oklch(0.253 0.008 31.1);
-  --secondary-foreground: oklch(0.957 0.012 79.8);
-  --muted: oklch(0.253 0.008 31.1);
-  --muted-foreground: oklch(0.699 0.022 69.9);
-  --accent: oklch(0.256 0.019 59.7);
-  --accent-foreground: oklch(0.829 0.092 88);
-  --destructive: oklch(0.672 0.18 29.7);
-  --border: oklch(0.297 0.013 41.7);
-  --input: oklch(0.331 0.016 43);
-  --ring: oklch(0.631 0.179 14);
+  --background: oklch(0.171 0.01 158.8);
+  --foreground: oklch(0.964 0.009 150.7);
+  --card: oklch(0.217 0.014 154);
+  --card-foreground: oklch(0.964 0.009 150.7);
+  --popover: oklch(0.217 0.014 154);
+  --popover-foreground: oklch(0.964 0.009 150.7);
+  --primary: oklch(0.733 0.161 149.6);
+  --primary-foreground: oklch(0.171 0.01 158.8);
+  --secondary: oklch(0.257 0.018 151.6);
+  --secondary-foreground: oklch(0.964 0.009 150.7);
+  --muted: oklch(0.257 0.018 151.6);
+  --muted-foreground: oklch(0.719 0.019 155.7);
+  --accent: oklch(0.251 0.029 152.2);
+  --accent-foreground: oklch(0.854 0.103 152);
+  --destructive: oklch(0.65 0.179 27.2);
+  --border: oklch(0.305 0.021 147.8);
+  --input: oklch(0.35 0.023 149.9);
+  --ring: oklch(0.733 0.161 149.6);
 
-  --brand-deep: oklch(0.464 0.173 20.6);
-  --brand-bright: oklch(0.829 0.092 88);
-  --gold: oklch(0.797 0.105 87.9);
-  --gold-deep: oklch(0.688 0.113 87.8);
-  --ink: oklch(0.15 0.006 34.3);
-  --ink-2: oklch(0.228 0.03 16.4);
-  --ink-foreground: oklch(0.963 0.012 79.8);
-  --success: oklch(0.733 0.124 129.7);
-  --success-soft: oklch(0.259 0.031 132.1);
-  --warning: oklch(0.786 0.119 79.1);
-  --warning-soft: oklch(0.251 0.029 75.2);
+  --brand-deep: oklch(0.518 0.128 150.7);
+  --brand-bright: oklch(0.854 0.103 152);
+  --leaf: oklch(0.733 0.161 149.6);
+  --sun: oklch(0.795 0.143 83.5);
+  --ink: oklch(0.14 0.009 158.8);
+  --ink-2: oklch(0.225 0.027 156.1);
+  --ink-foreground: oklch(0.974 0.007 151.9);
+  --success: oklch(0.733 0.161 149.6);
+  --success-soft: oklch(0.228 0.024 156.9);
+  --warning: oklch(0.763 0.127 76.1);
+  --warning-soft: oklch(0.238 0.027 76.1);
 
-  --chart-1: oklch(0.631 0.179 14);
-  --chart-2: oklch(0.797 0.105 87.9);
-  --chart-3: oklch(0.464 0.173 20.6);
-  --chart-4: oklch(0.829 0.092 88);
-  --chart-5: oklch(0.699 0.022 69.9);
+  --chart-1: oklch(0.733 0.161 149.6);
+  --chart-2: oklch(0.854 0.103 152);
+  --chart-3: oklch(0.518 0.128 150.7);
+  --chart-4: oklch(0.795 0.143 83.5);
+  --chart-5: oklch(0.719 0.019 155.7);
 
-  --sidebar: oklch(0.216 0.006 56);
-  --sidebar-foreground: oklch(0.957 0.012 79.8);
-  --sidebar-primary: oklch(0.631 0.179 14);
-  --sidebar-primary-foreground: oklch(0.99 0.005 80);
-  --sidebar-accent: oklch(0.256 0.019 59.7);
-  --sidebar-accent-foreground: oklch(0.829 0.092 88);
-  --sidebar-border: oklch(0.297 0.013 41.7);
-  --sidebar-ring: oklch(0.631 0.179 14);
+  --sidebar: oklch(0.217 0.014 154);
+  --sidebar-foreground: oklch(0.964 0.009 150.7);
+  --sidebar-primary: oklch(0.733 0.161 149.6);
+  --sidebar-primary-foreground: oklch(0.171 0.01 158.8);
+  --sidebar-accent: oklch(0.251 0.029 152.2);
+  --sidebar-accent-foreground: oklch(0.854 0.103 152);
+  --sidebar-border: oklch(0.305 0.021 147.8);
+  --sidebar-ring: oklch(0.733 0.161 149.6);
 }
 
 /*
- * Arena surface: torch-lit stone. Obsidian ground, a crimson glow falling from
- * the top right, warm shadow pooling bottom left. Used for page headers, the
- * wallet card and the banner -- the places that should feel like the arena
- * floor rather than the page around it.
+ * Field surface: the farm at dusk.
+ *
+ * Deep green-black ground with low sun warming the top right and new growth
+ * glowing from the bottom left. Used for page headers, the wallet card and the
+ * banner -- wherever the app should feel like standing in the field rather
+ * than reading a page.
  */
 @utility bg-hero {
   background-color: var(--ink);
   background-image:
-    radial-gradient(115% 85% at 100% 0%, color-mix(in oklch, var(--primary) 55%, transparent) 0%, transparent 60%),
-    radial-gradient(75% 60% at 0% 100%, color-mix(in oklch, var(--ink-2) 95%, transparent) 0%, transparent 72%),
+    radial-gradient(120% 85% at 100% 0%, color-mix(in oklch, var(--sun) 28%, transparent) 0%, transparent 58%),
+    radial-gradient(85% 70% at 0% 100%, color-mix(in oklch, var(--primary) 55%, transparent) 0%, transparent 70%),
     linear-gradient(165deg, var(--ink) 0%, var(--ink-2) 100%);
   color: var(--ink-foreground);
 }
 
-/* Gilded edge: the thin gold line that closes every arena surface. */
+/* A furrow: the thin green line that closes every field surface. */
 @utility brand-hairline {
   height: 1px;
-  background-image: linear-gradient(90deg, transparent, var(--gold) 28%, var(--brand-bright) 50%, var(--gold) 72%, transparent);
+  background-image: linear-gradient(90deg, transparent, var(--leaf) 28%, var(--brand-bright) 50%, var(--leaf) 72%, transparent);
 }
 
 /* Small uppercase label, spaced like an inscription. */
@@ -224,61 +226,59 @@
 }
 
 /*
- * Spartacus's tutorial card.
+ * The farmer's tutorial card.
  *
- * Modelled on game onboarding: a bold gold panel, a heavy headline, step pips
- * along the bottom, and the character cut out against the right edge.
+ * Modelled on game onboarding: a fresh green panel, a heavy headline, step
+ * pips along the bottom, and the farmer standing against the right edge.
  *
- * The character is a CSS layer rather than a React node because driver.js owns
- * this DOM. Drop a transparent PNG at public/spartacus.png and he appears; if
- * the file is absent nothing renders and the card still reads correctly.
+ * The figure is a CSS layer rather than a React node because driver.js owns
+ * this DOM. Drop a transparent PNG at public/farmer.png and he appears; if the
+ * file is absent nothing renders and the card still reads correctly.
  */
-.driver-popover.spartacus-popover {
-  --spartacus-figure: 104px;
+.driver-popover.farmer-popover {
+  --farmer-figure: 104px;
   /* No position override here. driver.css positions the card with
      `position: fixed` plus inline offsets; setting `relative` made those
      offsets resolve against the card's static spot at the end of <body>,
      which threw it to the top or bottom of the page instead of next to its
-     target. A fixed element still anchors the character's ::after layer. */
+     target. A fixed element still anchors the figure's ::after layer. */
   overflow: visible;
   max-width: 21rem;
   padding: 1.1rem 1.15rem 0.9rem;
-  border: 1px solid color-mix(in oklch, var(--ink) 25%, transparent);
+  border: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
   border-radius: calc(var(--radius) + 16px);
-  background-color: var(--gold);
-  background-image: linear-gradient(135deg, oklch(0.84 0.1 88) 0%, var(--gold) 55%, oklch(0.63 0.11 86) 100%);
+  background-color: var(--brand-bright);
+  background-image: linear-gradient(135deg, oklch(0.9 0.09 152) 0%, var(--brand-bright) 55%, oklch(0.73 0.14 150) 100%);
   color: var(--ink);
   box-shadow:
-    0 2px 4px color-mix(in oklch, var(--ink) 18%, transparent),
-    0 22px 48px -20px color-mix(in oklch, var(--ink) 70%, transparent);
+    0 2px 4px color-mix(in oklch, var(--ink) 16%, transparent),
+    0 22px 48px -20px color-mix(in oklch, var(--ink) 65%, transparent);
 }
 
 /*
- * The fighter, standing past the card's edge.
+ * The farmer, standing past the card's edge.
  *
- * The artwork is a wide image with the character off-centre (he occupies
- * x 29-79%, centred at 54%), so this frames him with `cover` anchored on that
- * centre. `contain` would letterbox the whole canvas and shrink him to nothing.
- * Swapping the art for a tighter cut-out needs no change here.
+ * Framed with `cover` so a wide photo crops to the figure instead of being
+ * letterboxed; adjust the position if your cut-out is off-centre.
  */
-.driver-popover.spartacus-popover::after {
+.driver-popover.farmer-popover::after {
   content: "";
   position: absolute;
   right: -12px;
   bottom: 0;
-  width: var(--spartacus-figure);
+  width: var(--farmer-figure);
   height: 142px;
-  background: url("/spatakas-character.png") no-repeat 54% bottom / cover;
+  background: url("/farmer.png") no-repeat center bottom / cover;
   pointer-events: none;
-  filter: drop-shadow(0 10px 20px rgb(0 0 0 / 0.4));
+  filter: drop-shadow(0 10px 20px rgb(0 0 0 / 0.32));
 }
 
-.driver-popover.spartacus-popover .driver-popover-title,
-.driver-popover.spartacus-popover .driver-popover-description {
-  padding-right: calc(var(--spartacus-figure) - 24px);
+.driver-popover.farmer-popover .driver-popover-title,
+.driver-popover.farmer-popover .driver-popover-description {
+  padding-right: calc(var(--farmer-figure) - 24px);
 }
 
-.driver-popover.spartacus-popover .driver-popover-title {
+.driver-popover.farmer-popover .driver-popover-title {
   font-size: 1.25rem;
   line-height: 1.15;
   font-weight: 800;
@@ -287,9 +287,9 @@
   color: var(--ink);
 }
 
-/* His name, set above the headline. */
-.driver-popover.spartacus-popover .driver-popover-title::before {
-  content: "Spartacus";
+/* The guide's name, set above the headline. */
+.driver-popover.farmer-popover .driver-popover-title::before {
+  content: "Kimani";
   display: block;
   margin-bottom: 0.35rem;
   font-size: 0.625rem;
@@ -298,78 +298,78 @@
   color: color-mix(in oklch, var(--ink) 62%, transparent);
 }
 
-.driver-popover.spartacus-popover .spartacus-dialogue {
+.driver-popover.farmer-popover .farmer-dialogue {
   margin-top: 0.55rem;
   font-size: 0.875rem;
   line-height: 1.5;
   color: color-mix(in oklch, var(--ink) 88%, transparent);
 }
 
-.driver-popover.spartacus-popover .spartacus-dots {
+.driver-popover.farmer-popover .farmer-dots {
   display: flex;
   align-items: center;
   gap: 4px;
   margin-top: 0.9rem;
 }
 
-.driver-popover.spartacus-popover .spartacus-dots i {
+.driver-popover.farmer-popover .farmer-dots i {
   width: 5px;
   height: 5px;
   border-radius: 9999px;
-  background-color: color-mix(in oklch, var(--ink) 28%, transparent);
+  background-color: color-mix(in oklch, var(--ink) 25%, transparent);
 }
 
-.driver-popover.spartacus-popover .spartacus-dots i.is-done {
-  background-color: color-mix(in oklch, var(--ink) 55%, transparent);
+.driver-popover.farmer-popover .farmer-dots i.is-done {
+  background-color: color-mix(in oklch, var(--ink) 50%, transparent);
 }
 
-.driver-popover.spartacus-popover .spartacus-dots i.is-current {
+.driver-popover.farmer-popover .farmer-dots i.is-current {
   width: 16px;
-  background-color: var(--primary);
+  background-color: var(--brand-deep);
 }
 
-.driver-popover.spartacus-popover .spartacus-dots span {
+.driver-popover.farmer-popover .farmer-dots span {
   margin-left: 0.4rem;
   font-size: 0.6875rem;
   font-weight: 700;
-  color: color-mix(in oklch, var(--ink) 65%, transparent);
+  color: color-mix(in oklch, var(--ink) 62%, transparent);
 }
 
-.driver-popover.spartacus-popover .driver-popover-footer {
+.driver-popover.farmer-popover .driver-popover-footer {
   margin-top: 0.85rem;
   gap: 0.5rem;
   /* Clear of the figure: he overhangs the card by 12px, so the rest of his
      width sits over the footer and was covering the Next button. */
-  padding-right: calc(var(--spartacus-figure) - 12px);
+  padding-right: calc(var(--farmer-figure) - 12px);
 }
 
-.driver-popover.spartacus-popover .driver-popover-footer button {
+.driver-popover.farmer-popover .driver-popover-footer button {
   border-radius: calc(var(--radius) + 16px);
   padding: 0.45rem 1rem;
   font-size: 0.8125rem;
   font-weight: 700;
   text-shadow: none;
-  border: 1px solid color-mix(in oklch, var(--ink) 20%, transparent);
-  background-color: transparent;
+  border: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
+  background-color: color-mix(in oklch, #ffffff 55%, transparent);
   color: var(--ink);
 }
 
-.driver-popover.spartacus-popover .driver-popover-footer .driver-popover-next-btn {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  color: var(--primary-foreground);
+.driver-popover.farmer-popover .driver-popover-footer .driver-popover-next-btn {
+  background-color: var(--brand-deep);
+  border-color: var(--brand-deep);
+  color: var(--ink-foreground);
 }
 
-.driver-popover.spartacus-popover .driver-popover-close-btn {
+.driver-popover.farmer-popover .driver-popover-close-btn {
   color: color-mix(in oklch, var(--ink) 55%, transparent);
 }
 
-.driver-popover.spartacus-popover .driver-popover-arrow {
-  border-color: var(--gold);
+.driver-popover.farmer-popover .driver-popover-arrow {
+  border-color: var(--brand-bright);
 }
 
 /* Element-less steps sit dead centre, not below the midpoint. */
-.driver-popover.spartacus-centred {
+.driver-popover.farmer-centred {
   position: fixed !important;
   top: 50% !important;
   left: 50% !important;
@@ -383,13 +383,13 @@
   max-width: none !important;
 }
 
-.driver-popover.spartacus-centred .driver-popover-arrow {
+.driver-popover.farmer-centred .driver-popover-arrow {
   display: none !important;
 }
 
 @media (max-width: 640px) {
-  .driver-popover.spartacus-popover {
-    --spartacus-figure: 84px;
+  .driver-popover.farmer-popover {
+    --farmer-figure: 84px;
     max-width: calc(100vw - 2rem);
   }
 }

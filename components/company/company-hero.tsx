@@ -1,9 +1,9 @@
-import { SpatakasMark } from "@/components/shared/brand-logo"
+import { CloudFarmerMark } from "@/components/shared/brand-logo"
 
 // Replaces "5K+ Workers / 200+ Partners / 50+ Cities", which had no source.
 const pillars = [
   { value: "M-Pesa", label: "Wallet" },
-  { value: "3", label: "Team levels" },
+  { value: "3", label: "Co-op levels" },
   { value: "PIN", label: "Secured" },
 ]
 
@@ -12,12 +12,12 @@ export function CompanyHero() {
     <div className="bg-hero relative overflow-hidden px-4 pt-10 pb-8">
       <div className="flex flex-col items-center gap-4 text-center">
         <div className="flex size-20 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10">
-          <SpatakasMark size={52} title="Spatakas" />
+          <CloudFarmerMark size={52} title="Cloud Farmer" />
         </div>
         <div>
-          <p className="text-eyebrow text-brand-bright">The house of</p>
-          <h1 className="mt-1 text-2xl font-semibold uppercase tracking-[0.24em] text-ink-foreground">Spatakas</h1>
-          <p className="mt-2 text-sm text-ink-foreground/70">Products · Team · Wallet</p>
+          <p className="text-eyebrow text-brand-bright">The farm at</p>
+          <h1 className="mt-1 text-2xl font-semibold uppercase tracking-[0.24em] text-ink-foreground">Cloud Farmer</h1>
+          <p className="mt-2 text-sm text-ink-foreground/70">Stock · Co-op · Wallet</p>
         </div>
         <dl className="mt-2 flex gap-6">
           {pillars.map((pillar, index) => (

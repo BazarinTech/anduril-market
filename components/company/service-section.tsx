@@ -5,8 +5,8 @@ import { ShoppingBag01Icon, Wallet01Icon, UserMultiple02Icon, Award01Icon } from
 const services = [
   {
     icon: ShoppingBag01Icon,
-    title: "Products",
-    description: "Clear price, cycle and daily income.",
+    title: "Stock",
+    description: "Clear price, season and daily income.",
   },
   {
     icon: Wallet01Icon,
@@ -15,8 +15,8 @@ const services = [
   },
   {
     icon: UserMultiple02Icon,
-    title: "Team Rewards",
-    description: "Follow your legion across three levels.",
+    title: "Co-op Rewards",
+    description: "Follow your circle across three levels.",
   },
   {
     icon: Award01Icon,

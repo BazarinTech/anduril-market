@@ -2,12 +2,12 @@ import { Megaphone01Icon, UserGroupIcon } from "hugeicons-react"
 
 const events = [
   {
-    title: "Top Gladiator Rewards",
+    title: "Top Farmer Rewards",
     caption: "Rewards",
     icon: Megaphone01Icon,
   },
   {
-    title: "Let's meet at the physical arena!",
+    title: "Farmers' field day — come meet us!",
     caption: "Gather",
     icon: UserGroupIcon,
   },
@@ -18,7 +18,7 @@ export function EventsSection() {
     <section className="w-full">
       <div className="mb-3 flex items-baseline justify-between">
         <h2 className="text-base font-semibold text-foreground">Events</h2>
-        <span className="text-eyebrow text-muted-foreground">Arena</span>
+        <span className="text-eyebrow text-muted-foreground">Season</span>
       </div>
       <div className="scrollbar-hide flex gap-3 overflow-x-auto pb-2">
         {events.map((event) => {

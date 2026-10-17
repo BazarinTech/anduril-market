@@ -2,13 +2,13 @@
 import { useRouter } from "next/navigation"
 import { ArrowLeft01Icon } from "hugeicons-react"
 import { cn } from "@/lib/utils"
-import { SpatakasLogo } from "./brand-logo"
+import { CloudFarmerLogo } from "./brand-logo"
 
 type Props = {
   className?: string
   title: string
   backBtn?: boolean
-  /** Show the Spatakas logo in place of the text title. `title` stays as the accessible name. */
+  /** Show the Cloud Farmer logo in place of the text title. `title` stays as the accessible name. */
   brand?: boolean
 }
 
@@ -35,7 +35,7 @@ function Topbar({ className, title, backBtn, brand }: Props) {
         {brand ? (
           <>
             <span className="sr-only">{title}</span>
-            <SpatakasLogo size="sm" />
+            <CloudFarmerLogo size="sm" />
           </>
         ) : (
           title

@@ -8,7 +8,7 @@
 export function StatsSection() {
   const highlights = [
     { value: "M-Pesa", label: "Top up & withdraw", description: "STK push deposits" },
-    { value: "3", label: "Team levels", description: "Rally your legion" },
+    { value: "3", label: "Co-op levels", description: "Grow your circle" },
     { value: "PIN", label: "Secured cash-outs", description: "Reset by SMS" },
     { value: "KES", label: "Local currency", description: "No conversion" },
   ]

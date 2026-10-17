@@ -10,10 +10,10 @@ import { useMainStore } from "@/lib/stores/use-main-store";
 import { productImageUrl } from "@/lib/media/image-url";
 
 /**
- * A champion's roster card.
+ * A stock card.
  *
- * The portrait sits in an arena arch -- the same arch that runs along the
- * banners -- with the name and figures alongside rather than stacked beneath.
+ * The picture sits in an arched field gate, with the name and figures
+ * alongside rather than stacked beneath.
  * The old layout was a full-width square image above a 2x2 grid, which made
  * one product fill the whole screen; this fits two and reads as a lineup.
  *
@@ -50,12 +50,12 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
   return (
     <article data-tour="product-card" className="relative overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
       <div className="flex gap-4 p-4">
-        {/* Portrait in an arena arch */}
+        {/* Picture in an arched field gate */}
         <div className="relative w-28 shrink-0">
-          <div className="bg-hero relative h-36 overflow-hidden rounded-t-full rounded-b-2xl ring-1 ring-gold/30">
+          <div className="bg-hero relative h-36 overflow-hidden rounded-t-full rounded-b-2xl ring-1 ring-leaf/30">
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <Loading01Icon className="size-6 animate-spin text-gold/60" />
+                <Loading01Icon className="size-6 animate-spin text-leaf/60" />
               </div>
             )}
             <Image
@@ -68,7 +68,7 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
             />
           </div>
           {tier && (
-            <span className="text-eyebrow absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-ink px-2.5 py-1 text-brand-bright ring-1 ring-gold/30">
+            <span className="text-eyebrow absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-ink px-2.5 py-1 text-brand-bright ring-1 ring-leaf/30">
               {tier}
             </span>
           )}

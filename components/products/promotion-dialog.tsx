@@ -93,8 +93,8 @@ export function PromotionDialog({ isOpen, onComplete, productName, orderID }: Pr
           <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
             <Rocket01Icon className="size-5 text-brand-bright" />
           </div>
-          <p className="text-eyebrow text-brand-bright">In the arena</p>
-          <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Claiming your income</AlertDialogTitle>
+          <p className="text-eyebrow text-brand-bright">In the field</p>
+          <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Collecting your harvest</AlertDialogTitle>
           <AlertDialogDescription className="mt-0.5 text-sm text-ink-foreground/70">
             {productName}
           </AlertDialogDescription>

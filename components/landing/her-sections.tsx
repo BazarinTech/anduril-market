@@ -19,22 +19,22 @@ export function HeroSection() {
         <div className="text-center lg:text-left">
           <p className="text-eyebrow inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-accent-foreground">
             <span className="size-1.5 rounded-full bg-primary" />
-            Enter the arena
+            Welcome to Cloud Farmer
           </p>
 
           <h1 className="mt-6 text-4xl font-semibold text-balance text-foreground sm:text-5xl lg:text-6xl">
-            Fortune favours
-            <span className="block text-primary">the bold</span>
+            Grow something
+            <span className="block text-primary">that pays you back</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-md text-lg text-pretty text-muted-foreground lg:mx-0">
-            Products, team and wallet. One account.
+            Stock, co-op and wallet. One account.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <Button asChild size="lg" className="h-12 px-7 text-base font-semibold">
               <Link href="/register">
-                Enter the arena
+                Start farming
                 <ArrowRight02Icon className="ml-1 h-5 w-5" />
               </Link>
             </Button>
@@ -55,9 +55,9 @@ export function HeroSection() {
 
         <BrandBanner
           size="lg"
-          eyebrow="The arena"
-          title="Step in. Claim your ground."
-          subtitle="Built for champions."
+          eyebrow="The farm"
+          title="Good soil. Steady hands."
+          subtitle="Built for farmers."
         />
       </div>
     </section>

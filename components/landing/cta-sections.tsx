@@ -16,7 +16,7 @@ export function CTASection() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Button asChild size="lg" className="h-12 bg-white px-7 text-base font-semibold text-ink hover:bg-white/90">
             <Link href="/register">
-              Enter the arena
+              Start farming
               <ArrowRight02Icon className="ml-1 h-5 w-5" />
             </Link>
           </Button>

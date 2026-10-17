@@ -118,7 +118,7 @@ export default function RechargePage() {
               <SmartPhone01Icon size={20} className="text-brand-bright" />
             </div>
             <div>
-              <p className="text-eyebrow text-brand-bright">Spatakas Wallet</p>
+              <p className="text-eyebrow text-brand-bright">Cloud Farmer Wallet</p>
               <h3 className="font-semibold text-ink-foreground">M-Pesa Deposit</h3>
             </div>
           </div>

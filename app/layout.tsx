@@ -17,16 +17,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Spatakas",
-    template: "%s · Spatakas",
+    default: "Cloud Farmer",
+    template: "%s · Cloud Farmer",
   },
-  description: "Products, team rewards and an M-Pesa wallet in one account.",
-  applicationName: "Spatakas",
+  description: "Farm stock, co-op rewards and an M-Pesa wallet in one account.",
+  applicationName: "Cloud Farmer",
 };
 
 // Tints the mobile browser chrome to match the ink hero surfaces.
 export const viewport: Viewport = {
-  themeColor: "#151110",
+  themeColor: "#0C110E",
 };
 
 export const dynamic = "force-dynamic"

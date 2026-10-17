@@ -11,8 +11,8 @@ import { TOUR_STEPS } from "@/lib/tour/steps"
  * navigation, and is mirrored into storage so a hard reload mid-tour resumes
  * rather than starting over.
  */
-const DONE_KEY = "spatakas_tour_v1"       // localStorage: taken once, per device
-const PROGRESS_KEY = "spatakas_tour_step" // sessionStorage: survives a reload
+const DONE_KEY = "cloudfarmer_tour_v1"       // localStorage: taken once, per device
+const PROGRESS_KEY = "cloudfarmer_tour_step" // sessionStorage: survives a reload
 
 type TourState = {
   isActive: boolean

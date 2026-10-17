@@ -1,4 +1,4 @@
-# Spatakas
+# Cloud Farmer
 
 A mobile-first web app where users buy products that pay out daily returns, top up and cash out via M-Pesa, and earn commission from a three-level referral network.
 

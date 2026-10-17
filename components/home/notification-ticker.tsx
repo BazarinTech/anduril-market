@@ -4,8 +4,8 @@ import { Notification01Icon } from "hugeicons-react"
 import { useEffect, useState } from "react"
 
 const notifications = [
-  "Welcome to the arena — everything is one tap away.",
-  "Keep your PIN private. Spatakas will never ask for it.",
+  "Welcome to the farm — everything is one tap away.",
+  "Keep your PIN private. Cloud Farmer will never ask for it.",
 ]
 
 export function NotificationTicker() {

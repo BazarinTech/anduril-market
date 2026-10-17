@@ -7,7 +7,7 @@ import "driver.js/dist/driver.css"
 import { TOUR_STEPS } from "@/lib/tour/steps"
 import { useTourStore } from "@/lib/stores/use-tour-store"
 
-/** Where the tour drops you once Spartacus is done talking. */
+/** Where the tour drops you once Kimani is done talking. */
 const TOUR_EXIT_ROUTE = "/products"
 
 /** Resolves once the element exists, or null if it never turns up. */
@@ -38,11 +38,11 @@ function progressDots(current: number, total: number) {
   const pips = Array.from({ length: total }, (_, i) =>
     `<i class="${i === current ? "is-current" : i < current ? "is-done" : ""}"></i>`,
   ).join("")
-  return `<div class="spartacus-dots">${pips}<span>${current + 1}</span></div>`
+  return `<div class="farmer-dots">${pips}<span>${current + 1}</span></div>`
 }
 
 /**
- * Spartacus's guided tour.
+ * Kimani's guided tour.
  *
  * driver.js is single-page, so this drives it one step at a time: for each
  * step it navigates to the step's route if needed, waits for the target to
@@ -53,7 +53,7 @@ function progressDots(current: number, total: number) {
  * shows a different screen until a withdrawal account exists, and a tour that
  * stalls on a missing target would trap the user behind an overlay.
  */
-export function SpartacusGuide() {
+export function FarmerGuide() {
   const router = useRouter()
   const pathname = usePathname()
   const isActive = useTourStore((s) => s.isActive)
@@ -103,7 +103,7 @@ export function SpartacusGuide() {
         overlayOpacity: 0.74,
         stagePadding: 6,
         stageRadius: 18,
-        popoverClass: "spartacus-popover",
+        popoverClass: "farmer-popover",
         smoothScroll: true,
         onDestroyStarted: () => finish("skipped"),
       })
@@ -128,16 +128,16 @@ export function SpartacusGuide() {
           // centre of the screen and still lays the card out *below* it, which
           // put these cards off the bottom edge. They get a class that pins
           // them to the middle instead; anchored steps keep normal placement.
-          popoverClass: step.element ? "spartacus-popover" : "spartacus-popover spartacus-centred",
+          popoverClass: step.element ? "farmer-popover" : "farmer-popover farmer-centred",
           ...(element ? { side: step.side ?? ("bottom" as const), align: "center" as const } : {}),
           title: step.title,
           description:
-            `<p class="spartacus-dialogue">${step.dialogue}</p>` +
+            `<p class="farmer-dialogue">${step.dialogue}</p>` +
             progressDots(stepIndex, TOUR_STEPS.length),
           showButtons: stepIndex === 0 ? ["next", "close"] : ["previous", "next", "close"],
-          nextBtnText: isLast ? "Enter the arena" : "Next",
+          nextBtnText: isLast ? "Start farming" : "Next",
           prevBtnText: "Back",
-          doneBtnText: "Enter the arena",
+          doneBtnText: "Start farming",
           onNextClick: () => {
             if (!isLast) return next()
             // Last word: close the tour and set them down in the armoury.

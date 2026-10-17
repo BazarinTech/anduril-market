@@ -82,7 +82,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Join the ranks" subtitle="Your place in the arena, in a minute" />
+      <AuthHeader title="Join the farm" subtitle="Your own plot, in a minute" />
 
       {/* Form */}
       <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">

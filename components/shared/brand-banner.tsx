@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
-import { SpatakasLogo } from "./brand-logo"
+import { CloudFarmerLogo } from "./brand-logo"
+import { FarmScene } from "./farm-scene"
 
 type Props = {
   eyebrow?: string
@@ -13,11 +14,10 @@ type Props = {
 }
 
 /**
- * The arena banner: torch-lit stone, a colonnade of arches, a gilded edge.
+ * The field banner: dusk over the pasture, closed with a green furrow.
  *
- * The arcade is drawn, not photographed -- it stays crisp at any size, weighs
- * nothing, and recolours with the theme. Arches are generated rather than
- * hand-written so the run always fills the width evenly.
+ * The scene is drawn, not photographed -- it stays crisp at any size, weighs
+ * nothing, and recolours with the theme.
  */
 export function BrandBanner({
   eyebrow,
@@ -29,7 +29,6 @@ export function BrandBanner({
   children,
 }: Props) {
   const large = size === "lg"
-  const arches = Array.from({ length: 9 }, (_, i) => i)
 
   return (
     <div
@@ -39,31 +38,11 @@ export function BrandBanner({
         className,
       )}
     >
-      {/* Colonnade: two receding tiers of arches along the back wall. */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-full w-full"
-        viewBox="0 0 360 200"
-        preserveAspectRatio="xMidYMax slice"
-      >
-        <g stroke="currentColor" fill="none" className="text-gold">
-          <g opacity="0.16">
-            {arches.map((i) => (
-              <path key={i} d={`M${8 + i * 40} 200v-46a16 16 0 0 1 32 0v46`} strokeWidth="1.5" />
-            ))}
-            <path d="M0 154h360" strokeWidth="1.5" />
-          </g>
-          <g opacity="0.09">
-            {arches.map((i) => (
-              <path key={i} d={`M${28 + i * 40} 150v-30a11 11 0 0 1 22 0v30`} strokeWidth="1.2" />
-            ))}
-            <path d="M0 120h360" strokeWidth="1.2" />
-          </g>
-        </g>
-      </svg>
+      {/* The farm behind the words. */}
+      <FarmScene className="absolute inset-0 -z-10" />
 
       <div className={cn("relative flex h-full flex-col", large ? "gap-6" : "gap-4")}>
-        {showLogo && <SpatakasLogo size={large ? "md" : "sm"} inverse />}
+        {showLogo && <CloudFarmerLogo size={large ? "md" : "sm"} inverse />}
 
         <div className={cn("max-w-md", large ? "mt-auto pt-10" : "mt-auto pt-4")}>
           {eyebrow && <p className="text-eyebrow text-brand-bright">{eyebrow}</p>}

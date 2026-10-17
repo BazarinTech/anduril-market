@@ -1,8 +1,8 @@
 /**
- * Spartacus's script.
+ * Kimani's script.
  *
  * Short beats, one idea each: a tutorial that arrives in small pieces is
- * easier to absorb than one that explains the whole arena at once.
+ * easier to absorb than one that explains the whole farm at once.
  *
  * Each step names the route it belongs to and, optionally, the element it
  * points at. A step whose element never appears is skipped rather than
@@ -17,7 +17,7 @@ export type TourStep = {
   route: string
   /** CSS selector for the element to spotlight. Omitted = centred message. */
   element?: string
-  /** Shown above the dialogue, in Spartacus's voice. */
+  /** Shown above the dialogue, in Kimani's voice. */
   title: string
   dialogue: string
   side?: "top" | "bottom" | "left" | "right"
@@ -27,111 +27,109 @@ export const TOUR_STEPS: TourStep[] = [
   {
     id: "intro",
     route: "/home",
-    title: "New blood",
+    title: "Karibu",
     dialogue:
-      "Hold there. I am Spartacus — I fought on this sand before I trained others on it. You will not learn it all at once, so I will give it to you a piece at a time. Walk with me.",
+      "Eh, a new face at the gate. I am Kimani — I have worked this land a long time. No need to learn it all today. Come, I will walk you round the farm.",
   },
   {
     id: "intro-2",
     route: "/home",
-    title: "Three things win here",
+    title: "A farm needs three things",
     dialogue:
-      "A product that earns. A legion at your back. A purse you can empty when you choose. One at a time — starting with the ground beneath you.",
+      "Something growing. Hands to help you. And a place to keep what you earn. We will take them one at a time.",
   },
   {
     id: "home-banner",
     route: "/home",
     element: '[data-tour="home-banner"]',
-    title: "Your arena floor",
-    dialogue: "Your banner. Your name, your rank, what you have taken today.",
+    title: "Your farm",
+    dialogue: "Your herd, and what the day has brought in. First thing you look at each morning.",
     side: "bottom",
   },
   {
     id: "quick-actions",
     route: "/home",
     element: '[data-tour="quick-actions"]',
-    title: "Every gate",
-    dialogue: "Every gate you need, in one row. You will wear these out.",
+    title: "Your tools",
+    dialogue: "Every gate in one row. You will wear these smooth.",
     side: "bottom",
   },
   {
     id: "deposit",
     route: "/recharge",
     element: '[data-tour="deposit"]',
-    title: "Fund your purse",
+    title: "Seed money",
     dialogue:
-      "Your purse first. Pick an amount, confirm the M-Pesa prompt on your handset. Nothing moves until you enter your own PIN.",
+      "Nothing grows from empty soil. Choose an amount, confirm the M-Pesa prompt on your phone. Nothing moves until you enter your own PIN.",
     side: "top",
   },
   {
     id: "products",
     route: "/products",
     element: '[data-tour="product-card"]',
-    title: "Choose your weapon",
+    title: "Choose your stock",
     dialogue:
-      "Stake, cycle, daily pay — every product shows all three before you commit. Read them, and take one up when you are ready. No rush.",
+      "Each one shows its price, its season and what it brings in daily — all three before you decide. Read them, and take one when you are ready. No hurry.",
     side: "bottom",
   },
   {
     id: "claim",
     route: "/work",
-    // Anchored to the tabs, not to a Claim button: a new fighter owns nothing
-    // yet, so that button does not exist and the whole step was being skipped
-    // for exactly the people this tour is for.
     element: '[data-tour="income"]',
-    title: "Where you claim",
+    title: "Harvest",
     dialogue:
-      "This is where your products pay you. Once you own one, its daily earnings wait here under Valid — come back each day and claim them. Finished runs move to Expired.",
+      "This is where your stock pays you. What is still growing sits under Valid — come each day and collect. Finished seasons move to Expired.",
     side: "bottom",
   },
   {
     id: "withdraw",
     route: "/cashout",
     element: '[data-tour="withdraw"]',
-    title: "Carry it home",
+    title: "Take it to market",
     dialogue:
-      "Your way out. Set your withdrawal account once, then send your balance to that M-Pesa number whenever you please. Your PIN guards this gate — give it to no one. Not even me.",
+      "Set your withdrawal account once, then send your earnings to that M-Pesa number whenever you wish. Your PIN guards this gate — give it to nobody. Not even me.",
     side: "bottom",
   },
   {
     id: "invite",
     route: "/team",
     element: '[data-tour="invite"]',
-    title: "Raise your legion",
-    dialogue: "Your code sits above. Copy it, share it — everyone who enters through it stands in your ranks.",
+    title: "Your co-op",
+    dialogue:
+      "Your code sits above. Share it — everyone who joins through it farms alongside you.",
     side: "bottom",
   },
   {
     id: "levels",
     route: "/team",
     element: '[data-tour="levels"]',
-    title: "Three ranks deep",
+    title: "Three rows deep",
     dialogue:
-      "Your legion runs three deep: those you bring, those they bring, and those after. Counted here, level by level.",
+      "Those you bring, those they bring, and those after. Counted here, row by row.",
     side: "top",
   },
   {
     id: "profile",
     route: "/mine",
     element: '[data-tour="profile-menu"]',
-    title: "Your quarters",
+    title: "The homestead",
     dialogue:
-      "Your quarters: withdrawal account, records, PIN. Set the account before your first cash-out.",
+      "Withdrawal account, records, PIN. Set the account before your first cash-out.",
     side: "bottom",
   },
   {
     id: "whatsapp",
     route: "/mine",
     element: '[data-tour="whatsapp"]',
-    title: "Train with others",
-    dialogue: "The rest of the legion gathers here. Word of every trial reaches them first.",
+    title: "The other farmers",
+    dialogue: "We gather here. Word of every new season reaches this group first.",
     side: "top",
   },
   {
     id: "outro",
     route: "/mine",
-    title: "The sand is yours",
+    title: "The land is yours",
     dialogue:
-      "That is the arena, champion. Choose your first weapon — I will set you down in the armoury. Call me back any time from Replay guide, in your quarters.",
+      "That is the whole farm. Go choose your first stock — I will walk you to the market. Call me back any time from Replay guide, in your homestead.",
   },
 ]

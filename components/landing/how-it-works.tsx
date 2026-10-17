@@ -17,7 +17,7 @@ export function HowItWorksSection() {
     {
       icon: ShoppingBag01Icon,
       step: "03",
-      title: "Choose a product",
+      title: "Choose your stock",
       description: "Compare, then take your pick.",
     },
     {
@@ -33,7 +33,7 @@ export function HowItWorksSection() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <p className="text-eyebrow text-primary">How it works</p>
-          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps in</h2>
+          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps to harvest</h2>
         </div>
 
         <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
