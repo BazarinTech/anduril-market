@@ -91,7 +91,7 @@ function Page() {
       </div>
 
       {/* Team Tabs */}
-      <div className="mx-4 mt-4 mb-20">
+      <div className="mx-4 mt-4">
         <Tabs defaultValue="teamB" className="w-full">
           <TabsList data-tour="levels" className="grid w-full grid-cols-3">
             <TabsTrigger

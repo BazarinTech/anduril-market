@@ -5,25 +5,24 @@ import NoList from '@/components/shared/no-list'
 import Topbar from '@/components/shared/topbar'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useMainStore } from '@/lib/stores/use-main-store'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function ProductCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
-      <div className="flex gap-4 p-4">
-        <Skeleton className="h-36 w-28 shrink-0 rounded-t-full rounded-b-2xl" />
-        <div className="flex-1 space-y-3 py-1">
-          <div className="flex justify-between"><Skeleton className="h-5 w-28" /><Skeleton className="h-5 w-12 rounded-full" /></div>
-          <Skeleton className="h-px w-full" />
-          <Skeleton className="h-3 w-10" />
-          <Skeleton className="h-7 w-28" />
-          <div className="flex justify-between"><Skeleton className="h-4 w-12" /><Skeleton className="h-4 w-20" /></div>
-          <div className="flex justify-between"><Skeleton className="h-4 w-10" /><Skeleton className="h-4 w-24" /></div>
+    <div className="overflow-hidden rounded-3xl bg-card shadow-premium ring-1 ring-border/70">
+      <Skeleton className="h-40 w-full rounded-none" />
+      <div className="flex items-end justify-between gap-4 px-5 pt-4">
+        <div className="space-y-2">
+          <Skeleton className="h-3 w-24" />
+          <Skeleton className="h-8 w-28" />
+        </div>
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-4 w-28" />
         </div>
       </div>
-      <div className="flex items-center gap-3 border-t border-border bg-muted/40 px-4 py-3">
-        <Skeleton className="h-4 w-16" />
-        <Skeleton className="ml-auto h-11 flex-1 rounded-4xl" />
+      <div className="px-5 pt-4 pb-5">
+        <Skeleton className="h-12 w-full rounded-4xl" />
       </div>
     </div>
   )
@@ -32,42 +31,47 @@ function ProductCardSkeleton() {
 function Page() {
   const mainDetails = useMainStore((state) => state.mainDetails)
   const isMainFetching = useMainStore((state) => state.isMainFetching)
-  const loginState = useMainStore((state) => state.loginState)
-    // useEffect(() => {
-    //   loginState()
-    // }, [loginState])
+
   return (
     <div>
-      <Topbar title="Products" />
+      <Topbar title="The Farm" />
 
-      <main className="max-w-md mx-auto px-4 py-4 space-y-4 mb-20">
-        {isMainFetching && !mainDetails && (
-          <>
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-            <ProductCardSkeleton />
-          </>
-        )}
-        {!isMainFetching && mainDetails?.products.map((product) => (
-          <ProductCard
-            key={product.name}
-            name={product.name}
-            image={product.image}
-            image_url={product.image_url}
-            max={product.max}
-            duration={product.duration}
-            returns={product.returns}
-            order_limit={product.order_limit}
-            ID={product.ID}
-            tier={product.tier}
-            description={product.description}
-            status={product.status}
+      <main className="mx-auto max-w-md px-4 pt-5">
+        <header className="mb-5 px-1">
+          <p className="text-eyebrow text-muted-foreground">Open ground</p>
+          <h2 className="mt-1 text-xl font-semibold text-foreground">Take a plot</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Every plot pays once a day, for its whole cycle.</p>
+        </header>
 
-          />
-        ))}
-        {mainDetails?.products.length === 0 && (
-          <NoList title='No products found' description='Please reach our customer support for help'/>
-        )}
+        <div className="space-y-5">
+          {isMainFetching && !mainDetails && (
+            <>
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+              <ProductCardSkeleton />
+            </>
+          )}
+          {!isMainFetching && mainDetails?.products.map((product, i) => (
+            <ProductCard
+              key={product.name}
+              index={i}
+              name={product.name}
+              image={product.image}
+              image_url={product.image_url}
+              max={product.max}
+              duration={product.duration}
+              returns={product.returns}
+              order_limit={product.order_limit}
+              ID={product.ID}
+              tier={product.tier}
+              description={product.description}
+              status={product.status}
+            />
+          ))}
+          {mainDetails?.products.length === 0 && (
+            <NoList title='No plots open yet' description='Please reach our customer support for help'/>
+          )}
+        </div>
       </main>
 
       <BottomNav />

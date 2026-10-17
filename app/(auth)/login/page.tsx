@@ -13,7 +13,7 @@ import { SmartPhone01Icon, LockPasswordIcon } from "hugeicons-react"
 import { auth } from "@/lib/backend/auth"
 import { useMainStore } from "@/lib/stores/use-main-store"
 import { toast } from "sonner"
-import { AuthHeader } from "@/components/auth/auth-header"
+import { AuthShell } from "@/components/auth/auth-shell"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -59,68 +59,66 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Welcome back" subtitle="Back to the farm" />
+    <AuthShell
+      title="Welcome back"
+      subtitle="Your plots kept working while you were away."
+      home="/register"
+      footer={
+        <>
+          Don&apos;t have an account?{" "}
+          <Link href="/register" className="font-semibold text-primary hover:underline">
+            Register
+          </Link>
+        </>
+      }
+    >
+      <form onSubmit={handleLogin} className="space-y-5">
+        {error && (
+          <div className="rounded-xl bg-destructive/10 p-3 text-center text-sm text-destructive">{error}</div>
+        )}
 
-      {/* Form */}
-      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
-        <form onSubmit={handleLogin} className="space-y-6">
-          {error && (
-            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-foreground font-medium">
-              Phone Number
-            </Label>
-            <div className="relative">
-              <SmartPhone01Icon size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="0712345678"
-                className="pl-10 h-12 text-sm"
-              />
-            </div>
+        <div className="space-y-2">
+          <Label htmlFor="phone" className="text-foreground font-medium">
+            Phone Number
+          </Label>
+          <div className="relative">
+            <SmartPhone01Icon size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="0712345678"
+              className="h-12 rounded-xl pl-11 text-sm"
+            />
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-foreground font-medium">
-              Password
-            </Label>
-            <div className="relative">
-              <LockPasswordIcon
-                size={20}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground z-10"
-              />
-              <div className="[&_input]:pl-10">
-                <PasswordInput value={password} onChange={setPassword} placeholder="Enter your password" />
-              </div>
-            </div>
-          </div>
-
-          <div className="text-right">
-            <Link href="/forgot-password" className="text-sm font-medium text-primary hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
-
-          <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
-            {isLoading ? "Signing in..." : "Sign in"}
-          </Button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-primary font-semibold hover:underline">
-              Register
-            </Link>
-          </p>
         </div>
-      </div>
-    </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-foreground font-medium">
+            Password
+          </Label>
+          <div className="relative">
+            <LockPasswordIcon
+              size={18}
+              className="absolute left-3.5 top-1/2 z-10 -translate-y-1/2 text-muted-foreground"
+            />
+            <div className="[&_input]:h-12 [&_input]:rounded-xl [&_input]:pl-11">
+              <PasswordInput value={password} onChange={setPassword} placeholder="Enter your password" />
+            </div>
+          </div>
+        </div>
+
+        <div className="text-right">
+          <Link href="/forgot-password" className="text-sm font-medium text-primary hover:underline">
+            Forgot Password?
+          </Link>
+        </div>
+
+        <Button type="submit" className="h-12 w-full rounded-4xl text-base font-semibold" disabled={isLoading}>
+          {isLoading ? "Signing in..." : "Sign in"}
+        </Button>
+      </form>
+    </AuthShell>
   )
 }

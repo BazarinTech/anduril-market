@@ -43,7 +43,7 @@ export const TOUR_STEPS: TourStep[] = [
     route: "/home",
     element: '[data-tour="home-banner"]',
     title: "Your farm",
-    dialogue: "Your herd, and what the day has brought in. First thing you look at each morning.",
+    dialogue: "Your herd, waiting. This is the view from the gate — the money itself is kept in the purse.",
     side: "bottom",
   },
   {

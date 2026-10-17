@@ -19,19 +19,14 @@ import {
   CustomerServiceIcon,
   Download02Icon,
   ArrowRight01Icon,
-  Logout01Icon,
   WhatsappIcon,
   TelegramIcon,
-  UserGroupIcon,
-  Coins01Icon,
   Compass01Icon,
 } from "hugeicons-react"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-// Grouped rather than one ten-row list: the money settings and the community
-// links were interleaved, so neither was scannable.
 type MenuItem = {
   icon: typeof Wallet01Icon
   label: string
@@ -65,6 +60,13 @@ const menuGroups: { label: string; tour?: string; items: MenuItem[] }[] = [
   },
 ]
 
+/**
+ * The account page, stripped back.
+ *
+ * One field surface at the top carrying who you are and what you hold, then
+ * plain lists. The cards, icon tiles and boxed stat grid that used to sit
+ * between them were five separate surfaces saying what two now say.
+ */
 function Page() {
   const router = useRouter()
   const [islogoutAlertOpen, setIslogoutAlertOpen] = useState(false)
@@ -84,114 +86,92 @@ function Page() {
   // Formatted before the JSX: useCurrency is a plain function, but calling it
   // inside a ternary trips rules-of-hooks on its "use" prefix.
   const balance = useCurrency(wallet?.balance ?? 0)
-
-  const stats = [
-    { icon: Coins01Icon, label: "Today", value: useCurrency(wallet?.today_income ?? 0) },
-    { icon: UserGroupIcon, label: "Active team", value: String(mainDetails?.referral?.active_downlines ?? 0) },
-    { icon: Wallet01Icon, label: "Invite income", value: useCurrency(wallet?.invite_income ?? 0) },
-  ]
+  const today = useCurrency(wallet?.today_income ?? 0)
+  const invite = useCurrency(wallet?.invite_income ?? 0)
+  const activeTeam = String(mainDetails?.referral?.active_downlines ?? 0)
 
   return (
     <div>
       <Topbar title="My Account" />
 
-      {/* Fighter card: identity on one line, balance and actions in the same
-          surface. Previously the avatar block, the balance card and the two
-          action buttons were three stacked sections saying one thing. */}
-      <header className="bg-hero relative overflow-hidden px-4 pt-6 pb-16">
-        <div className="mx-auto flex max-w-md items-center gap-4">
-          <div className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-leaf/25">
-            <CloudFarmerMark size={40} title="Cloud Farmer" />
+      <header className="bg-hero relative overflow-hidden px-5 pt-6 pb-8">
+        <div className="mx-auto max-w-md">
+          <div className="flex items-center gap-4">
+            <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-leaf/25">
+              <CloudFarmerMark size={34} title="Cloud Farmer" />
+            </div>
+            <div className="min-w-0 flex-1">
+              {loading ? (
+                <>
+                  <Skeleton className="mb-2 h-5 w-24 rounded-full bg-white/15" />
+                  <Skeleton className="h-4 w-32 bg-white/15" />
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Farmer"}</p>
+                    <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-leaf/25">
+                      {wallet?.level}
+                    </span>
+                  </div>
+                  <p className="mt-0.5 truncate text-sm text-ink-foreground/55 tabular-nums">
+                    ID {mainDetails?.user?.ID} · {mainDetails?.user?.phone}
+                  </p>
+                </>
+              )}
+            </div>
           </div>
-          <div className="min-w-0 flex-1">
+
+          <div className="mt-8">
+            <p className="text-eyebrow text-brand-bright">Available balance</p>
             {loading ? (
-              <>
-                <Skeleton className="mb-2 h-5 w-24 rounded-full bg-white/15" />
-                <Skeleton className="h-4 w-32 bg-white/15" />
-              </>
+              <Skeleton className="mt-2 h-10 w-48 bg-white/15" />
             ) : (
-              <>
-                <div className="flex items-center gap-2">
-                  <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Farmer"}</p>
-                  <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-leaf/25">
-                    {wallet?.level}
-                  </span>
-                </div>
-                <p className="mt-0.5 truncate text-sm text-ink-foreground/60 tabular-nums">
-                  ID {mainDetails?.user?.ID} · {mainDetails?.user?.phone}
-                </p>
-              </>
+              <p className="mt-1 text-4xl font-semibold text-ink-foreground tabular-nums">{balance}</p>
+            )}
+
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <button
+                onClick={() => router.push('/recharge')}
+                className="flex h-11 items-center justify-center gap-2 rounded-4xl text-sm font-semibold text-ink-foreground ring-1 ring-white/20 transition-colors hover:bg-white/10"
+              >
+                <Wallet01Icon size={18} />
+                Recharge
+              </button>
+              <button
+                onClick={() => router.push('/cashout')}
+                className="flex h-11 items-center justify-center gap-2 rounded-4xl bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-brand-deep"
+              >
+                <Download01Icon size={18} />
+                Withdraw
+              </button>
+            </div>
+
+            {/* The day's figures as one line, not a grid of boxes. */}
+            {!loading && (
+              <p className="mt-5 truncate text-xs text-ink-foreground/55 tabular-nums">
+                Today {today} · Active team {activeTeam} · Invite income {invite}
+              </p>
             )}
           </div>
         </div>
         <div className="brand-hairline absolute inset-x-0 bottom-0" />
       </header>
 
-      <div className="relative mx-auto max-w-md px-4 pb-24 -mt-10">
-        {/* Purse: balance and the two money actions together */}
-        <section className="rounded-2xl bg-card p-5 shadow-premium ring-1 ring-border/70">
-          <p className="text-eyebrow text-muted-foreground">Available balance</p>
-          {loading ? (
-            <Skeleton className="mt-1 h-9 w-44" />
-          ) : (
-            <p className="mt-1 text-3xl font-semibold text-foreground tabular-nums">{balance}</p>
-          )}
-
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            <button
-              onClick={() => router.push('/recharge')}
-              className="flex h-11 items-center justify-center gap-2 rounded-4xl border border-primary/40 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              <Wallet01Icon size={18} />
-              Recharge
-            </button>
-            <button
-              onClick={() => router.push('/cashout')}
-              className="flex h-11 items-center justify-center gap-2 rounded-4xl bg-primary text-sm font-semibold text-primary-foreground transition-colors hover:bg-brand-deep"
-            >
-              <Download01Icon size={18} />
-              Withdraw
-            </button>
-          </div>
-
-          <div className="brand-hairline my-4" />
-
-          <dl className="grid grid-cols-3 gap-2">
-            {stats.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="text-center">
-                <Icon size={16} className="mx-auto mb-1 text-leaf" />
-                {loading ? (
-                  <Skeleton className="mx-auto h-4 w-14" />
-                ) : (
-                  <dd className="truncate text-sm font-semibold text-foreground tabular-nums">{value}</dd>
-                )}
-                <dt className="text-[11px] text-muted-foreground">{label}</dt>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        {/* Grouped links */}
+      <div className="mx-auto max-w-md px-5 pt-7">
         {menuGroups.map((group) => (
-          <section key={group.label} className="mt-5">
-            <h2 className="text-eyebrow mb-2 px-1 text-muted-foreground">{group.label}</h2>
-            <div
-              data-tour={group.tour}
-              className="divide-y divide-border overflow-hidden rounded-2xl bg-card ring-1 ring-border/70"
-            >
+          <section key={group.label} className="mb-7">
+            <h2 className="text-eyebrow mb-1 text-muted-foreground">{group.label}</h2>
+            <div data-tour={group.tour} className="divide-y divide-border/70">
               {group.items.map((item) => {
                 const row = (
                   <>
-                    <span className="flex items-center gap-3">
-                      <span className="flex size-9 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-                        <item.icon size={18} />
-                      </span>
-                      <span className="text-sm font-medium text-foreground">{item.label}</span>
-                    </span>
-                    <ArrowRight01Icon size={18} className="text-muted-foreground" />
+                    <item.icon size={19} className="shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+                    <span className="flex-1 text-sm font-medium text-foreground">{item.label}</span>
+                    <ArrowRight01Icon size={17} className="shrink-0 text-muted-foreground/60" />
                   </>
                 )
-                const rowClass = "flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-muted/60"
+                const rowClass = "group flex w-full items-center gap-3.5 py-3.5 text-left"
 
                 if (item.action === "tour") {
                   return (
@@ -214,9 +194,8 @@ function Page() {
         <button
           type="button"
           onClick={() => setIslogoutAlertOpen(true)}
-          className="mt-5 flex w-full items-center justify-center gap-2 rounded-4xl border border-destructive/30 py-3 text-sm font-semibold text-destructive transition-colors hover:bg-destructive/10"
+          className="w-full py-3 text-center text-sm font-semibold text-destructive transition-opacity hover:opacity-70"
         >
-          <Logout01Icon size={18} />
           Log out
         </button>
       </div>

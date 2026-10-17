@@ -14,7 +14,7 @@ import { toast } from "sonner"
 import { auth } from "@/lib/backend/auth"
 import { useInviteCode } from "@/lib/hooks/use-invite-code"
 import { useMainStore } from "@/lib/stores/use-main-store"
-import { AuthHeader } from "@/components/auth/auth-header"
+import { AuthShell } from "@/components/auth/auth-shell"
 
 export default function RegisterPage() {
   const router = useRouter()
@@ -81,78 +81,89 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <AuthHeader title="Join the farm" subtitle="Your own plot, in a minute" />
+    <AuthShell
+      title="Join the farm"
+      subtitle="Your own plot, in about a minute."
+      home="/login"
+      footer={
+        <>
+          Already have an account?{" "}
+          <Link href="/login" className="font-semibold text-primary hover:underline">
+            Sign in
+          </Link>
+        </>
+      }
+    >
+      <form onSubmit={handleRegister} className="space-y-4">
+        {error && (
+          <div className="rounded-xl bg-destructive/10 p-3 text-center text-sm text-destructive">{error}</div>
+        )}
 
-      {/* Form */}
-      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
-        <form onSubmit={handleRegister} className="space-y-5">
-          {error && (
-            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center">{error}</div>
-          )}
-
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-foreground font-medium">
-              Phone Number
-            </Label>
-            <div className="relative">
-              <SmartPhone01Icon size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="0712345678"
-                className="pl-10 h-12 text-sm"
-              />
-            </div>
+        <div className="space-y-2">
+          <Label htmlFor="phone" className="text-foreground font-medium">
+            Phone Number
+          </Label>
+          <div className="relative">
+            <SmartPhone01Icon size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="phone"
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="0712345678"
+              className="h-12 rounded-xl pl-11 text-sm"
+            />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="fullName" className="text-foreground font-medium">
-              Full Name
-            </Label>
-            <div className="relative">
-              <UserIcon size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                id="fullName"
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Hewllet plaka"
-                className="pl-10 h-12 text-sm"
-              />
-            </div>
+        <div className="space-y-2">
+          <Label htmlFor="fullName" className="text-foreground font-medium">
+            Full Name
+          </Label>
+          <div className="relative">
+            <UserIcon size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="fullName"
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder="Your full name"
+              className="h-12 rounded-xl pl-11 text-sm"
+            />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-foreground font-medium">
-              Email
-            </Label>
-            <div className="relative">
-              <Mail01Icon size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="linHewlletn@farmer.com"
-                className="pl-10 h-12 text-sm"
-              />
-            </div>
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-foreground font-medium">
+            Email
+          </Label>
+          <div className="relative">
+            <Mail01Icon size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="h-12 rounded-xl pl-11 text-sm"
+            />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-foreground font-medium">
-              Password
-            </Label>
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-foreground font-medium">
+            Password
+          </Label>
+          <div className="[&_input]:h-12 [&_input]:rounded-xl">
             <PasswordInput id="password" value={password} onChange={setPassword} placeholder="Create a password" />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="confirmPassword" className="text-foreground font-medium">
-              Confirm Password
-            </Label>
+        <div className="space-y-2">
+          <Label htmlFor="confirmPassword" className="text-foreground font-medium">
+            Confirm Password
+          </Label>
+          <div className="[&_input]:h-12 [&_input]:rounded-xl">
             <PasswordInput
               id="confirmPassword"
               name="confirmPassword"
@@ -161,21 +172,12 @@ export default function RegisterPage() {
               placeholder="Confirm your password"
             />
           </div>
-
-          <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
-            {isLoading ? "Creating Account..." : "Create Account"}
-          </Button>
-        </form>
-
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
-            <Link href="/login" className="text-primary font-semibold hover:underline">
-              Sign in
-            </Link>
-          </p>
         </div>
-      </div>
-    </div>
+
+        <Button type="submit" className="mt-2 h-12 w-full rounded-4xl text-base font-semibold" disabled={isLoading}>
+          {isLoading ? "Creating Account..." : "Create Account"}
+        </Button>
+      </form>
+    </AuthShell>
   )
 }

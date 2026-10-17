@@ -8,11 +8,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { PasswordInput } from "@/components/auth/password-input"
-import { SmartPhone01Icon, Mail01Icon, LockPasswordIcon, CheckmarkCircle01Icon } from "hugeicons-react"
+import { SmartPhone01Icon, CheckmarkCircle01Icon } from "hugeicons-react"
 import { VerificationCodeInput } from "@/components/auth/verification-input"
 import { requestVerificationCode, resetPassword, verifyCode } from "@/lib/backend/actions"
 import { toast } from "sonner"
-import { CloudFarmerLogo } from "@/components/shared/brand-logo"
+import { AuthShell } from "@/components/auth/auth-shell"
 
 type Step = "phone" | "verify" | "reset" | "success"
 
@@ -136,114 +136,88 @@ export default function ForgotPasswordPage() {
     }
   }
 
+  // The shell carries the heading, so each step only states where it is.
+  const copy = {
+    phone: { title: "Reset your password", subtitle: "We will send a six-digit code to your number." },
+    verify: { title: "Check your phone", subtitle: `A six-digit code is on its way to ${phone}.` },
+    reset: { title: "Choose a new password", subtitle: "Six characters or more." },
+    success: { title: "You are back in", subtitle: "Sign in with your new password." },
+  }[step]
+
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="flex h-16 items-center justify-center border-b border-border/80 bg-background/85 backdrop-blur-lg">
-        <Link href="/login" aria-label="Cloud Farmer — back to sign in">
-          <CloudFarmerLogo size="sm" />
-        </Link>
-      </header>
+    <AuthShell
+      title={copy.title}
+      subtitle={copy.subtitle}
+      footer={
+        step === "success" ? null : (
+          <Link href="/login" className="font-semibold text-primary hover:underline">
+            Back to sign in
+          </Link>
+        )
+      }
+    >
+      {error && (
+        <div className="mb-5 rounded-xl bg-destructive/10 p-3 text-center text-sm text-destructive">{error}</div>
+      )}
 
-      <div className="mx-auto w-full max-w-md flex-1 px-6 py-8">
-        {error && (
-          <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-xl text-center mb-6">{error}</div>
-        )}
-
-        {/* Step 1: Phone */}
-        {step === "phone" && (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <SmartPhone01Icon size={40} className="text-primary" />
-              </div>
-              <h2 className="text-xl font-semibold">Reset Your Password</h2>
-              <p className="text-muted-foreground text-sm mt-2">
-                Enter your registered phone number to receive a verification code
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <div className="relative">
-                <SmartPhone01Icon
-                  size={20}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                />
-                <Input
-                  id="phone"
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="0712345678"
-                  className="pl-10 h-12"
-                />
-              </div>
-            </div>
-
-            <Button onClick={handleRequestCode} className="w-full h-12 text-base font-semibold" disabled={isLoading}>
-              {isLoading ? "Sending..." : "Send Verification Code"}
-            </Button>
-
-            <div className="text-center">
-              <Link href="/login" className="text-primary text-sm font-medium hover:underline">
-                Back to Login
-              </Link>
+      {step === "phone" && (
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="phone" className="text-foreground font-medium">Phone Number</Label>
+            <div className="relative">
+              <SmartPhone01Icon size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="phone"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="0712345678"
+                className="h-12 rounded-xl pl-11 text-sm"
+              />
             </div>
           </div>
-        )}
 
-        {/* Step 2: Verify Code */}
-        {step === "verify" && (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <Mail01Icon size={40} className="text-primary" />
-              </div>
-              <h2 className="text-xl font-semibold">Enter Verification Code</h2>
-              <p className="text-muted-foreground text-sm mt-2">We sent a 6-digit code to {phone}</p>
-            </div>
+          <Button onClick={handleRequestCode} className="h-12 w-full rounded-4xl text-base font-semibold" disabled={isLoading}>
+            {isLoading ? "Sending..." : "Send Verification Code"}
+          </Button>
+        </div>
+      )}
 
-            <VerificationCodeInput value={verificationCode} onChange={setVerificationCode} />
+      {step === "verify" && (
+        <div className="space-y-5">
+          <VerificationCodeInput value={verificationCode} onChange={setVerificationCode} />
 
-            <Button
-              onClick={handleVerifyCode}
-              className="w-full h-12 text-base font-semibold"
-              disabled={isLoading || verificationCode.length !== 6}
-            >
-              {isLoading ? "Verifying..." : "Verify Code"}
-            </Button>
+          <Button
+            onClick={handleVerifyCode}
+            className="h-12 w-full rounded-4xl text-base font-semibold"
+            disabled={isLoading || verificationCode.length !== 6}
+          >
+            {isLoading ? "Verifying..." : "Verify Code"}
+          </Button>
 
-            <div className="text-center">
-              {countdown > 0 ? (
-                <p className="text-muted-foreground text-sm">Resend code in {countdown}s</p>
-              ) : (
-                <button
-                  onClick={() => {
-                    startCountdown()
-                    handleRequestCode()
-                  }}
-                  className="text-primary text-sm hover:underline"
-                >
-                  Resend verification code
-                </button>
-              )}
-            </div>
+          <div className="text-center">
+            {countdown > 0 ? (
+              <p className="text-sm text-muted-foreground tabular-nums">Resend code in {countdown}s</p>
+            ) : (
+              <button
+                onClick={() => {
+                  startCountdown()
+                  handleRequestCode()
+                }}
+                className="text-sm text-primary hover:underline"
+              >
+                Resend verification code
+              </button>
+            )}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Step 3: Reset Password */}
-        {step === "reset" && (
-          <form onSubmit={handleResetPassword} className="space-y-6">
-            <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <LockPasswordIcon size={40} className="text-primary" />
-              </div>
-              <h2 className="text-xl font-semibold">Create New Password</h2>
-              <p className="text-muted-foreground text-sm mt-2">Your new password must be at least 6 characters</p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="newPassword">New Password</Label>
+      {step === "reset" && (
+        <form onSubmit={handleResetPassword} className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="newPassword" className="text-foreground font-medium">New Password</Label>
+            <div className="[&_input]:h-12 [&_input]:rounded-xl">
               <PasswordInput
                 id="newPassword"
                 name="newPassword"
@@ -252,9 +226,11 @@ export default function ForgotPasswordPage() {
                 placeholder="Enter new password"
               />
             </div>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm New Password</Label>
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword" className="text-foreground font-medium">Confirm New Password</Label>
+            <div className="[&_input]:h-12 [&_input]:rounded-xl">
               <PasswordInput
                 id="confirmPassword"
                 name="confirmPassword"
@@ -263,31 +239,24 @@ export default function ForgotPasswordPage() {
                 placeholder="Confirm new password"
               />
             </div>
-
-            <Button type="submit" className="w-full h-12 text-base font-semibold" disabled={isLoading}>
-              {isLoading ? "Resetting..." : "Reset Password"}
-            </Button>
-          </form>
-        )}
-
-        {/* Success */}
-        {step === "success" && (
-          <div className="text-center space-y-6">
-            <div className="w-24 h-24 bg-success-soft rounded-full mx-auto flex items-center justify-center">
-              <CheckmarkCircle01Icon size={48} className="text-success" />
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold">Password Reset Successful</h2>
-              <p className="text-muted-foreground mt-2">
-                Your password has been changed successfully. You can now login with your new password.
-              </p>
-            </div>
-            <Button onClick={() => router.push("/login")} className="w-full h-12 text-base font-semibold">
-              Go to Login
-            </Button>
           </div>
-        )}
-      </div>
-    </div>
+
+          <Button type="submit" className="h-12 w-full rounded-4xl text-base font-semibold" disabled={isLoading}>
+            {isLoading ? "Resetting..." : "Reset Password"}
+          </Button>
+        </form>
+      )}
+
+      {step === "success" && (
+        <div className="space-y-6 text-center">
+          <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-success-soft">
+            <CheckmarkCircle01Icon size={34} className="text-success" />
+          </div>
+          <Button onClick={() => router.push("/login")} className="h-12 w-full rounded-4xl text-base font-semibold">
+            Go to Sign in
+          </Button>
+        </div>
+      )}
+    </AuthShell>
   )
 }

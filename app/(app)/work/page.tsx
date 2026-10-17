@@ -47,9 +47,9 @@ function Page() {
   }, [mainDetails]);
   return (
     <div>
-      <Topbar title="Income"/>
+      <Topbar title="Daily Production"/>
       {/* Summary Section */}
-        <div className="mx-auto max-w-md px-4 py-5 mb-20">
+        <div className="mx-auto max-w-md px-4 py-5">
 
           <Tabs defaultValue="valid" className="mt-1">
           <TabsList data-tour="income" className="grid w-full grid-cols-2">

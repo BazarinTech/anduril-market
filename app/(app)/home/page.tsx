@@ -1,7 +1,7 @@
 'use client'
-import { EventsSection } from '@/components/home/events-sections'
 import { FarmDisplay } from '@/components/home/farm-display'
-import { NotificationTicker } from '@/components/home/notification-ticker'
+import { FarmStories } from '@/components/home/farm-stories'
+import { FieldNote } from '@/components/home/field-note'
 import { QuickActions } from '@/components/home/quick-actions'
 import { WelcomeModal } from '@/components/home/welcome-modal'
 import { BottomNav } from '@/components/shared/bottombar'
@@ -24,10 +24,11 @@ function Page() {
     <div>
       <Topbar title="Cloud Farmer" brand />
 
-      {/* The page reads top to bottom as a day on the farm: the herd, the
-          tools, word from the yard, then what is coming. Each block arrives
-          in turn rather than all at once. */}
-      <main className="mx-auto flex w-full max-w-md flex-col gap-5 px-4 pt-4 pb-24">
+      {/* The yard, top to bottom: the hour and the herd, the tools to hand, a
+          word from the field, then the day itself laid out as pictures. The
+          money is deliberately absent -- it lives in the purse and on the
+          account page, one tap away. */}
+      <main className="mx-auto flex w-full max-w-md flex-col gap-7 px-4 pt-4">
         <Reveal>
           <FarmDisplay name={username} />
         </Reveal>
@@ -39,11 +40,11 @@ function Page() {
         </Reveal>
 
         <Reveal delay={0.14}>
-          <NotificationTicker />
+          <FieldNote />
         </Reveal>
 
         <Reveal delay={0.2}>
-          <EventsSection />
+          <FarmStories />
         </Reveal>
       </main>
 

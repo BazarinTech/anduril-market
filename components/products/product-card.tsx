@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowRight01Icon, Loading01Icon } from "hugeicons-react"
+import { ArrowRight01Icon, Loading01Icon, Plant02Icon } from "hugeicons-react"
 import { useCurrency } from "@/lib/hooks/use-currency"
 import { useState } from "react";
 import { toast } from "sonner";
@@ -10,16 +10,15 @@ import { useMainStore } from "@/lib/stores/use-main-store";
 import { productImageUrl } from "@/lib/media/image-url";
 
 /**
- * A stock card.
+ * A plot on the farm.
  *
- * The picture sits in an arched field gate, with the name and figures
- * alongside rather than stacked beneath.
- * The old layout was a full-width square image above a 2x2 grid, which made
- * one product fill the whole screen; this fits two and reads as a lineup.
- *
- * Daily income is the hero number because it is what the card is chosen on.
+ * The picture runs the full width at the top and carries the name over it, so
+ * the row of cards reads as a field of plots rather than a price list. Below
+ * it the figures are split by weight, not by grid: what it pays you daily is
+ * the one number set large, with the stake and the full-cycle total kept
+ * quietly to the right of it.
  */
-export function ProductCard({ID, name, image, image_url, max, duration, returns, order_limit, tier }: Product) {
+export function ProductCard({ID, name, image, image_url, max, duration, returns, order_limit, tier, index }: Product & { index?: number }) {
   const token = useMainStore((state) => state.token);
   const fetchMainDetails = useMainStore((state) => state.fetchMainDetails);
   const [isLoading, setLoading] = useState(false);
@@ -48,73 +47,80 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
   };
 
   return (
-    <article data-tour="product-card" className="relative overflow-hidden rounded-2xl bg-card shadow-premium ring-1 ring-border/70">
-      <div className="flex gap-4 p-4">
-        {/* Picture in an arched field gate */}
-        <div className="relative w-28 shrink-0">
-          <div className="bg-hero relative h-36 overflow-hidden rounded-t-full rounded-b-2xl ring-1 ring-leaf/30">
-            {!imageLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Loading01Icon className="size-6 animate-spin text-leaf/60" />
-              </div>
-            )}
-            <Image
-              src={src || "/placeholder.svg"}
-              alt={name}
-              fill
-              sizes="112px"
-              className={`object-cover transition-opacity duration-300 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-              onLoad={() => setImageLoaded(true)}
-            />
+    <article
+      data-tour="product-card"
+      className="group relative overflow-hidden rounded-3xl bg-card shadow-premium ring-1 ring-border/70"
+    >
+      {/* The plot itself */}
+      <div className="bg-hero relative h-40 w-full">
+        {!imageLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loading01Icon className="size-6 animate-spin text-leaf/60" />
           </div>
-          {tier && (
-            <span className="text-eyebrow absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-ink px-2.5 py-1 text-brand-bright ring-1 ring-leaf/30">
-              {tier}
-            </span>
-          )}
+        )}
+        <Image
+          src={src || "/placeholder.svg"}
+          alt={name}
+          fill
+          sizes="(max-width: 640px) 100vw, 448px"
+          className={`object-cover transition-all duration-500 group-hover:scale-105 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+          onLoad={() => setImageLoaded(true)}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/35 to-ink/5" />
+
+        {typeof index === "number" && (
+          <span className="text-eyebrow absolute top-4 left-4 text-brand-bright">
+            Plot {String(index + 1).padStart(2, "0")}
+          </span>
+        )}
+        {tier && (
+          <span className="text-eyebrow absolute top-3.5 right-4 rounded-full bg-white/10 px-2.5 py-1 text-ink-foreground ring-1 ring-leaf/30">
+            {tier}
+          </span>
+        )}
+
+        <div className="absolute inset-x-4 bottom-3.5 flex items-end justify-between gap-3">
+          <h3 className="truncate text-lg font-semibold tracking-wide text-ink-foreground uppercase">{name}</h3>
+          <span className="shrink-0 text-xs font-medium text-ink-foreground/70 tabular-nums">{duration} days</span>
         </div>
-
-        {/* Name and figures */}
-        <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="truncate text-base font-semibold tracking-wide text-foreground uppercase">{name}</h3>
-            <span className="text-eyebrow shrink-0 rounded-full bg-accent px-2.5 py-1 text-accent-foreground">
-              {duration}d
-            </span>
-          </div>
-
-          <div className="brand-hairline my-3" />
-
-          <p className="text-eyebrow text-muted-foreground">Daily</p>
-          <p className="text-2xl font-semibold text-primary tabular-nums">{useCurrency(returns)}</p>
-
-          <dl className="mt-3 space-y-1.5">
-            <div className="flex items-baseline justify-between gap-2">
-              <dt className="text-xs text-muted-foreground">Stake</dt>
-              <dd className="text-sm font-semibold text-foreground tabular-nums">{useCurrency(max)}</dd>
-            </div>
-            <div className="flex items-baseline justify-between gap-2">
-              <dt className="text-xs text-muted-foreground">Total</dt>
-              <dd className="text-sm font-semibold text-foreground tabular-nums">
-                {useCurrency(Number(returns) * Number(duration))}
-              </dd>
-            </div>
-          </dl>
-        </div>
+        <div className="brand-hairline absolute inset-x-0 bottom-0" />
       </div>
 
-      {/* Action rail */}
-      <div className="flex items-center gap-3 border-t border-border bg-muted/40 px-4 py-3">
-        <span className="text-eyebrow shrink-0 text-muted-foreground">
-          Limit {order_limit}
-        </span>
+      {/* What it gives back. Stacked, not side by side: a five-figure cycle
+          total and a three-figure daily rate would otherwise collide. */}
+      <div className="px-5 pt-4">
+        <p className="text-eyebrow text-muted-foreground">Pays you daily</p>
+        <p className="mt-0.5 text-3xl font-semibold text-primary tabular-nums">{useCurrency(returns)}</p>
+
+        <div className="my-4 h-px bg-border" />
+
+        <dl className="grid grid-cols-2 gap-3">
+          <div>
+            <dt className="text-xs text-muted-foreground">Stake</dt>
+            <dd className="mt-0.5 text-sm font-semibold text-foreground tabular-nums">{useCurrency(max)}</dd>
+          </div>
+          <div className="text-right">
+            <dt className="text-xs text-muted-foreground">Full cycle</dt>
+            <dd className="mt-0.5 text-sm font-semibold text-foreground tabular-nums">
+              {useCurrency(Number(returns) * Number(duration))}
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div className="px-5 pt-4 pb-5">
         <button
-          className="ml-auto flex h-11 flex-1 items-center justify-center gap-2 rounded-4xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-brand-deep disabled:opacity-60"
+          className="flex h-12 w-full items-center justify-center gap-2 rounded-4xl bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-brand-deep disabled:opacity-60"
           disabled={isLoading}
           onClick={handleBuyProduct}
         >
-          {isLoading ? <>Claiming... <Loading01Icon className="size-4 animate-spin" /></> : <>Get Package <ArrowRight01Icon className="size-4" /></>}
+          {isLoading ? (
+            <>Planting... <Loading01Icon className="size-4 animate-spin" /></>
+          ) : (
+            <><Plant02Icon className="size-4" /> Plant this plot <ArrowRight01Icon className="size-4" /></>
+          )}
         </button>
+        <p className="mt-2.5 text-center text-xs text-muted-foreground">Up to {order_limit} per farmer</p>
       </div>
     </article>
   )

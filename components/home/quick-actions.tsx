@@ -23,10 +23,17 @@ const actions = [
   { icon: TelegramIcon, label: "Telegram", link: process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL ?? "" }
 ]
 
+/**
+ * The tools, laid out bare.
+ *
+ * The card around this grid was competing with the picture above it for the
+ * same attention; without it the icons sit on the page itself and the home
+ * screen reads as one surface instead of a stack of boxes.
+ */
 export function QuickActions() {
   const router = useRouter()
   return (
-    <section aria-label="Quick actions" className="rounded-2xl bg-card p-4 shadow-premium ring-1 ring-border/70">
+    <section aria-label="Quick actions">
       <div className="grid grid-cols-4 gap-x-2 gap-y-5">
         {actions.map((action) => {
           const Icon = action.icon
@@ -37,9 +44,9 @@ export function QuickActions() {
               onClick={() => router.push(action.link)}
             >
               <span className="flex size-12 items-center justify-center rounded-2xl bg-accent text-accent-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground group-active:scale-95">
-                <Icon className="size-6" strokeWidth={1.6} />
+                <Icon className="size-[1.375rem]" strokeWidth={1.6} />
               </span>
-              <span className="text-xs font-medium text-foreground">{action.label}</span>
+              <span className="text-[0.6875rem] font-medium text-muted-foreground">{action.label}</span>
             </button>
           )
         })}

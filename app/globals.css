@@ -65,10 +65,9 @@
 /*
  * Cloud Farmer -- light theme.
  *
- * A German-automotive palette: a single saturated blue carried on cool,
- * near-neutral greys, with a deep "ink" navy for hero surfaces. Blue is the
- * only chromatic colour in the chrome; green and amber appear solely as
- * semantic status (success / warning), never as decoration.
+ * Growing green on white, with a deep green-black "ink" for field surfaces
+ * and a low amber sun as the single warm accent. Green carries the chrome;
+ * amber is used for light and for warnings, never for decoration.
  *
  * Radius is deliberately tight. rounded-md resolves to 4px and rounded-xl to
  * 10px, so buttons and inputs read as precise rather than soft.
@@ -208,6 +207,15 @@
   box-shadow:
     0 1px 2px color-mix(in oklch, var(--ink) 8%, transparent),
     0 12px 32px -16px color-mix(in oklch, var(--ink) 30%, transparent);
+}
+
+/* Horizontal rails (the story row) scroll by swipe; the bar adds nothing. */
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer base {
