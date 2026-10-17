@@ -1,7 +1,7 @@
 'use client'
 import { FarmDisplay } from '@/components/home/farm-display'
 import { FarmStories } from '@/components/home/farm-stories'
-import { FieldNote } from '@/components/home/field-note'
+import { FieldTicker } from '@/components/home/field-ticker'
 import { QuickActions } from '@/components/home/quick-actions'
 import { WelcomeModal } from '@/components/home/welcome-modal'
 import { BottomNav } from '@/components/shared/bottombar'
@@ -40,7 +40,7 @@ function Page() {
         </Reveal>
 
         <Reveal delay={0.14}>
-          <FieldNote />
+          <FieldTicker />
         </Reveal>
 
         <Reveal delay={0.2}>

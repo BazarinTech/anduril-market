@@ -209,6 +209,36 @@
     0 12px 32px -16px color-mix(in oklch, var(--ink) 30%, transparent);
 }
 
+/*
+ * The notice rail: one continuous pass from right to left.
+ *
+ * The track carries the list twice and travels exactly half its width, so the
+ * second copy is where the first began and the loop has no seam. Edges are
+ * masked rather than cropped, so lines fade in and out instead of appearing.
+ */
+@keyframes field-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker {
+  mask-image: linear-gradient(90deg, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+}
+
+.ticker-track {
+  animation: field-ticker 45s linear infinite;
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
 /* Horizontal rails (the story row) scroll by swipe; the bar adds nothing. */
 @utility scrollbar-hide {
   scrollbar-width: none;
