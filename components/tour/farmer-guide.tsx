@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { driver, type Driver } from "driver.js"
 import "driver.js/dist/driver.css"
@@ -9,6 +9,29 @@ import { useTourStore } from "@/lib/stores/use-tour-store"
 
 /** Where the tour drops you once Kimani is done talking. */
 const TOUR_EXIT_ROUTE = "/products"
+
+/** Kimani's artwork. Drop a transparent PNG here and he appears. */
+const FARMER_IMAGE = "/farmer.png"
+
+/**
+ * Resolves true only if the artwork actually loads.
+ *
+ * CSS cannot tell a missing background image from a transparent one, so
+ * without this the card reserved a column for a figure that was not there --
+ * dead space on every step until the file is added.
+ */
+function useFarmerArtwork() {
+  const [hasArtwork, setHasArtwork] = useState(false)
+
+  useEffect(() => {
+    const img = new window.Image()
+    img.onload = () => setHasArtwork(true)
+    img.onerror = () => setHasArtwork(false)
+    img.src = FARMER_IMAGE
+  }, [])
+
+  return hasArtwork
+}
 
 /** Resolves once the element exists, or null if it never turns up. */
 function waitForElement(selector: string, timeoutMs = 2500): Promise<HTMLElement | null> {
@@ -60,6 +83,7 @@ export function FarmerGuide() {
   const stepIndex = useTourStore((s) => s.stepIndex)
   const driverRef = useRef<Driver | null>(null)
   const resizeRef = useRef<ResizeObserver | null>(null)
+  const hasArtwork = useFarmerArtwork()
 
   // Resume a tour interrupted by a hard reload.
   useEffect(() => {
@@ -128,7 +152,14 @@ export function FarmerGuide() {
           // centre of the screen and still lays the card out *below* it, which
           // put these cards off the bottom edge. They get a class that pins
           // them to the middle instead; anchored steps keep normal placement.
-          popoverClass: step.element ? "farmer-popover" : "farmer-popover farmer-centred",
+          popoverClass: [
+            "farmer-popover",
+            step.element ? "" : "farmer-centred",
+            // Only reserve the figure's column when there is a figure to put in it.
+            hasArtwork ? "has-farmer" : "",
+          ]
+            .filter(Boolean)
+            .join(" "),
           ...(element ? { side: step.side ?? ("bottom" as const), align: "center" as const } : {}),
           title: step.title,
           description:
@@ -164,7 +195,7 @@ export function FarmerGuide() {
     return () => {
       cancelled = true
     }
-  }, [isActive, stepIndex, pathname, router])
+  }, [isActive, stepIndex, pathname, router, hasArtwork])
 
   // Tear the overlay down if the component itself unmounts (e.g. logout).
   useEffect(
