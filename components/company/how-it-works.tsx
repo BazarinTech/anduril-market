@@ -16,8 +16,8 @@ const steps = [
   {
     icon: ShoppingBag01Icon,
     step: "03",
-    title: "Choose a Product",
-    description: "Pick one and claim as it earns",
+    title: "Rent a Track",
+    description: "Pick one and collect as it earns",
   },
   {
     icon: MoneyReceiveSquareIcon,

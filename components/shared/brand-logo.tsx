@@ -10,13 +10,14 @@ type MarkProps = {
 }
 
 /**
- * The Cloud Farmer mark: a sprout rising into a cloud.
+ * The Musically mark: a note rising out of a sound wave.
  *
- * Two halves of the name in one shape -- the cloud above, new growth reaching
- * it from the soil line below. Inline SVG rather than an image so it stays
- * sharp at every size; app/icon.svg is generated from these same paths.
+ * The wave along the bottom is the track playing; the note above it is the
+ * one you hold. Inline SVG rather than an image so it stays sharp at every
+ * size; app/icon.svg is drawn from these same paths. The tile gradient runs
+ * across the shadcn primary hue so the mark matches every primary surface.
  */
-export function CloudFarmerMark({ size = 32, className, title }: MarkProps) {
+export function MusicallyMark({ size = 32, className, title }: MarkProps) {
   // SVG gradient ids are document-global, so two marks on one page would
   // otherwise share a single definition. useId yields ":r1:"-style ids, and
   // colons are not safe inside url(#...).
@@ -34,32 +35,32 @@ export function CloudFarmerMark({ size = 32, className, title }: MarkProps) {
     >
       <defs>
         <linearGradient id={`tile-${uid}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2A9A52" />
-          <stop offset="1" stopColor="#0F5428" />
+          <stop offset="0" stopColor="#2BA3C4" />
+          <stop offset="1" stopColor="#0B5670" />
         </linearGradient>
       </defs>
       <rect width="48" height="48" rx="11" fill={`url(#tile-${uid})`} />
 
-      {/* cloud */}
-      <path
-        fill="#FFFFFF"
-        d="M16.4 22.6a6.1 6.1 0 0 1 11.6-2.4 5 5 0 0 1 6.9 4.6 4.6 4.6 0 0 1-4.6 4.6H16.6a5 5 0 0 1-.2-6.8Z"
-      />
-      {/* sprout: stem with two leaves, rooted on the soil line */}
-      <path fill="#FFFFFF" d="M23.2 40V29.8h1.9V40Z" />
-      <path
-        fill="#BFEFCD"
-        d="M23.2 31.6c-3.9.5-6.4-1.1-7.4-4.8 3.9-.5 6.4 1.1 7.4 4.8Zm1.9-1.4c1-3.7 3.5-5.3 7.4-4.8-1 3.7-3.5 5.3-7.4 4.8Z"
-      />
-      {/* soil line */}
-      <rect x="13" y="39.4" width="22" height="2.2" rx="1.1" fill="#BFEFCD" opacity=".85" />
+      {/* note: stem, flag and head */}
+      <path fill="#FFFFFF" d="M26.2 10.5h2.4v19.8h-2.4Z" />
+      <path fill="#FFFFFF" d="M28.6 10.5c3.4 1.3 6.4 3.8 6.4 8-1.5-2.2-3.9-3.2-6.4-3.4Z" />
+      <ellipse cx="22.6" cy="30.4" rx="5.2" ry="3.9" transform="rotate(-20 22.6 30.4)" fill="#FFFFFF" />
+
+      {/* sound wave */}
+      <g fill="#BDEBF7">
+        <rect x="12.4" y="38.2" width="2.4" height="3" rx="1.2" />
+        <rect x="17.6" y="36.6" width="2.4" height="4.6" rx="1.2" opacity=".9" />
+        <rect x="22.8" y="35" width="2.4" height="6.2" rx="1.2" />
+        <rect x="28" y="36.6" width="2.4" height="4.6" rx="1.2" opacity=".9" />
+        <rect x="33.2" y="38.2" width="2.4" height="3" rx="1.2" />
+      </g>
     </svg>
   )
 }
 
 type LogoProps = {
   size?: "sm" | "md" | "lg"
-  /** Light text for use on the dark field surfaces. */
+  /** Light text for use on the dark stage surfaces. */
   inverse?: boolean
   className?: string
 }
@@ -71,12 +72,12 @@ const LOGO_SIZES = {
 } as const
 
 /** Mark plus the wordmark. */
-export function CloudFarmerLogo({ size = "md", inverse = false, className }: LogoProps) {
+export function MusicallyLogo({ size = "md", inverse = false, className }: LogoProps) {
   const { mark, text } = LOGO_SIZES[size]
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <CloudFarmerMark size={mark} />
+      <MusicallyMark size={mark} />
       <span
         className={cn(
           "font-semibold tracking-[0.16em] uppercase",
@@ -84,7 +85,7 @@ export function CloudFarmerLogo({ size = "md", inverse = false, className }: Log
           inverse ? "text-ink-foreground" : "text-foreground",
         )}
       >
-        Cloud Farmer
+        Musically
       </span>
     </span>
   )

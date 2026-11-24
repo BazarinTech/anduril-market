@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils"
-import { CloudFarmerLogo } from "./brand-logo"
-import { FarmScene } from "./farm-scene"
+import { MusicallyLogo } from "./brand-logo"
+import { StageScene } from "./stage-scene"
 
 type Props = {
   eyebrow?: string
@@ -14,7 +14,7 @@ type Props = {
 }
 
 /**
- * The field banner: dusk over the pasture, closed with a green furrow.
+ * The stage banner: lights down, closed with a primary hairline.
  *
  * The scene is drawn, not photographed -- it stays crisp at any size, weighs
  * nothing, and recolours with the theme.
@@ -38,11 +38,11 @@ export function BrandBanner({
         className,
       )}
     >
-      {/* The farm behind the words. */}
-      <FarmScene className="absolute inset-0 -z-10" />
+      {/* The stage behind the words. */}
+      <StageScene className="absolute inset-0 -z-10" />
 
       <div className={cn("relative flex h-full flex-col", large ? "gap-6" : "gap-4")}>
-        {showLogo && <CloudFarmerLogo size={large ? "md" : "sm"} inverse />}
+        {showLogo && <MusicallyLogo size={large ? "md" : "sm"} inverse />}
 
         <div className={cn("max-w-md", large ? "mt-auto pt-10" : "mt-auto pt-4")}>
           {eyebrow && <p className="text-eyebrow text-brand-bright">{eyebrow}</p>}

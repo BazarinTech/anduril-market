@@ -45,7 +45,7 @@ function Page() {
   }
   return (
     <div>
-      <Topbar title="Team"/>
+      <Topbar title="My Crew"/>
       {/* Invite Section */}
       <div className="bg-hero relative mx-4 mt-4 overflow-hidden rounded-2xl p-5 shadow-premium">
         <p className="text-eyebrow text-brand-bright">Your invite code</p>
@@ -70,7 +70,7 @@ function Page() {
       <dl className="mx-4 mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-2xl bg-border text-center ring-1 ring-border/70">
         <div className="bg-card px-2 py-3">
           <dd className="text-lg font-semibold text-foreground tabular-nums">{mainDetails?.referral.total_downlines}</dd>
-          <dt className="text-[11px] text-muted-foreground">Team Size</dt>
+          <dt className="text-[11px] text-muted-foreground">Crew Size</dt>
         </div>
         <div className="bg-card px-2 py-3">
           <dd className="text-lg font-semibold text-primary tabular-nums">{mainDetails?.referral.active_downlines}</dd>
@@ -85,7 +85,7 @@ function Page() {
       {/* Team Members Section */}
       <div className="mx-4 mt-6">
         <div className="flex items-center gap-3">
-          <span className="text-eyebrow text-muted-foreground">Team members</span>
+          <span className="text-eyebrow text-muted-foreground">Crew members</span>
           <span className="h-px flex-1 bg-border" />
         </div>
       </div>

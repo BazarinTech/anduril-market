@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { productImageUrl } from "@/lib/media/image-url"
-import { Speaker01Icon } from "hugeicons-react"
+import { MusicNote01Icon } from "hugeicons-react"
 import { Button } from "@/components/ui/button"
 import { PromotionDialog } from "./promotion-dialog"
 import { useCurrency } from "@/lib/hooks/use-currency"
@@ -62,7 +62,7 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
               <span className="text-sm font-semibold text-primary tabular-nums">{useCurrency(daily)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm text-muted-foreground">Cycle:</span>
+              <span className="text-sm text-muted-foreground">Term:</span>
               <span className="text-sm font-semibold text-foreground tabular-nums">{cycle}</span>
             </div>
             <div className="flex justify-between">
@@ -78,7 +78,7 @@ export function OrderCard({ name, image, image_url, cycle, total, roll, status, 
             className="mt-4 h-11 w-full text-sm font-semibold"
             disabled={isPromoting || roll == 0}
           >
-            <Speaker01Icon className="mr-2 h-5 w-5" />
+            <MusicNote01Icon className="mr-2 h-5 w-5" />
             {roll == 0 ? "Please come back later" : `Claim Income`}
           </Button>
         )}

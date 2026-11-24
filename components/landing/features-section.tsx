@@ -4,13 +4,13 @@ export function FeaturesSection() {
   const features = [
     {
       icon: ShoppingBag01Icon,
-      title: "Stock",
-      description: "Price, season and daily income, up front.",
+      title: "Music rentals",
+      description: "Price, rental term and daily earnings, up front.",
     },
     {
       icon: UserMultiple02Icon,
-      title: "Your co-op",
-      description: "Grow your circle across three levels.",
+      title: "Your crew",
+      description: "Grow your crew across three levels.",
     },
     {
       icon: Wallet01Icon,
@@ -28,7 +28,7 @@ export function FeaturesSection() {
     <section id="features" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
       <div className="max-w-2xl">
         <p className="text-eyebrow text-primary">Features</p>
-        <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Everything on the farm</h2>
+        <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Everything in one place</h2>
       </div>
 
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

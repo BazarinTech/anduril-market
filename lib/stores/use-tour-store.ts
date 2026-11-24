@@ -11,6 +11,8 @@ import { TOUR_STEPS } from "@/lib/tour/steps"
  * navigation, and is mirrored into storage so a hard reload mid-tour resumes
  * rather than starting over.
  */
+// Key values predate the Musically rebrand and are kept as-is: renaming them
+// would offer the tour again to everyone who has already taken or skipped it.
 const DONE_KEY = "cloudfarmer_tour_v1"       // localStorage: taken once, per device
 const PROGRESS_KEY = "cloudfarmer_tour_step" // sessionStorage: survives a reload
 

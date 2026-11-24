@@ -1,7 +1,7 @@
 'use client'
-import { FarmDisplay } from '@/components/home/farm-display'
-import { FarmStories } from '@/components/home/farm-stories'
-import { FieldTicker } from '@/components/home/field-ticker'
+import { HeroDisplay } from '@/components/home/hero-display'
+import { MusicStories } from '@/components/home/music-stories'
+import { NoticeTicker } from '@/components/home/notice-ticker'
 import { QuickActions } from '@/components/home/quick-actions'
 import { WelcomeModal } from '@/components/home/welcome-modal'
 import { BottomNav } from '@/components/shared/bottombar'
@@ -22,15 +22,15 @@ function Page() {
 
   return (
     <div>
-      <Topbar title="Cloud Farmer" brand />
+      <Topbar title="Musically" brand />
 
-      {/* The yard, top to bottom: the hour and the herd, the tools to hand, a
-          word from the field, then the day itself laid out as pictures. The
-          money is deliberately absent -- it lives in the purse and on the
-          account page, one tap away. */}
+      {/* Home, top to bottom: the hour and the stage, the tools to hand, the
+          notice rail, then a rental laid out as pictures. The money is
+          deliberately absent -- it lives in the wallet and on the account
+          page, one tap away. */}
       <main className="mx-auto flex w-full max-w-md flex-col gap-7 px-4 pt-4">
         <Reveal>
-          <FarmDisplay name={username} />
+          <HeroDisplay name={username} />
         </Reveal>
 
         <Reveal delay={0.08}>
@@ -40,11 +40,11 @@ function Page() {
         </Reveal>
 
         <Reveal delay={0.14}>
-          <FieldTicker />
+          <NoticeTicker />
         </Reveal>
 
         <Reveal delay={0.2}>
-          <FarmStories />
+          <MusicStories />
         </Reveal>
       </main>
 

@@ -11,7 +11,7 @@ import React from 'react'
 function Page() {
   return (
     <div>
-      <Topbar title="About Cloud Farmer" backBtn/>
+      <Topbar title="About Musically" backBtn/>
       
       <CompanyHero />
       <MissionSection  />

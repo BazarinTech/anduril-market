@@ -1,12 +1,12 @@
 import { ShoppingBag01Icon, Wallet01Icon, UserMultiple02Icon, Award01Icon } from "hugeicons-react"
 
-// What the platform actually offers. The previous list described worker
-// recruitment and a "rental business" -- neither exists anywhere in the app.
+// What the platform actually offers: music rentals that earn daily, an
+// M-Pesa wallet, crew rewards and incentive tiers.
 const services = [
   {
     icon: ShoppingBag01Icon,
-    title: "Stock",
-    description: "Clear price, season and daily income.",
+    title: "Music Rentals",
+    description: "Clear price, rental term and daily earnings.",
   },
   {
     icon: Wallet01Icon,
@@ -15,8 +15,8 @@ const services = [
   },
   {
     icon: UserMultiple02Icon,
-    title: "Co-op Rewards",
-    description: "Follow your circle across three levels.",
+    title: "Crew Rewards",
+    description: "Follow your crew across three levels.",
   },
   {
     icon: Award01Icon,

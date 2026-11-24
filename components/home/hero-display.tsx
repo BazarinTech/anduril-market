@@ -2,16 +2,16 @@
 
 import { useState, useSyncExternalStore } from "react"
 import Image from "next/image"
-import { CloudFarmerLogo } from "@/components/shared/brand-logo"
-import { FarmScene, CowSilhouette } from "@/components/shared/farm-scene"
+import { MusicallyLogo } from "@/components/shared/brand-logo"
+import { StageScene, VinylSilhouette } from "@/components/shared/stage-scene"
 
-// The farm keeps its own hours, so the panel greets by the clock rather than
+// The room keeps its own hours, so the panel greets by the clock rather than
 // with one fixed line.
 const HOURS = [
-  { from: 5, greeting: "Good morning", line: "The herd is out. The day has started." },
-  { from: 12, greeting: "Good afternoon", line: "Sun high over the plots. Everything is growing." },
-  { from: 17, greeting: "Good evening", line: "The light is going. The day's work is in." },
-  { from: 21, greeting: "Good night", line: "The yard is quiet. Your plots keep working." },
+  { from: 5, greeting: "Good morning", line: "First play of the day. Your tracks are on." },
+  { from: 12, greeting: "Good afternoon", line: "Mid-set. Every track you rent is still spinning." },
+  { from: 17, greeting: "Good evening", line: "Lights going down. The day's plays are in." },
+  { from: 21, greeting: "Good night", line: "The room is quiet. Your tracks keep playing." },
 ]
 
 function indexForHour(hour: number) {
@@ -26,16 +26,16 @@ function indexForHour(hour: number) {
 const subscribeToNothing = () => () => {}
 
 /**
- * The home display: your farm, as a picture.
+ * The home display: your stage, as a picture.
  *
- * No figures here by design -- the money lives one tap away in the purse and
+ * No figures here by design -- the money lives one tap away in the wallet and
  * on the account page. This panel exists to open the day, so it carries the
- * herd, the hour and your name, and nothing else.
+ * record, the hour and your name, and nothing else.
  *
- * The photograph loads from /cow.jpg. Drop one in and it is used with no code
- * change; until then the drawn pasture stands in, so it is never empty.
+ * The photograph loads from /hero.jpg. Drop one in and it is used with no code
+ * change; until then the drawn stage stands in, so it is never empty.
  */
-export function FarmDisplay({ name }: { name?: string }) {
+export function HeroDisplay({ name }: { name?: string }) {
   const [hasPhoto, setHasPhoto] = useState(true)
   const moment = HOURS[
     useSyncExternalStore(subscribeToNothing, () => indexForHour(new Date().getHours()), () => 0)
@@ -48,8 +48,8 @@ export function FarmDisplay({ name }: { name?: string }) {
       <div className="relative h-60 w-full sm:h-64">
         {hasPhoto ? (
           <Image
-            src="/cow.jpg"
-            alt="Your herd at pasture"
+            src="/hero.jpg"
+            alt="Your music on stage"
             fill
             priority
             sizes="(max-width: 640px) 100vw, 480px"
@@ -58,8 +58,8 @@ export function FarmDisplay({ name }: { name?: string }) {
           />
         ) : (
           <>
-            <FarmScene className="absolute inset-0" />
-            <CowSilhouette className="absolute right-4 bottom-8 h-20 text-brand-bright/80" />
+            <StageScene className="absolute inset-0" />
+            <VinylSilhouette className="absolute top-5 right-4 h-24 text-brand-bright/70" />
           </>
         )}
 
@@ -67,13 +67,13 @@ export function FarmDisplay({ name }: { name?: string }) {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent" />
 
         <div className="absolute inset-x-5 top-5">
-          <CloudFarmerLogo size="sm" inverse />
+          <MusicallyLogo size="sm" inverse />
         </div>
 
         <div className="absolute inset-x-5 bottom-5">
           <p className="text-eyebrow text-brand-bright">{moment.greeting}</p>
           <h2 className="mt-1 text-2xl font-semibold text-ink-foreground">
-            {firstName ? `Karibu, ${firstName}` : "Karibu home"}
+            {firstName ? `Karibu, ${firstName}` : "Karibu backstage"}
           </h2>
           <p className="mt-1.5 max-w-[16rem] text-sm leading-snug text-ink-foreground/70">{moment.line}</p>
         </div>

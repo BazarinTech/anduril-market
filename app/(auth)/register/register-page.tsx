@@ -82,8 +82,8 @@ export default function RegisterPage() {
 
   return (
     <AuthShell
-      title="Join the farm"
-      subtitle="Your own plot, in about a minute."
+      title="Join Musically"
+      subtitle="Your first track, in about a minute."
       home="/login"
       footer={
         <>

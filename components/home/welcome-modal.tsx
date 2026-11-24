@@ -26,7 +26,7 @@ export function WelcomeModal() {
   }, [])
 
   /**
-   * Closing the welcome modal hands straight over to Kimani, but only for
+   * Closing the welcome modal hands straight over to Melo, but only for
    * someone who has never been shown the tour on this device. Dismissing the
    * modal any other way (escape, tapping outside) leaves them alone.
    */
@@ -42,8 +42,8 @@ export function WelcomeModal() {
           outside, and "Get started" all still close the dialog. */}
       <DialogContent showCloseButton={false} className="mx-auto max-w-sm gap-0 overflow-hidden border-0 p-0">
         <BrandBanner
-          eyebrow="Cloud Farmer"
-          title="Welcome to the farm"
+          eyebrow="Musically"
+          title="Welcome to Musically"
           className="rounded-none shadow-none"
         />
 
@@ -51,11 +51,11 @@ export function WelcomeModal() {
           <div>
             {/* Visually carried by the banner above; kept for screen readers,
                 which need a dialog title to announce. */}
-            <DialogTitle className="sr-only">Welcome to the farm</DialogTitle>
+            <DialogTitle className="sr-only">Welcome to Musically</DialogTitle>
             <DialogDescription className="text-sm leading-relaxed text-muted-foreground">
-              Choose your stock, collect what it brings in{" "}
+              Rent a track, collect what it earns{" "}
               <span className="font-medium text-foreground">every day</span>, and earn from the
-              farmers you bring in. M-Pesa in, M-Pesa out.
+              listeners you bring in. M-Pesa in, M-Pesa out.
             </DialogDescription>
           </div>
 
@@ -78,7 +78,7 @@ export function WelcomeModal() {
               className="h-11 w-full text-sm font-semibold"
               onClick={handleEnter}
             >
-              Start farming
+              Start listening
             </Button>
           </div>
         </div>

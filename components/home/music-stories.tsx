@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight01Icon } from "hugeicons-react"
-import { FarmVignette, type VignetteVariant } from "@/components/shared/farm-scene"
+import { StoryVignette, type VignetteVariant } from "@/components/shared/stage-scene"
 
 type Story = {
   variant: VignetteVariant
@@ -16,13 +16,12 @@ type Story = {
 }
 
 // Four moments, in the order they happen. Read left to right they are the
-// whole product -- which is why this replaced the two "events" tiles: those
-// announced things, these explain the farm without a paragraph.
+// whole product -- they explain renting music without a paragraph.
 const stories: Story[] = [
-  { variant: "dawn", photo: "/stories/dawn.jpg", eyebrow: "Sunrise", title: "Pick your plot", href: "/products" },
-  { variant: "herd", photo: "/stories/herd.jpg", eyebrow: "The herd", title: "Let it grow", href: "/work" },
-  { variant: "harvest", photo: "/stories/harvest.jpg", eyebrow: "Every day", title: "Collect the yield", href: "/work" },
-  { variant: "market", photo: "/stories/market.jpg", eyebrow: "Market day", title: "Cash out", href: "/cashout" },
+  { variant: "discover", photo: "/stories/discover.jpg", eyebrow: "Browse", title: "Find a track", href: "/products" },
+  { variant: "rent", photo: "/stories/rent.jpg", eyebrow: "Rent it", title: "Make it yours", href: "/products" },
+  { variant: "play", photo: "/stories/play.jpg", eyebrow: "Every day", title: "Collect earnings", href: "/work" },
+  { variant: "payout", photo: "/stories/payout.jpg", eyebrow: "Payday", title: "Cash out", href: "/cashout" },
 ]
 
 function StoryCard({ story }: { story: Story }) {
@@ -43,7 +42,7 @@ function StoryCard({ story }: { story: Story }) {
           onError={() => setHasPhoto(false)}
         />
       ) : (
-        <FarmVignette variant={story.variant} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
+        <StoryVignette variant={story.variant} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
       )}
 
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
@@ -62,10 +61,10 @@ function StoryCard({ story }: { story: Story }) {
   )
 }
 
-export function FarmStories() {
+export function MusicStories() {
   return (
-    <section aria-label="A day on the farm">
-      <h2 className="mb-3 px-1 text-base font-semibold text-foreground">A day on the farm</h2>
+    <section aria-label="How a rental plays out">
+      <h2 className="mb-3 px-1 text-base font-semibold text-foreground">How a rental plays out</h2>
       <div className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1">
         {stories.map((story) => (
           <StoryCard key={story.title} story={story} />

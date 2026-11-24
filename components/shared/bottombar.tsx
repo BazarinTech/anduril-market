@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home09Icon, Plant02Icon, ShoppingBasket03Icon, UserGroupIcon, UserCircleIcon } from "hugeicons-react"
+import { Home09Icon, Album01Icon, HeadphonesIcon, UserGroupIcon, UserCircleIcon } from "hugeicons-react"
 import { cn } from "@/lib/utils"
 
-// Farm words, farm icons: the yard, the plots, what the day produced, the
-// people around you, and you.
+// The five places: home, the music library, what your rentals earned, your
+// crew, and you.
 const navItems = [
-  { label: "Yard", href: "/home", icon: Home09Icon },
-  { label: "Farm", href: "/products", icon: Plant02Icon },
-  { label: "Harvest", href: "/work", icon: ShoppingBasket03Icon },
-  { label: "Team", href: "/team", icon: UserGroupIcon },
+  { label: "Home", href: "/home", icon: Home09Icon },
+  { label: "Library", href: "/products", icon: Album01Icon },
+  { label: "Earnings", href: "/work", icon: HeadphonesIcon },
+  { label: "Crew", href: "/team", icon: UserGroupIcon },
   { label: "Mine", href: "/mine", icon: UserCircleIcon },
 ]
 

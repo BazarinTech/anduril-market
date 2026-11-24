@@ -5,7 +5,7 @@ const items = [
     icon: Target02Icon,
     title: "Our Mission",
     description:
-      "One clear, dependable place for your products, your team and your money.",
+      "One clear, dependable place for your music rentals, your crew and your money.",
   },
   {
     icon: EyeIcon,

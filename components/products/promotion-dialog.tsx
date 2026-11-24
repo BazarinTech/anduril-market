@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-import { Rocket01Icon, SparklesIcon } from "hugeicons-react"
+import { MusicNote01Icon, SparklesIcon } from "hugeicons-react"
 import {
   AlertDialog,
   AlertDialogContent,
@@ -91,10 +91,10 @@ export function PromotionDialog({ isOpen, onComplete, productName, orderID }: Pr
       <AlertDialogContent className="max-w-sm gap-0 overflow-hidden p-0 [&>button]:hidden">
         <AlertDialogHeader className="bg-hero relative block space-y-0 px-6 pt-6 pb-5 text-left sm:text-left">
           <div className="mb-4 flex size-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
-            <Rocket01Icon className="size-5 text-brand-bright" />
+            <MusicNote01Icon className="size-5 text-brand-bright" />
           </div>
-          <p className="text-eyebrow text-brand-bright">In the field</p>
-          <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Collecting your harvest</AlertDialogTitle>
+          <p className="text-eyebrow text-brand-bright">Now playing</p>
+          <AlertDialogTitle className="mt-1 text-lg font-semibold text-ink-foreground">Collecting your earnings</AlertDialogTitle>
           <AlertDialogDescription className="mt-0.5 text-sm text-ink-foreground/70">
             {productName}
           </AlertDialogDescription>

@@ -1,6 +1,6 @@
-# Cloud Farmer
+# Musically
 
-A mobile-first web app where users buy products that pay out daily returns, top up and cash out via M-Pesa, and earn commission from a three-level referral network.
+A mobile-first web app where users rent music tracks that pay out daily returns, top up and cash out via M-Pesa, and earn commission from a three-level referral network.
 
 This repository is the **frontend only**. All business logic — balances, returns, payouts, referral commission — lives in a separate PHP backend that this app talks to over HTTP. Nothing in this codebase decides how much money anyone gets.
 
@@ -10,8 +10,8 @@ This repository is the **frontend only**. All business logic — balances, retur
 
 A signed-in user lands on `/home` and can:
 
-- **Buy a product** (`/products`) — each product has a fixed price, a duration in days, and a daily return rate. Buying one creates an *investment order*.
-- **Collect daily returns** (`/work`) — orders are split into Valid and Expired tabs. Collecting a day's earnings on an active order is called a *roll*, handled by the promotion dialog on the order card.
+- **Rent a track** (`/products`, the Music Library) — each track has a fixed rental price, a rental term in days, and a daily return rate. Renting one creates an *investment order*.
+- **Collect daily earnings** (`/work`) — rentals are split into Valid and Expired tabs. Collecting a day's earnings on an active order is called a *roll*, handled by the promotion dialog on the order card.
 - **Recharge** (`/recharge`) — an M-Pesa STK push. The app initiates the deposit, gets a `trackingID` back, and polls `stk-status.php` until the user confirms on their handset.
 - **Cash out** (`/cashout`) — a withdrawal to the M-Pesa number saved in the cashout wallet, gated by a 4-digit PIN and subject to a minimum amount and a percentage fee that the backend supplies.
 - **Set up a cashout wallet** (`/cashout-wallet`) — the M-Pesa phone number, account name, and withdrawal PIN. Create, update details, or change the PIN.
@@ -33,7 +33,7 @@ Currency is hard-coded to **KES** and formatted with `Intl.NumberFormat("en-KE")
 |---|---|
 | Framework | Next.js 16.1.1, App Router |
 | React | 19.2.3 |
-| Styling | Tailwind CSS v4 (CSS-variable theme in [globals.css](app/globals.css)) |
+| Styling | Tailwind CSS v4 (CSS-variable theme in [globals.css](app/globals.css); brand tokens are derived from the shadcn primary) |
 | Components | shadcn (`radix-nova` style) over Radix and Base UI |
 | Icons | Hugeicons, with Lucide as the shadcn default |
 | State | Zustand — one store, [use-main-store.ts](lib/stores/use-main-store.ts) |
@@ -142,7 +142,7 @@ Every domain type is a **global ambient type** in [types.d.ts](types.d.ts) — `
 - Screens follow the same skeleton: `<Topbar title>`, content, `<BottomNav />`, with `mb-20` on the content so the fixed nav doesn't cover it.
 - Loading states are hand-written skeleton components co-located at the top of the page file, gated on `isMainFetching && !mainDetails`.
 - Money is always rendered through `useCurrency(...)`. Despite the name it is a plain function, not a React hook.
-- The theme is a green primary defined as OKLCH variables in `globals.css`. Use the semantic Tailwind classes (`bg-primary`, `text-muted-foreground`) rather than raw colours; a few older files still hard-code `bg-white`.
+- The theme is the shadcn zinc + teal-blue primary, defined as OKLCH variables in `globals.css`; the brand extensions (`ink`, `brand-bright`, `wave`, `glow`) are derived from that primary hue. Use the semantic Tailwind classes (`bg-primary`, `text-muted-foreground`) rather than raw colours; a few older files still hard-code `bg-white`.
 - Import via the `@/*` alias, which maps to the repo root.
 
 ---

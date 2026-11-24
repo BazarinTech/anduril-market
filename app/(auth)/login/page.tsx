@@ -61,7 +61,7 @@ export default function LoginPage() {
   return (
     <AuthShell
       title="Welcome back"
-      subtitle="Your plots kept working while you were away."
+      subtitle="Your tracks kept playing while you were away."
       home="/register"
       footer={
         <>

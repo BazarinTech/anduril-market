@@ -410,7 +410,7 @@ export default function CashoutWalletPage() {
                 <Wallet01Icon size={32} className="text-primary" />
               </div>
               <h2 className="text-lg font-semibold">Set Up Withdrawal Wallet</h2>
-              <p className="text-muted-foreground text-sm mt-1">Where your winnings land</p>
+              <p className="text-muted-foreground text-sm mt-1">Where your earnings land</p>
             </div>
 
             {error && (

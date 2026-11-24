@@ -1,14 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { FloatingButtons } from "@/components/shared/floating-buttons";
 import { cn } from "@/lib/utils";
 
-const geistSans = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -17,16 +14,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Cloud Farmer",
-    template: "%s · Cloud Farmer",
+    default: "Musically",
+    template: "%s · Musically",
   },
-  description: "Farm stock, co-op rewards and an M-Pesa wallet in one account.",
-  applicationName: "Cloud Farmer",
+  description: "Music rentals, crew rewards and an M-Pesa wallet in one account.",
+  applicationName: "Musically",
 };
 
-// Tints the mobile browser chrome to match the ink hero surfaces.
+// Tints the mobile browser chrome to match the dark stage surfaces.
 export const viewport: Viewport = {
-  themeColor: "#0C110E",
+  themeColor: "#09090B",
 };
 
 export const dynamic = "force-dynamic"
@@ -39,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geistSans.variable, geistMono.variable)}>
+    <html lang="en" className={cn("font-sans", inter.variable, geistMono.variable)}>
       <body className="antialiased">
         {children}
         <FloatingButtons />

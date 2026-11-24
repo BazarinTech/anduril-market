@@ -4,50 +4,39 @@ import { useMainStore } from "@/lib/stores/use-main-store"
 import { useCurrency } from "@/lib/hooks/use-currency"
 
 /**
- * Notices from around the farm.
+ * Notices on the rail.
  *
- * Hard-coded at the platform owner's instruction. They are not drawn from
- * live records, so keep them representative of what the farm actually pays;
- * when the backend can serve recent masked payouts, swap this list for that
- * feed and nothing else here has to change.
- *
- * Numbers are masked the same way the team tables mask them.
+ * Standing tips about how the platform works. They used to be invented
+ * payout lines ("0712 *** 447 withdrew KES 1,500") presented as other users'
+ * activity; those were not drawn from any record, so they were replaced with
+ * statements that are true for everyone. When the backend can serve recent
+ * masked payouts, swap this list for that feed and nothing else has to change.
  */
 const NOTICES = [
-  "Congratulations 0712 *** 447 — collected KES 256 today",
-  "0798 *** 112 withdrew KES 1,500 to M-Pesa",
-  "Bonus received by 0722 *** 059 — KES 100",
-  "0745 *** 380 earned KES 420 from a level 1 farmer",
-  "0711 *** 204 took a new plot — KES 1,200",
-  "0733 *** 901 finished a 30-day cycle — KES 3,600 in all",
-  "Coupon redeemed by 0757 *** 318 — KES 250",
-  "Congratulations 0769 *** 472 — collected KES 480 today",
-  "0720 *** 663 cashed out KES 5,000 to M-Pesa",
-  "0790 *** 155 earned KES 90 from a level 2 farmer",
-  "Congratulations 0714 *** 027 — first harvest collected",
-  "0738 *** 844 brought in three farmers this week",
-  "0702 *** 590 claimed a KES 300 invite bonus",
-  "0748 *** 236 withdrew KES 2,750 to M-Pesa",
-  "0729 *** 471 collected KES 120 today",
-  "0771 *** 608 earned KES 60 from a level 3 farmer",
-  "Congratulations 0705 *** 193 — agent salary of KES 2,000 paid",
-  "0754 *** 729 opened two plots today",
-  "0783 *** 015 collected KES 960 today",
-  "Bonus received by 0796 *** 342 — KES 500",
+  "Every track you rent earns once a day, for its whole rental term",
+  "Collect today's earnings from the Earnings tab",
+  "Deposits arrive by M-Pesa STK push — confirm with your own PIN",
+  "Set your withdrawal account once, then cash out to M-Pesa any time",
+  "Share your invite code to build your crew",
+  "Commission is counted across three levels of your crew",
+  "Check Records for every deposit, withdrawal and earning",
+  "Redeem coupon codes from the Bonus page",
+  "Finished rentals move to Expired — rent a new track to keep earning",
+  "Questions? Customer support is one tap away",
 ]
 
 // One standing reminder, kept in the run because it is worth meeting often.
-const SAFETY_LINE = "Your PIN stays yours. Cloud Farmer will never ask for it."
+const SAFETY_LINE = "Your PIN stays yours. Musically will never ask for it."
 
 /** How each kind of entry in your own history reads as it passes. */
 function lineFor(type: string, amount: string) {
   const kind = type.toLowerCase()
-  if (kind.includes("return")) return `You collected ${amount} from your plots`
-  if (kind.includes("bonus")) return `Bonus of ${amount} landed in your purse`
+  if (kind.includes("return")) return `You collected ${amount} from your tracks`
+  if (kind.includes("bonus")) return `Bonus of ${amount} landed in your wallet`
   if (kind.includes("coupon")) return `Coupon redeemed — ${amount}`
   if (kind.includes("commission") || kind.includes("invite") || kind.includes("referral"))
     return `${amount} commission from your team`
-  if (kind.includes("deposit") || kind.includes("recharge")) return `${amount} added to your purse`
+  if (kind.includes("deposit") || kind.includes("recharge")) return `${amount} added to your wallet`
   if (kind.includes("withdraw") || kind.includes("cashout")) return `${amount} sent to your M-Pesa`
   if (kind.includes("transfer")) return `${amount} transferred`
   return `${type} — ${amount}`
@@ -59,7 +48,7 @@ const SETTLED = ["completed", "success", "approved"]
  * The rail that runs under the picture.
  *
  * Your own settled history leads -- what you collected, the bonus that landed
- * -- and the notices from the rest of the farm follow.
+ * -- and the standing notices follow.
  *
  * It travels right to left without stopping. The track carries the run twice
  * and moves exactly half its own width, so the second copy arrives where the
@@ -67,7 +56,7 @@ const SETTLED = ["completed", "success", "approved"]
  * flex gap: a gap sits *between* items only, which leaves the two copies half
  * a gap out of step and jolts the loop once every pass.
  */
-export function FieldTicker() {
+export function NoticeTicker() {
   const transactions = useMainStore((s) => s.mainDetails?.transactions)
   const format = useCurrency
 
@@ -76,7 +65,7 @@ export function FieldTicker() {
     .slice(0, 4)
     .map((t) => lineFor(t.type || t.name, format(t.amount ?? 0)))
 
-  // The rail opens on a notice, so a phone line is in frame from the first
+  // The rail opens on a notice, so something is in frame from the first
   // moment rather than after your own history has gone by. Your own entries
   // are threaded in every fifth place, and the reminder comes round early.
   const lines: string[] = []
@@ -92,7 +81,7 @@ export function FieldTicker() {
   const duration = `${lines.length * 4}s`
 
   return (
-    <div className="ticker -mx-4 overflow-hidden" aria-label="Farm notices">
+    <div className="ticker -mx-4 overflow-hidden" aria-label="Notices">
       <div className="ticker-track flex w-max items-center" style={{ animationDuration: duration }}>
         {[...lines, ...lines].map((line, i) => (
           <span key={`${line}-${i}`} className="flex shrink-0 items-center gap-2.5 pr-7">

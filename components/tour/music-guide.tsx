@@ -7,11 +7,11 @@ import "driver.js/dist/driver.css"
 import { TOUR_STEPS } from "@/lib/tour/steps"
 import { useTourStore } from "@/lib/stores/use-tour-store"
 
-/** Where the tour drops you once Kimani is done talking. */
+/** Where the tour drops you once Melo is done talking. */
 const TOUR_EXIT_ROUTE = "/products"
 
-/** Kimani's artwork. Drop a transparent PNG here and he appears. */
-const FARMER_IMAGE = "/farmer.png"
+/** Melo's artwork. Drop a transparent PNG here and it appears. */
+const GUIDE_IMAGE = "/guide.png"
 
 /**
  * Resolves true only if the artwork actually loads.
@@ -20,14 +20,14 @@ const FARMER_IMAGE = "/farmer.png"
  * without this the card reserved a column for a figure that was not there --
  * dead space on every step until the file is added.
  */
-function useFarmerArtwork() {
+function useGuideArtwork() {
   const [hasArtwork, setHasArtwork] = useState(false)
 
   useEffect(() => {
     const img = new window.Image()
     img.onload = () => setHasArtwork(true)
     img.onerror = () => setHasArtwork(false)
-    img.src = FARMER_IMAGE
+    img.src = GUIDE_IMAGE
   }, [])
 
   return hasArtwork
@@ -61,11 +61,11 @@ function progressDots(current: number, total: number) {
   const pips = Array.from({ length: total }, (_, i) =>
     `<i class="${i === current ? "is-current" : i < current ? "is-done" : ""}"></i>`,
   ).join("")
-  return `<div class="farmer-dots">${pips}<span>${current + 1}</span></div>`
+  return `<div class="guide-dots">${pips}<span>${current + 1}</span></div>`
 }
 
 /**
- * Kimani's guided tour.
+ * Melo's guided tour.
  *
  * driver.js is single-page, so this drives it one step at a time: for each
  * step it navigates to the step's route if needed, waits for the target to
@@ -76,14 +76,14 @@ function progressDots(current: number, total: number) {
  * shows a different screen until a withdrawal account exists, and a tour that
  * stalls on a missing target would trap the user behind an overlay.
  */
-export function FarmerGuide() {
+export function MusicGuide() {
   const router = useRouter()
   const pathname = usePathname()
   const isActive = useTourStore((s) => s.isActive)
   const stepIndex = useTourStore((s) => s.stepIndex)
   const driverRef = useRef<Driver | null>(null)
   const resizeRef = useRef<ResizeObserver | null>(null)
-  const hasArtwork = useFarmerArtwork()
+  const hasArtwork = useGuideArtwork()
 
   // Resume a tour interrupted by a hard reload.
   useEffect(() => {
@@ -123,11 +123,11 @@ export function FarmerGuide() {
       destroy()
       const instance = driver({
         allowClose: true,
-        overlayColor: "#151110",
+        overlayColor: "#09090B",
         overlayOpacity: 0.74,
         stagePadding: 6,
         stageRadius: 18,
-        popoverClass: "farmer-popover",
+        popoverClass: "guide-popover",
         smoothScroll: true,
         onDestroyStarted: () => finish("skipped"),
       })
@@ -153,25 +153,25 @@ export function FarmerGuide() {
           // put these cards off the bottom edge. They get a class that pins
           // them to the middle instead; anchored steps keep normal placement.
           popoverClass: [
-            "farmer-popover",
-            step.element ? "" : "farmer-centred",
+            "guide-popover",
+            step.element ? "" : "guide-centred",
             // Only reserve the figure's column when there is a figure to put in it.
-            hasArtwork ? "has-farmer" : "",
+            hasArtwork ? "has-guide" : "",
           ]
             .filter(Boolean)
             .join(" "),
           ...(element ? { side: step.side ?? ("bottom" as const), align: "center" as const } : {}),
           title: step.title,
           description:
-            `<p class="farmer-dialogue">${step.dialogue}</p>` +
+            `<p class="guide-dialogue">${step.dialogue}</p>` +
             progressDots(stepIndex, TOUR_STEPS.length),
           showButtons: stepIndex === 0 ? ["next", "close"] : ["previous", "next", "close"],
-          nextBtnText: isLast ? "Start farming" : "Next",
+          nextBtnText: isLast ? "Start listening" : "Next",
           prevBtnText: "Back",
-          doneBtnText: "Start farming",
+          doneBtnText: "Start listening",
           onNextClick: () => {
             if (!isLast) return next()
-            // Last word: close the tour and set them down in the armoury.
+            // Last word: close the tour and set them down in the library.
             finish("completed")
             router.push(TOUR_EXIT_ROUTE)
           },

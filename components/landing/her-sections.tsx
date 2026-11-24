@@ -19,22 +19,22 @@ export function HeroSection() {
         <div className="text-center lg:text-left">
           <p className="text-eyebrow inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1.5 text-accent-foreground">
             <span className="size-1.5 rounded-full bg-primary" />
-            Welcome to Cloud Farmer
+            Welcome to Musically
           </p>
 
           <h1 className="mt-6 text-4xl font-semibold text-balance text-foreground sm:text-5xl lg:text-6xl">
-            Grow something
+            Rent the music
             <span className="block text-primary">that pays you back</span>
           </h1>
 
           <p className="mx-auto mt-6 max-w-md text-lg text-pretty text-muted-foreground lg:mx-0">
-            Stock, co-op and wallet. One account.
+            Tracks, crew and wallet. One account.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
             <Button asChild size="lg" className="h-12 px-7 text-base font-semibold">
               <Link href="/register">
-                Start farming
+                Start listening
                 <ArrowRight02Icon className="ml-1 h-5 w-5" />
               </Link>
             </Button>
@@ -55,9 +55,9 @@ export function HeroSection() {
 
         <BrandBanner
           size="lg"
-          eyebrow="The farm"
-          title="Good soil. Steady hands."
-          subtitle="Built for farmers."
+          eyebrow="The stage"
+          title="Good tracks. Steady plays."
+          subtitle="Built for music lovers."
         />
       </div>
     </section>

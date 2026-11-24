@@ -3,7 +3,7 @@
 import LogoutAlert from '@/components/alerts/logout-alert'
 import { BottomNav } from '@/components/shared/bottombar'
 import Topbar from '@/components/shared/topbar'
-import { CloudFarmerMark } from '@/components/shared/brand-logo'
+import { MusicallyMark } from '@/components/shared/brand-logo'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useCurrency } from '@/lib/hooks/use-currency'
 import { useMainStore } from '@/lib/stores/use-main-store'
@@ -44,7 +44,7 @@ const menuGroups: { label: string; tour?: string; items: MenuItem[] }[] = [
       { icon: File01Icon, label: "Records", href: "/records" },
       { icon: Ticket02Icon, label: "My Coupon", href: "/bonus" },
       { icon: LockPasswordIcon, label: "Reset Password", href: "/reset-password" },
-      // Kimani on demand: the tour is offered once, so this is how it is found again.
+      // Melo on demand: the tour is offered once, so this is how it is found again.
       { icon: Compass01Icon, label: "Replay guide", action: "tour" as const },
     ],
   },
@@ -77,7 +77,7 @@ function Page() {
     loginState()
   }, [loginState])
 
-  // Kimani starts from the top when replayed from here.
+  // Melo starts from the top when replayed from here.
   const startTour = () => useTourStore.getState().start(0)
 
   const loading = !mainDetails
@@ -97,8 +97,8 @@ function Page() {
       <header className="bg-hero relative overflow-hidden px-5 pt-6 pb-8">
         <div className="mx-auto max-w-md">
           <div className="flex items-center gap-4">
-            <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-leaf/25">
-              <CloudFarmerMark size={34} title="Cloud Farmer" />
+            <div className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-wave/25">
+              <MusicallyMark size={34} title="Musically" />
             </div>
             <div className="min-w-0 flex-1">
               {loading ? (
@@ -109,8 +109,8 @@ function Page() {
               ) : (
                 <>
                   <div className="flex items-center gap-2">
-                    <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Farmer"}</p>
-                    <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-leaf/25">
+                    <p className="truncate font-semibold text-ink-foreground">{mainDetails?.user?.username ?? "Listener"}</p>
+                    <span className="text-eyebrow shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-brand-bright ring-1 ring-wave/25">
                       {wallet?.level}
                     </span>
                   </div>

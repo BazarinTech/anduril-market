@@ -47,7 +47,7 @@ function Page() {
   }, [mainDetails]);
   return (
     <div>
-      <Topbar title="Daily Production"/>
+      <Topbar title="Daily Earnings"/>
       {/* Summary Section */}
         <div className="mx-auto max-w-md px-4 py-5">
 
@@ -91,9 +91,9 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <NoList title="No active orders" description="Products appear here while they earn." />
+                !isMainFetching && <NoList title="No active rentals" description="Tracks you rent appear here while they earn." />
               )}
-              {!isMainFetching && validOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
+              {!isMainFetching && validOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more rentals</p>}
             </div>
           </TabsContent>
 
@@ -123,9 +123,9 @@ function Page() {
                   />
                 ))
               ) : (
-                !isMainFetching && <NoList title="Nothing expired" description="Orders move here when their cycle ends." />
+                !isMainFetching && <NoList title="Nothing expired" description="Rentals move here when their term ends." />
               )}
-              {!isMainFetching && expiredOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more orders</p>}
+              {!isMainFetching && expiredOrders.length > 0 && <p className="py-2 text-center text-xs text-muted-foreground">No more rentals</p>}
             </div>
           </TabsContent>
         </Tabs>

@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { CloudFarmerLogo } from "@/components/shared/brand-logo"
-import { FarmScene } from "@/components/shared/farm-scene"
+import { MusicallyLogo } from "@/components/shared/brand-logo"
+import { StageScene } from "@/components/shared/stage-scene"
 
 type Props = {
   title: string
@@ -15,15 +15,15 @@ type Props = {
 // The whole proposition in three words each. Shown beside the form on a wide
 // screen, folded into a single line on a phone.
 const steps = [
-  { n: "01", label: "Take a plot" },
+  { n: "01", label: "Rent a track" },
   { n: "02", label: "Collect daily" },
-  { n: "03", label: "Grow your circle" },
+  { n: "03", label: "Grow your crew" },
 ]
 
 /**
  * The frame every sign-in screen sits in.
  *
- * A field panel carries the brand and the promise; the form arrives on a pale
+ * A stage panel carries the brand and the promise; the form arrives on a pale
  * sheet that lifts over it on a phone and sits beside it on a desktop. The old
  * screens were a dark banner stacked on a plain white page, which gave the
  * form no ground of its own and wasted every pixel of a wide screen.
@@ -32,11 +32,11 @@ export function AuthShell({ title, subtitle, children, footer, home = "/login" }
   return (
     <div className="flex min-h-dvh flex-col bg-ink lg:grid lg:grid-cols-[1.05fr_1fr]">
       <aside className="bg-hero relative overflow-hidden px-6 pt-12 pb-14 lg:flex lg:min-h-dvh lg:flex-col lg:justify-between lg:px-12 lg:py-16">
-        <FarmScene className="absolute inset-x-0 bottom-0 h-48 opacity-60 lg:h-72" />
+        <StageScene className="absolute inset-x-0 bottom-0 h-48 opacity-60 lg:h-72" />
 
         <div className="relative">
-          <Link href={home} aria-label="Cloud Farmer">
-            <CloudFarmerLogo size="sm" inverse />
+          <Link href={home} aria-label="Musically">
+            <MusicallyLogo size="sm" inverse />
           </Link>
 
           <h1 className="mt-10 text-3xl leading-tight font-semibold text-ink-foreground lg:mt-16 lg:text-5xl">

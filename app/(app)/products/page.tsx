@@ -34,13 +34,13 @@ function Page() {
 
   return (
     <div>
-      <Topbar title="The Farm" />
+      <Topbar title="Music Library" />
 
       <main className="mx-auto max-w-md px-4 pt-5">
         <header className="mb-5 px-1">
-          <p className="text-eyebrow text-muted-foreground">Open ground</p>
-          <h2 className="mt-1 text-xl font-semibold text-foreground">Take a plot</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Every plot pays once a day, for its whole cycle.</p>
+          <p className="text-eyebrow text-muted-foreground">Now available</p>
+          <h2 className="mt-1 text-xl font-semibold text-foreground">Rent a track</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Every track you rent earns once a day, for its whole rental term.</p>
         </header>
 
         <div className="space-y-5">
@@ -69,7 +69,7 @@ function Page() {
             />
           ))}
           {mainDetails?.products.length === 0 && (
-            <NoList title='No plots open yet' description='Please reach our customer support for help'/>
+            <NoList title='No tracks available yet' description='Please reach our customer support for help'/>
           )}
         </div>
       </main>
