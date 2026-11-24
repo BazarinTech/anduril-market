@@ -34,9 +34,7 @@ function Page() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div data-tour="quick-actions">
-            <QuickActions />
-          </div>
+          <QuickActions />
         </Reveal>
 
         <Reveal delay={0.14}>

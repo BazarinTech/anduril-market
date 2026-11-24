@@ -48,7 +48,6 @@ export function ProductCard({ID, name, image, image_url, max, duration, returns,
 
   return (
     <article
-      data-tour="product-card"
       className="group relative overflow-hidden rounded-3xl bg-card shadow-premium ring-1 ring-border/70"
     >
       {/* The cover */}

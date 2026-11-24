@@ -44,7 +44,7 @@ export function HeroDisplay({ name }: { name?: string }) {
   const firstName = name?.trim().split(/\s+/)[0]
 
   return (
-    <section className="bg-hero relative isolate overflow-hidden rounded-3xl shadow-premium" data-tour="home-banner">
+    <section className="bg-hero relative isolate overflow-hidden rounded-3xl shadow-premium">
       <div className="relative h-60 w-full sm:h-64">
         {hasPhoto ? (
           <Image

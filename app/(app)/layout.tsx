@@ -1,5 +1,4 @@
 import ClientLoginInitializer from "@/components/shared/client-login-initializer"
-import { MusicGuide } from "@/components/tour/music-guide"
 
 // A nested layout must not render <head>: only the root layout owns
 // <html>/<head>/<body>, so a <head> here is emitted inside <body> -- invalid
@@ -15,8 +14,6 @@ export default function AppLayout({
     <>
       <ClientLoginInitializer />
       {children}
-      {/* Lives above the routes so the tour survives moving between them. */}
-      <MusicGuide />
     </>
   )
 }

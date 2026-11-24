@@ -170,7 +170,7 @@ export default function CashoutPage() {
     <div>
       <Topbar title="Withdraw" backBtn />
 
-      <div data-tour="withdraw" className="mx-auto max-w-md flex-1 px-5 py-6">
+      <div className="mx-auto max-w-md flex-1 px-5 py-6">
         {/* Check if withdrawal account is set */}
         {!hasWithdrawalAccount ? (
           <div className="flex flex-col items-center justify-center py-12">

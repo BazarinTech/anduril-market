@@ -51,7 +51,7 @@ function Page() {
         <p className="text-eyebrow text-brand-bright">Your invite code</p>
         <p className="mt-2 font-mono text-3xl font-semibold tracking-[0.2em] text-ink-foreground">{referralCode}</p>
         <p className="mt-2 break-all text-xs text-ink-foreground/60">{referralLink}</p>
-        <Button data-tour="invite" onClick={handleCopy} className="mt-4 h-11 w-full bg-white text-ink hover:bg-white/90">
+        <Button onClick={handleCopy} className="mt-4 h-11 w-full bg-white text-ink hover:bg-white/90">
           {copied ? (
             <>
               <CheckmarkCircle01Icon size={18} className="mr-2" />
@@ -93,7 +93,7 @@ function Page() {
       {/* Team Tabs */}
       <div className="mx-4 mt-4">
         <Tabs defaultValue="teamB" className="w-full">
-          <TabsList data-tour="levels" className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger
               value="teamB"
             >

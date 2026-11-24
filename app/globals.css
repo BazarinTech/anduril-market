@@ -67,8 +67,8 @@
  *
  * The shadcn theme is the source of truth: zinc neutrals with whatever
  * primary the installer last wrote (currently the orange preset). Every brand
- * extension below is mixed from --primary, so the stage surfaces, hairlines
- * and the guide card read as one palette with the shadcn components.
+ * extension below is mixed from --primary, so the stage surfaces and hairlines
+ * read as one palette with the shadcn components.
  *
  * Only success and warning keep their own hues: they carry meaning (money
  * landed, money pending) and must not be confused with the brand colour.
@@ -96,8 +96,8 @@
    * Brand extensions, computed from --primary rather than written out.
    *
    * Re-running the shadcn theme installer rewrites --primary and nothing
-   * else; because these are mixes of it, the stage surfaces, hairline, logo
-   * and guide card follow automatically instead of staying on the old hue.
+   * else; because these are mixes of it, the stage surfaces, hairline and logo
+   * follow automatically instead of staying on the old hue.
    */
   /* A darker step of --primary, for hover on primary surfaces. */
   --brand-deep: color-mix(in oklch, var(--primary) 78%, black);
@@ -272,177 +272,5 @@
   }
   h1, h2, h3 {
     @apply tracking-tight;
-  }
-}
-
-/*
- * The guide's tutorial card.
- *
- * Modelled on game onboarding: a bright primary panel, a heavy headline, step
- * pips along the bottom, and the guide standing against the right edge.
- *
- * The figure is a CSS layer rather than a React node because driver.js owns
- * this DOM. Drop a transparent PNG at public/guide.png and it appears; if the
- * file is absent nothing renders and the card still reads correctly.
- */
-.driver-popover.guide-popover {
-  --guide-figure: 104px;
-  /* No position override here. driver.css positions the card with
-     `position: fixed` plus inline offsets; setting `relative` made those
-     offsets resolve against the card's static spot at the end of <body>,
-     which threw it to the top or bottom of the page instead of next to its
-     target. A fixed element still anchors the figure's ::after layer. */
-  overflow: visible;
-  max-width: 21rem;
-  padding: 1.1rem 1.15rem 0.9rem;
-  border: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
-  border-radius: calc(var(--radius) + 16px);
-  background-color: var(--brand-bright);
-  background-image: linear-gradient(135deg, color-mix(in oklch, var(--brand-bright) 60%, white) 0%, var(--brand-bright) 55%, var(--wave) 100%);
-  color: var(--ink);
-  box-shadow:
-    0 2px 4px color-mix(in oklch, var(--ink) 16%, transparent),
-    0 22px 48px -20px color-mix(in oklch, var(--ink) 65%, transparent);
-}
-
-/*
- * The guide, standing past the card's edge.
- *
- * Framed with `cover` so a wide photo crops to the figure instead of being
- * letterboxed; adjust the position if your cut-out is off-centre.
- */
-.driver-popover.guide-popover.has-guide::after {
-  content: "";
-  position: absolute;
-  right: -12px;
-  bottom: 0;
-  width: var(--guide-figure);
-  height: 142px;
-  background: url("/guide.png") no-repeat center bottom / cover;
-  pointer-events: none;
-  filter: drop-shadow(0 10px 20px rgb(0 0 0 / 0.32));
-}
-
-.driver-popover.guide-popover.has-guide .driver-popover-title,
-.driver-popover.guide-popover.has-guide .driver-popover-description {
-  padding-right: calc(var(--guide-figure) - 24px);
-}
-
-.driver-popover.guide-popover .driver-popover-title {
-  font-size: 1.25rem;
-  line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-/* The guide's name, set above the headline. */
-.driver-popover.guide-popover .driver-popover-title::before {
-  content: "Melo";
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  color: color-mix(in oklch, var(--ink) 62%, transparent);
-}
-
-.driver-popover.guide-popover .guide-dialogue {
-  margin-top: 0.55rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: color-mix(in oklch, var(--ink) 88%, transparent);
-}
-
-.driver-popover.guide-popover .guide-dots {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 0.9rem;
-}
-
-.driver-popover.guide-popover .guide-dots i {
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background-color: color-mix(in oklch, var(--ink) 25%, transparent);
-}
-
-.driver-popover.guide-popover .guide-dots i.is-done {
-  background-color: color-mix(in oklch, var(--ink) 50%, transparent);
-}
-
-.driver-popover.guide-popover .guide-dots i.is-current {
-  width: 16px;
-  background-color: var(--brand-deep);
-}
-
-.driver-popover.guide-popover .guide-dots span {
-  margin-left: 0.4rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  color: color-mix(in oklch, var(--ink) 62%, transparent);
-}
-
-.driver-popover.guide-popover .driver-popover-footer {
-  margin-top: 0.85rem;
-  gap: 0.5rem;
-}
-
-/* Clear of the figure: it overhangs the card by 12px, so the rest of its
-   width sits over the footer and would cover the Next button. */
-.driver-popover.guide-popover.has-guide .driver-popover-footer {
-  padding-right: calc(var(--guide-figure) - 12px);
-}
-
-.driver-popover.guide-popover .driver-popover-footer button {
-  border-radius: calc(var(--radius) + 16px);
-  padding: 0.45rem 1rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-shadow: none;
-  border: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
-  background-color: color-mix(in oklch, #ffffff 55%, transparent);
-  color: var(--ink);
-}
-
-.driver-popover.guide-popover .driver-popover-footer .driver-popover-next-btn {
-  background-color: var(--brand-deep);
-  border-color: var(--brand-deep);
-  color: var(--ink-foreground);
-}
-
-.driver-popover.guide-popover .driver-popover-close-btn {
-  color: color-mix(in oklch, var(--ink) 55%, transparent);
-}
-
-.driver-popover.guide-popover .driver-popover-arrow {
-  border-color: var(--brand-bright);
-}
-
-/* Element-less steps sit dead centre, not below the midpoint. */
-.driver-popover.guide-centred {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  right: auto !important;
-  bottom: auto !important;
-  transform: translate(-50%, -50%) !important;
-  margin: 0 !important;
-  /* Driver sizes the card to the room beside its anchor; from a centre point
-     that left half the width unused and wrapped the text to ribbons. */
-  width: min(21rem, calc(100vw - 2rem)) !important;
-  max-width: none !important;
-}
-
-.driver-popover.guide-centred .driver-popover-arrow {
-  display: none !important;
-}
-
-@media (max-width: 640px) {
-  .driver-popover.guide-popover {
-    --guide-figure: 84px;
-    max-width: calc(100vw - 2rem);
   }
 }
