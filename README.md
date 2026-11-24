@@ -170,3 +170,23 @@ pnpm lint    # eslint
 ```
 
 There are no tests.
+
+---
+
+## Image credits
+
+The home photographs are CC0 (public domain dedication), found through
+[Openverse](https://openverse.org). No attribution is required; the sources are
+listed so their licence can be re-checked. Each was cropped, resized and saved
+without its original metadata.
+
+| File | Source | Photographer |
+|---|---|---|
+| `public/hero.jpg` | <https://stocksnap.io/photo/concert-stage-P7JJ4LKNK8> | Marc-Antoine Dépelteau |
+| `public/stories/discover.jpg` | <https://stocksnap.io/photo/vinyl-record-DILOPNOHDI> | Spencer Selover |
+| `public/stories/rent.jpg` | <https://stocksnap.io/photo/vinyl-record-0NOS06CDVI> | Skitter Photo |
+| `public/stories/play.jpg` | <https://www.flickr.com/photos/132795455@N08/21887721729> | Image Catalog |
+| `public/stories/payout.jpg` | <https://www.flickr.com/photos/132795455@N08/22526174288> | Image Catalog |
+
+To replace one, drop a new file at the same path. If any file is missing, its
+card falls back to the drawn artwork in `components/shared/stage-scene.tsx`.
