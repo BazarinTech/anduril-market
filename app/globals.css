@@ -65,10 +65,10 @@
 /*
  * Musically -- light theme.
  *
- * The shadcn theme is the source of truth: zinc neutrals with a teal-blue
- * primary (hue ~223). Every brand extension below is derived from that same
- * hue, so the stage surfaces, hairlines and the guide card all read as one
- * palette with the shadcn components rather than a second theme beside it.
+ * The shadcn theme is the source of truth: zinc neutrals with whatever
+ * primary the installer last wrote (currently the orange preset). Every brand
+ * extension below is mixed from --primary, so the stage surfaces, hairlines
+ * and the guide card read as one palette with the shadcn components.
  *
  * Only success and warning keep their own hues: they carry meaning (money
  * landed, money pending) and must not be confused with the brand colour.
@@ -78,8 +78,8 @@
   --card-foreground: oklch(0.141 0.005 285.823);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.52 0.105 223.128);
-  --primary-foreground: oklch(0.984 0.019 200.873);
+  --primary: oklch(0.553 0.195 38.402);
+  --primary-foreground: oklch(0.98 0.016 73.684);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);
@@ -92,17 +92,24 @@
   --ring: oklch(0.705 0.015 286.067);
   --radius: 0.625rem;
 
+  /*
+   * Brand extensions, computed from --primary rather than written out.
+   *
+   * Re-running the shadcn theme installer rewrites --primary and nothing
+   * else; because these are mixes of it, the stage surfaces, hairline, logo
+   * and guide card follow automatically instead of staying on the old hue.
+   */
   /* A darker step of --primary, for hover on primary surfaces. */
-  --brand-deep: oklch(0.42 0.09 224);
-  /* The accent used on dark stage surfaces: a lit-up step of the primary hue. */
-  --brand-bright: oklch(0.83 0.1 212);
+  --brand-deep: color-mix(in oklch, var(--primary) 78%, black);
+  /* The accent used on dark stage surfaces: a lit-up step of the primary. */
+  --brand-bright: color-mix(in oklch, var(--primary) 55%, white);
   /* Sound-wave strokes and the hairline. */
-  --wave: oklch(0.68 0.12 218);
-  /* The stage light: a pale cyan wash, kept within the primary family. */
-  --glow: oklch(0.8 0.09 200);
-  /* Stage surfaces: zinc-black with a trace of the primary hue. */
-  --ink: oklch(0.17 0.015 250);
-  --ink-2: oklch(0.24 0.03 238);
+  --wave: color-mix(in oklch, var(--primary) 82%, white);
+  /* The stage light: a pale wash of the primary. */
+  --glow: color-mix(in oklch, var(--primary) 42%, white);
+  /* Stage surfaces: zinc-black with a trace of the primary. */
+  --ink: color-mix(in oklch, oklch(0.141 0.005 285.823) 94%, var(--primary));
+  --ink-2: color-mix(in oklch, oklch(0.21 0.006 285.885) 84%, var(--primary));
   --ink-foreground: oklch(0.985 0 0);
   --success: oklch(0.518 0.128 150.7);
   --success-soft: oklch(0.955 0.018 155.8);
@@ -117,8 +124,8 @@
 
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.609 0.126 221.723);
-  --sidebar-primary-foreground: oklch(0.984 0.019 200.873);
+  --sidebar-primary: oklch(0.646 0.222 41.116);
+  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
   --sidebar-accent: oklch(0.967 0.001 286.375);
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
@@ -134,8 +141,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.45 0.085 224.283);
-  --primary-foreground: oklch(0.984 0.019 200.873);
+  --primary: oklch(0.47 0.157 37.304);
+  --primary-foreground: oklch(0.98 0.016 73.684);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
@@ -147,12 +154,12 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.552 0.016 285.938);
 
-  --brand-deep: oklch(0.52 0.105 223);
-  --brand-bright: oklch(0.85 0.09 210);
-  --wave: oklch(0.72 0.12 216);
-  --glow: oklch(0.8 0.09 200);
-  --ink: oklch(0.141 0.005 285.823);
-  --ink-2: oklch(0.22 0.025 240);
+  --brand-deep: color-mix(in oklch, var(--primary) 70%, black);
+  --brand-bright: color-mix(in oklch, var(--primary) 50%, white);
+  --wave: color-mix(in oklch, var(--primary) 70%, white);
+  --glow: color-mix(in oklch, var(--primary) 40%, white);
+  --ink: color-mix(in oklch, oklch(0.141 0.005 285.823) 95%, var(--primary));
+  --ink-2: color-mix(in oklch, oklch(0.21 0.006 285.885) 86%, var(--primary));
   --ink-foreground: oklch(0.985 0 0);
   --success: oklch(0.733 0.161 149.6);
   --success-soft: oklch(0.228 0.024 156.9);
@@ -167,8 +174,8 @@
 
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.715 0.143 215.221);
-  --sidebar-primary-foreground: oklch(0.302 0.056 229.695);
+  --sidebar-primary: oklch(0.705 0.213 47.604);
+  --sidebar-primary-foreground: oklch(0.98 0.016 73.684);
   --sidebar-accent: oklch(0.274 0.006 286.033);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
@@ -291,7 +298,7 @@
   border: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
   border-radius: calc(var(--radius) + 16px);
   background-color: var(--brand-bright);
-  background-image: linear-gradient(135deg, oklch(0.92 0.06 205) 0%, var(--brand-bright) 55%, oklch(0.72 0.12 218) 100%);
+  background-image: linear-gradient(135deg, color-mix(in oklch, var(--brand-bright) 60%, white) 0%, var(--brand-bright) 55%, var(--wave) 100%);
   color: var(--ink);
   box-shadow:
     0 2px 4px color-mix(in oklch, var(--ink) 16%, transparent),

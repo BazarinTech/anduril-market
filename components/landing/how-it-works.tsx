@@ -1,52 +1,47 @@
-import { UserAdd01Icon, SmartPhone01Icon, ShoppingBag01Icon, MoneyReceiveSquareIcon } from "hugeicons-react"
+import { UserAdd01Icon, SmartPhone01Icon, Album01Icon, MoneyReceiveSquareIcon } from "hugeicons-react"
+import { StoryVignette } from "@/components/shared/stage-scene"
 
+const steps = [
+  { icon: UserAdd01Icon, title: "Create your account", description: "Phone number, name and email. About a minute." },
+  { icon: SmartPhone01Icon, title: "Top up with M-Pesa", description: "Confirm the STK push on your phone with your own PIN." },
+  { icon: Album01Icon, title: "Rent a track", description: "Compare price, term and daily earnings, then take your pick." },
+  { icon: MoneyReceiveSquareIcon, title: "Collect and cash out", description: "Collect each day's earnings, then send them to your M-Pesa." },
+]
+
+/**
+ * How it works, set as an album's tracklist: a cover on the left, the four
+ * steps as numbered tracks on the right. On a phone the cover sits on top.
+ */
 export function HowItWorksSection() {
-  const steps = [
-    {
-      icon: UserAdd01Icon,
-      step: "01",
-      title: "Create your account",
-      description: "Phone number, name, email.",
-    },
-    {
-      icon: SmartPhone01Icon,
-      step: "02",
-      title: "Top up with M-Pesa",
-      description: "Confirm the STK push on your phone.",
-    },
-    {
-      icon: ShoppingBag01Icon,
-      step: "03",
-      title: "Rent a track",
-      description: "Compare, then take your pick.",
-    },
-    {
-      icon: MoneyReceiveSquareIcon,
-      step: "04",
-      title: "Cash out",
-      description: "Straight to your M-Pesa number.",
-    },
-  ]
-
   return (
-    <section id="how-it-works" className="scroll-mt-20 border-y border-border bg-card px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
-          <p className="text-eyebrow text-primary">How it works</p>
-          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">Four steps to your first payout</h2>
+    <section id="how-it-works" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+      <div className="grid gap-12 lg:grid-cols-[22rem_1fr] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="bg-hero relative aspect-square w-full max-w-xs overflow-hidden rounded-3xl shadow-premium">
+            <StoryVignette variant="discover" className="absolute inset-0" />
+            <div className="absolute inset-x-5 bottom-5">
+              <p className="text-eyebrow text-brand-bright">The album</p>
+              <p className="mt-1 text-xl font-semibold text-ink-foreground">How it works</p>
+            </div>
+            <div className="brand-hairline absolute inset-x-0 bottom-0" />
+          </div>
+          <h2 className="mt-8 text-3xl font-semibold text-foreground sm:text-4xl">Four tracks to your first payout</h2>
+          <p className="mt-3 text-muted-foreground">Every step happens on your phone.</p>
         </div>
 
-        <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((item) => (
-            <li key={item.step} className="relative rounded-2xl bg-background p-6 ring-1 ring-border/70">
-              <div className="flex items-center justify-between">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-ink text-ink-foreground">
-                  <item.icon className="size-5" />
-                </span>
-                <span className="font-mono text-sm font-semibold text-muted-foreground/70">{item.step}</span>
+        <ol className="divide-y divide-border border-y border-border">
+          {steps.map((step, i) => (
+            <li key={step.title} className="group flex items-center gap-5 py-6">
+              <span className="w-8 shrink-0 font-mono text-sm font-semibold text-muted-foreground/70 tabular-nums group-hover:text-primary">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
               </div>
-              <h3 className="mt-5 text-base font-semibold text-foreground">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <step.icon className="size-5" />
+              </span>
             </li>
           ))}
         </ol>

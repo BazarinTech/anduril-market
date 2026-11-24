@@ -14,8 +14,10 @@ type MarkProps = {
  *
  * The wave along the bottom is the track playing; the note above it is the
  * one you hold. Inline SVG rather than an image so it stays sharp at every
- * size; app/icon.svg is drawn from these same paths. The tile gradient runs
- * across the shadcn primary hue so the mark matches every primary surface.
+ * size; app/icon.svg is drawn from these same paths. The tile is painted
+ * with the theme's own variables, so it follows the shadcn primary wherever
+ * it changes. (app/icon.svg is a static file and cannot; it carries the
+ * current preset's values and has to be updated by hand.)
  */
 export function MusicallyMark({ size = 32, className, title }: MarkProps) {
   // SVG gradient ids are document-global, so two marks on one page would
@@ -35,8 +37,8 @@ export function MusicallyMark({ size = 32, className, title }: MarkProps) {
     >
       <defs>
         <linearGradient id={`tile-${uid}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2BA3C4" />
-          <stop offset="1" stopColor="#0B5670" />
+          <stop offset="0" style={{ stopColor: "var(--wave)" }} />
+          <stop offset="1" style={{ stopColor: "var(--brand-deep)" }} />
         </linearGradient>
       </defs>
       <rect width="48" height="48" rx="11" fill={`url(#tile-${uid})`} />
@@ -47,7 +49,7 @@ export function MusicallyMark({ size = 32, className, title }: MarkProps) {
       <ellipse cx="22.6" cy="30.4" rx="5.2" ry="3.9" transform="rotate(-20 22.6 30.4)" fill="#FFFFFF" />
 
       {/* sound wave */}
-      <g fill="#BDEBF7">
+      <g style={{ fill: "var(--glow)" }}>
         <rect x="12.4" y="38.2" width="2.4" height="3" rx="1.2" />
         <rect x="17.6" y="36.6" width="2.4" height="4.6" rx="1.2" opacity=".9" />
         <rect x="22.8" y="35" width="2.4" height="6.2" rx="1.2" />

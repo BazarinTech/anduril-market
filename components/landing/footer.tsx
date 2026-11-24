@@ -23,8 +23,8 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               <li><a href="#features" className={linkClass}>Features</a></li>
               <li><a href="#how-it-works" className={linkClass}>How it works</a></li>
-              <li><Link href="/products" className={linkClass}>Products</Link></li>
-              <li><Link href="/team" className={linkClass}>My Team</Link></li>
+              <li><Link href="/products" className={linkClass}>Music Library</Link></li>
+              <li><Link href="/team" className={linkClass}>My Crew</Link></li>
             </ul>
           </div>
 

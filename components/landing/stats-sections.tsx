@@ -1,32 +1,31 @@
-/**
- * Platform highlights.
- *
- * This band used to show "5K+ Active Workers", "KSH 2M+ Paid Out", "50+
- * Cities" and "24hrs payouts, guaranteed". None of those numbers came from
- * anywhere. What is listed now is taken from what the product actually does.
- */
-export function StatsSection() {
-  const highlights = [
-    { value: "M-Pesa", label: "Top up & withdraw", description: "STK push deposits" },
-    { value: "3", label: "Crew levels", description: "Grow your crew" },
-    { value: "PIN", label: "Secured cash-outs", description: "Reset by SMS" },
-    { value: "KES", label: "Local currency", description: "No conversion" },
-  ]
+import { SmartPhone01Icon, UserGroupIcon, LockPasswordIcon, Invoice01Icon } from "hugeicons-react"
 
+/**
+ * Plain facts about the product, in one strip under the player card.
+ *
+ * Each is something the app demonstrably does. An earlier band showed user
+ * counts and payout totals that came from nowhere; nothing here is a figure
+ * that would need a source.
+ */
+const facts = [
+  { icon: SmartPhone01Icon, value: "M-Pesa", label: "Top up and withdraw" },
+  { icon: UserGroupIcon, value: "3 levels", label: "Crew commission" },
+  { icon: LockPasswordIcon, value: "PIN", label: "Guards every cash-out" },
+  { icon: Invoice01Icon, value: "KES", label: "Full history, no conversion" },
+]
+
+export function StatsSection() {
   return (
-    <section className="bg-hero relative overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 py-14">
-        <dl className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {highlights.map((item) => (
-            <div key={item.label} className="text-center md:text-left">
-              <dd className="text-3xl font-semibold text-ink-foreground sm:text-4xl">{item.value}</dd>
-              <dt className="mt-2 text-sm font-medium text-ink-foreground">{item.label}</dt>
-              <p className="text-sm text-ink-foreground/60">{item.description}</p>
-            </div>
-          ))}
-        </dl>
-      </div>
-      <div className="brand-hairline absolute inset-x-0 bottom-0" />
+    <section className="mx-auto max-w-5xl px-6 pt-14 pb-6">
+      <ul className="grid grid-cols-2 gap-y-8 md:grid-cols-4 md:divide-x md:divide-border">
+        {facts.map(({ icon: Icon, value, label }) => (
+          <li key={label} className="flex flex-col items-center gap-2 px-4 text-center">
+            <Icon className="size-5 text-primary" />
+            <p className="text-xl font-semibold text-foreground">{value}</p>
+            <p className="text-sm text-muted-foreground">{label}</p>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
